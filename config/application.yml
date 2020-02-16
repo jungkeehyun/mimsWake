@@ -1,0 +1,26 @@
+netty:
+  server:
+    transfer:
+      port: 13101
+      type: websocket
+      maxContentLength: 65535
+      websocket:
+        path: /ws
+        subProtocol: websocket
+        allowExtensions: true
+        maxFrameSize: 655360
+    thread:
+      count:
+        boss: 1
+        worker: 1
+    log:
+      level:
+        pipeline: INFO
+        bootstrap: INFO
+logging:
+  file: logs/mimsWakeApp.log
+  pattern:
+    file: '%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n'
+    console: '%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n'
+  level:
+    ROOT: INFO
