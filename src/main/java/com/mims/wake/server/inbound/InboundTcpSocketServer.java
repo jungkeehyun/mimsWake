@@ -65,10 +65,11 @@ public class InboundTcpSocketServer {
                          @Override
                          public void initChannel(SocketChannel ch) {
                              ChannelPipeline pipeline = ch.pipeline();
-                             pipeline.addLast(new DelimiterBasedFrameDecoder(Integer.MAX_VALUE, PushConstant.DEFAULT_DELIMITER));
-                             pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
-                             pipeline.addLast(new PushMessageDecoder());
-                             pipeline.addLast(new InboundTcpSocketServerHandler(inboundQueues));
+                             //pipeline.addLast(new DelimiterBasedFrameDecoder(Integer.MAX_VALUE, PushConstant.DEFAULT_DELIMITER));
+                             //pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
+                             //pipeline.addLast(new PushMessageDecoder());
+                             //pipeline.addLast(new InboundTcpSocketServerHandler(inboundQueues));
+                             pipeline.addLast(new InboundTcpSocketServerMsgHandler(inboundQueues));
                          }
                      })
                      .option(ChannelOption.SO_REUSEADDR, true)

@@ -36,7 +36,7 @@ public class InboundTcpSocketServerHandler extends SimpleChannelInboundHandler<P
      */
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        LOG.info("[InboundServerHandler] connected {}", ctx.channel());
+        LOG.info("@@@@@@@ [InboundServerHandler] connected {}", ctx.channel());
         ctx.fireChannelActive();
     }
 
@@ -49,14 +49,14 @@ public class InboundTcpSocketServerHandler extends SimpleChannelInboundHandler<P
      */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, PushMessage msg) {
-        LOG.info("[InboundServerHandler] received {} from {}", msg, ctx.channel());
+        LOG.info("@@@@@@@@ [InboundServerHandler] received {} from {}", msg, ctx.channel());
 
         // Service ID에 해당하는 Inbound Queue에 메시지 추가
         String serviceId = msg.getServiceId();
         if (serviceId != null && inboundQueues.containsKey(serviceId)) {
             inboundQueues.get(serviceId).enqueue(msg);
         } else {
-            LOG.warn("[InboundServerHandler] invalid service id in message {}", msg);
+            LOG.warn("@@@@@@@@@ [InboundServerHandler] invalid service id in message {}", msg);
         }
     }
 
@@ -68,7 +68,7 @@ public class InboundTcpSocketServerHandler extends SimpleChannelInboundHandler<P
      */
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        LOG.info("[InboundServerHandler] disconnected {}", ctx.channel());
+        LOG.info("@@@@@@@@ [InboundServerHandler] disconnected {}", ctx.channel());
     }
 
     /**
@@ -81,7 +81,7 @@ public class InboundTcpSocketServerHandler extends SimpleChannelInboundHandler<P
      */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        LOG.error("[InboundServerHandler] error " + ctx.channel() + ", it will be closed", cause);
+        LOG.error("@@@@@@@@ [InboundServerHandler] error " + ctx.channel() + ", it will be closed", cause);
         ctx.close();
     }
 
