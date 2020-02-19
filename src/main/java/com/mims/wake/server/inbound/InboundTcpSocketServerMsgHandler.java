@@ -2,6 +2,7 @@ package com.mims.wake.server.inbound;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
 
@@ -59,7 +60,7 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
      */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) {
-        LOG.info("@@@ MSG @@@@@ [InboundServerHandler] received {} from {}", msg.toString(), ctx.channel());
+        LOG.info("@@@ MSG @@@@@ [InboundServerHandler] received {} from {}", Arrays.toString(msg.array()), ctx.channel());
 
         // Service ID에 해당하는 Inbound Queue에 메시지 추가
         /*
