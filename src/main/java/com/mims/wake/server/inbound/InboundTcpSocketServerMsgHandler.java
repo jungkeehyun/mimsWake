@@ -2,13 +2,20 @@ package com.mims.wake.server.inbound;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Arrays;
+import java.nio.charset.Charset;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mims.wake.common.PushMessage;
+import com.mims.wake.server.kmtf.Field;
+import com.mims.wake.server.kmtf.KmtfMessage;
+import com.mims.wake.server.kmtf.Set;
+import com.mims.wake.server.kmtf.kmtfParser;
 import com.mims.wake.server.queue.InboundQueue;
 
 import io.netty.buffer.ByteBuf;
@@ -23,7 +30,7 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
     private static final Logger LOG = LoggerFactory.getLogger(InboundTcpSocketServerMsgHandler.class);
 
     private final Map<String, InboundQueue> inboundQueues;		// Inbound Queue collection
-
+	
     /**
      * constructor with a parameter
      * @param inboundQueues Inbound Queue collection
@@ -40,7 +47,7 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
      */
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        LOG.info("@@@ MSG @@@@ [InboundServerHandler] connected {}", ctx.channel());
+        LOG.info("[InboundServerHandler] connected {}", ctx.channel());
         
         try {
         	LOG.info("[{}] Welcom to [{}]", new Date(), InetAddress.getLocalHost().getHostAddress());
@@ -60,17 +67,58 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
      */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) {
-        LOG.info("@@@ MSG @@@@@ [InboundServerHandler] received {} from {}", Arrays.toString(msg.array()), ctx.channel());
+        //LOG.info("@@@ MSG @@@@@ [InboundServerHandler] received {} from {}", msg.toString(), ctx.channel());
+        
+    	ByteBuf req = (ByteBuf)msg;
+        String content = req.toString(Charset.defaultCharset());
+        
+        String serviceId = "test2.websocket";
+        
+        PushMessage pushMsg = new PushMessage();
+        
+        pushMsg.setServiceId(serviceId);
+        pushMsg.setMessage(content);
+        
+        // kmtf parse
+        KmtfMessage message;
+		try {
+			message = kmtfParser.parseFormat(content);
+			
+	        System.out.println("------------------");
+			System.out.println("kmtfId : " + message.getKmtfId());
+			System.out.println("createTime : " + message.getCreateTime());
+			System.out.println("sourceSystemId : " + message.getSourceSystemId());
+			System.out.println("destnationSystemId : " + message.getDestnationSystemId());
+			System.out.println("messageId : " + message.getMessageId());
+			System.out.println("cudm : " + message.getCudm());
+			System.out.println("mode : " + message.getMode());
+			System.out.println("version : " + message.getVersion());
+			System.out.println("msgSeq : " + message.getMsgSeq());
+			System.out.println("------------------");
 
-        // Service ID에 해당하는 Inbound Queue에 메시지 추가
-        /*
-        String serviceId = msg.getServiceId();
+			List<Set> setList = message.getSetList();
+			for(Set s : setList){
+				LinkedHashMap<Integer, Field> map = s.getFieldMap();
+				for(Object key : map.keySet()) {
+					Field ff = map.get(key);
+					System.out.println(s.getSid()+" | " +ff.getIndex()+" | " + ff.getValue());
+				}
+				System.out.println("");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        //
+        
+        LOG.info("[InboundServerHandler] received {} from {}", content, ctx.channel());
+        
         if (serviceId != null && inboundQueues.containsKey(serviceId)) {
-            inboundQueues.get(serviceId).enqueue(msg);
+        	inboundQueues.get(serviceId).enqueue(pushMsg);
         } else {
-            LOG.warn("@@@@@@@@@ [InboundServerHandler] invalid service id in message {}", msg);
+        	LOG.warn("[InboundServerHandler] invalid service id in message {}", msg);
         }
-        */
+        
     }
 
     /**
@@ -81,7 +129,7 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
      */
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        LOG.info("@@@ MSG @@@@@ [InboundServerHandler] disconnected {}", ctx.channel());
+        LOG.info("[InboundServerHandler] disconnected {}", ctx.channel());
     }
 
     /**
@@ -94,8 +142,10 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
      */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        LOG.error("@@@ MSG @@@@@ [InboundServerHandler] error " + ctx.channel() + ", it will be closed", cause);
+        LOG.error("[InboundServerHandler] error " + ctx.channel() + ", it will be closed", cause);
         ctx.close();
     }
-
+    
+    
+    
 }
