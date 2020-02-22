@@ -67,19 +67,23 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
      */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) {
-        //LOG.info("@@@ MSG @@@@@ [InboundServerHandler] received {} from {}", msg.toString(), ctx.channel());
+        //LOG.info("[InboundServerHandler] received {} from {}", msg.toString(), ctx.channel());
+    	LOG.info("[InboundServerHandler] FROM {}", ctx.channel());
         
     	ByteBuf req = (ByteBuf)msg;
         String content = req.toString(Charset.defaultCharset());
+       
+        /*  
+         *  01. [Client] Web Browser 에게 메시지를 전달   
+         *     -  Service ID is "client.websocket"
+         */
         
-        String serviceId = "test2.websocket";
+        // [Client] ServiceID
+        String serviceId = "client.websocket";
         
+        // [Client] KMTF parse
         PushMessage pushMsg = new PushMessage();
         
-        pushMsg.setServiceId(serviceId);
-        pushMsg.setMessage(content);
-        
-        // kmtf parse
         KmtfMessage message;
 		try {
 			message = kmtfParser.parseFormat(content);
@@ -106,19 +110,28 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 				System.out.println("");
 			}
 			
+			// [Client]  PushMessage Setting
+	        pushMsg.setServiceId(serviceId);
+	        pushMsg.setGroupId(message.getMode());
+	        pushMsg.setMessage(content);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
         //
+         
+        LOG.info("[InboundServerHandler] RECEIVED {} ", content);
+        inboundQueues.get(serviceId).enqueue(pushMsg);
         
-        LOG.info("[InboundServerHandler] received {} from {}", content, ctx.channel());
+        /*  
+         *  02. [Server] 다른 Server 에게 메시지를 전달   
+         */
+        //String serviceId = "server.tcpsocket";
         
-        if (serviceId != null && inboundQueues.containsKey(serviceId)) {
-        	inboundQueues.get(serviceId).enqueue(pushMsg);
-        } else {
-        	LOG.warn("[InboundServerHandler] invalid service id in message {}", msg);
-        }
         
+        /*  
+         *  03. [DB] Database 에 메시지 저장   
+         */
     }
 
     /**
@@ -129,7 +142,7 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
      */
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        LOG.info("[InboundServerHandler] disconnected {}", ctx.channel());
+        LOG.info("[InboundServerHandler] DISCONNECTED {}", ctx.channel());
     }
 
     /**
@@ -142,7 +155,7 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
      */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        LOG.error("[InboundServerHandler] error " + ctx.channel() + ", it will be closed", cause);
+        LOG.error("[InboundServerHandler] ERROR " + ctx.channel() + ", it will be closed", cause);
         ctx.close();
     }
     

@@ -23,15 +23,15 @@
 
     <!-- 개별 Push 서비스 속성 -->
     <bean parent="serviceProperty">
-        <property name="serviceId" value="test1.tcpsocket" />
-        <property name="outboundServerPort" value="8001" />
+        <property name="serviceId" value="server.tcpsocket" />
+        <property name="outboundServerPort" value="13101" />
         <property name="outboundServerType" value="TCPSOCKET" />
     </bean>
     <bean parent="serviceProperty">
-        <property name="serviceId" value="test2.websocket" />
-        <property name="outboundServerPort" value="8002" />
+        <property name="serviceId" value="client.websocket" />
+        <property name="outboundServerPort" value="13102" />
         <property name="outboundServerType" value="WEBSOCKET" />
-        <property name="outboundServerWsUri" value="/test2" />
+        <property name="outboundServerWsUri" value="/mimsWake" />
     </bean>
 
 </beans>
