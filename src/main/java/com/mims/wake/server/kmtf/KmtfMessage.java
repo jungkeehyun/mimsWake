@@ -16,6 +16,7 @@ public class KmtfMessage implements Serializable {
 	private String uuid;
 	private int msgSeq;
 	private String kmtfId;
+	private String setId;
 	private String createTime;
 	private String sourceSystemId;
 	private String destnationSystemId;
@@ -309,6 +310,14 @@ public class KmtfMessage implements Serializable {
 	public String getKmtfId() {
 		return this.kmtfId;
 	}
+	
+	public void setSedId(String setId) {
+		this.setId = setId;
+	}
+
+	public String getSetId() {
+		return this.setId;
+	}
 
 	public void setCrytCode(String crytCode) {
 		this.crytCode = crytCode;
@@ -351,11 +360,11 @@ public class KmtfMessage implements Serializable {
 			Map rowMap = new LinkedHashMap();
 
 			rowMap.put("ROW_SID", set.getSid());
+			this.setSedId(set.getSid());
 
 			LinkedHashMap fieldMap = set.getFieldMap();
 
-			for (Iterator iterator = fieldMap.keySet().iterator(); iterator
-					.hasNext();) {
+			for (Iterator iterator = fieldMap.keySet().iterator(); iterator.hasNext();) {
 				Field field = (Field) fieldMap.get(iterator.next());
 				rowMap.put(field.getName(), field.getValue());
 			}
@@ -464,4 +473,5 @@ public class KmtfMessage implements Serializable {
 	public void addSetCount(String setId, int setCountNum) {
 		this.setCount.put(setId, Integer.valueOf(setCountNum));
 	}
+	
 }

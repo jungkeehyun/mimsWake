@@ -17,6 +17,7 @@ import com.mims.wake.server.kmtf.KmtfMessage;
 import com.mims.wake.server.kmtf.Set;
 import com.mims.wake.server.kmtf.kmtfParser;
 import com.mims.wake.server.queue.InboundQueue;
+import com.mims.wake.util.JsonUtil;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -90,6 +91,7 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 			
 	        System.out.println("------------------");
 			System.out.println("kmtfId : " + message.getKmtfId());
+			System.out.println("setId : " + message.getSetId());
 			System.out.println("createTime : " + message.getCreateTime());
 			System.out.println("sourceSystemId : " + message.getSourceSystemId());
 			System.out.println("destnationSystemId : " + message.getDestnationSystemId());
@@ -101,26 +103,31 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 			System.out.println("------------------");
 
 			List<Set> setList = message.getSetList();
+
 			for(Set s : setList){
 				LinkedHashMap<Integer, Field> map = s.getFieldMap();
 				for(Object key : map.keySet()) {
 					Field ff = map.get(key);
-					System.out.println(s.getSid()+" | " +ff.getIndex()+" | " + ff.getValue());
+					System.out.println(s.getSid()+" | " +ff.getIndex()+" | " + ff.getName() + " | " + ff.getValue());
 				}
 				System.out.println("");
 			}
 			
+			//System.out.println(message.getData());
+			//System.out.println(JsonUtil.getJsonStringFromList(message.getData()));
+					
 			// [Client]  PushMessage Setting
 	        pushMsg.setServiceId(serviceId);
 	        pushMsg.setGroupId(message.getMode());
-	        pushMsg.setMessage(content);
+	        pushMsg.setClientId(message.getSetId());
+	        pushMsg.setMessage(JsonUtil.getJsonStringFromList(message.getData()));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
         //
          
-        LOG.info("[InboundServerHandler] RECEIVED {} ", content);
+        //LOG.info("[InboundServerHandler] RECEIVED {} ", content);
         inboundQueues.get(serviceId).enqueue(pushMsg);
         
         /*  

@@ -5,6 +5,10 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mims.wake.server.property.A2RType;
+import com.mims.wake.server.property.S2EType;
+import com.mims.wake.server.property.S2RType;
+
 public class kmtfParser {
 	
 	protected static final String KMTF_INTRO = "INTRO//";
@@ -124,10 +128,23 @@ public class kmtfParser {
 
 				Set set = new Set();
 				set.setSid(sid);
+				message.setSedId(sid);
 
 				for (int j = 1; j < arr.size(); ++j) {
 					Field field = new Field();
 					field.setValue(unescape((String) arr.get(j)));
+					
+					switch(sid) {
+					case "A2R" :
+						field.setName(A2RType.valueOf(j));
+						break;
+					case "S2R" :
+						field.setName(S2RType.valueOf(j));
+						break;
+					case "S2E" :
+						field.setName(S2EType.valueOf(j));
+					}
+					
 					set.add(field);
 				}
 				setList.add(set);
