@@ -28,10 +28,8 @@
                 socket = new WebSocket("ws://" + ip + ":" + port + "/" + uri);
                 socket.onopen = function() {
                     log("WebSocket opend");
-                    if (clientId) {
-                        socket.send(JSON.stringify({groupId:groupId,clientId:clientId}));
-                        log("sent group id [" + groupId + "] and client id [" + clientId + "]");
-                    }
+                    socket.send(JSON.stringify({groupId:groupId,clientId:clientId}));
+                    log("sent group id [" + groupId + "] and client id [" + clientId + "]");
                 };
                 socket.onmessage = function(e) {
                     log("received [" + ++count + "] [" + e.data + "]");
@@ -85,9 +83,9 @@
                     <th>메시지 종류</th>
                     <td>
                         <select id="clientId">
-                            <option value="AFMI0270" selected>공중항적</option>
-                            <option value="KNMI0080">해상항적(실제)</option>
-                            <option value="KNMI0081">해상항적(연습)</option>
+                            <option value="A2R" selected>공중항적</option>
+                            <option value="S2R">해상항적(실제)</option>
+                            <option value="S2E">해상항적(연습)</option>
                         </select>
                     </td>
                 </tr>
