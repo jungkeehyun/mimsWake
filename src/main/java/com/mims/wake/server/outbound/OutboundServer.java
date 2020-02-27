@@ -1,9 +1,10 @@
-package com.mims.wake.server.outbound;
+﻿package com.mims.wake.server.outbound;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mims.wake.server.property.PushServiceProperty;
+import com.mims.wake.server.property.ServerType;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
@@ -43,6 +44,11 @@ public abstract class OutboundServer {
      */
     public void startup() {
         LOG.info("[OutboundServer:{}] starting...", property.getServiceId());
+        // [+] YPK
+        if(property.getOutboundServerType().equals(ServerType.FILESOCKET)) {
+        	return;
+        }
+        // [-]
 
         bossGroup = new NioEventLoopGroup();
         workerGroup = new NioEventLoopGroup();

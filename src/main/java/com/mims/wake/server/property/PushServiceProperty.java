@@ -1,4 +1,4 @@
-package com.mims.wake.server.property;
+﻿package com.mims.wake.server.property;
 
 import javax.annotation.PostConstruct;
 
@@ -29,6 +29,11 @@ public class PushServiceProperty {
 	@Value("outboundServerWsUri")
     private String outboundServerWsUri;		// Outbound Server WebSocket URI, if Outbound Server type is WEBSOCKET
 
+	// [+] [YPK]
+	@Value("outboundServerFilePath")
+    private String outboundServerPath;		// Outbound Server Path
+	// [-]
+
     @PostConstruct
     public void afterPropertiesSet() {
         if (serviceId == null) {
@@ -49,6 +54,11 @@ public class PushServiceProperty {
         if (outboundServerType == ServerType.WEBSOCKET && outboundServerWsUri == null) {
             throw new IllegalArgumentException("The 'outboundServerWsUri' property is null");
         }
+        // [+] [YPK]
+        if (outboundServerType.equals(ServerType.FILESOCKET) && outboundServerPath == null) {
+            throw new IllegalArgumentException("The 'outboundServerPath' property is null");
+        }
+        // [-]
     }
 
     public String getServiceId() {
@@ -97,6 +107,15 @@ public class PushServiceProperty {
         }
     }
 
+    // [+] [YPK]
+    public String getOutboundServerPath() {
+    	return this.outboundServerPath;
+    }
+    public void setOutboundServerPath(String outboundServerPath) {
+    	this.outboundServerPath = outboundServerPath;
+    }
+    // [-]
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
@@ -107,6 +126,7 @@ public class PushServiceProperty {
                .append(", outboundServerPort=").append(outboundServerPort)
                .append(", outboundServerType=").append(outboundServerType)
                .append(", outboundServerWsUri=").append(outboundServerWsUri)
+               .append(", outboundServerPath=").append(outboundServerPath) // [YPK]
                .append("]");
         return builder.toString();
     }
