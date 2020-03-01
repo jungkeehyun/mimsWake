@@ -31,7 +31,7 @@ A spring boot application + websocket/tcp (by netty)
 * Inbound Server를 통해 들어온 Push 메시지가 서비스ID를 기준으로 라우팅되어 보관
 * 별도 쓰레드를 통해 큐에 담긴 메시지를 서비스ID, 그룹ID(Mode), 클라이언트ID(MID)에 따라 적절한 Outbound Queue로 이동
 
-### 3. Outbound Server
+## 3. Outbound Server
 * 클라이언트의 연결을 처리하는 서버
 * 설정을 통해 TCP Socket(타 서버)과 WebSocket(클라이언트) 중 선택 가능
   - WebSocket 방식인 경우 Web Socket URI 지정 필요
@@ -43,17 +43,20 @@ A spring boot application + websocket/tcp (by netty)
 * Inbound Queue가 Push 메시지를 전달하는 대상
 * 별도 쓰레드를 통해 큐에 담긴 메시지를 클라이언트 채널에 전송
 
-### 4. Client
+## 4. Client
 * 최종적으로 메시지를 Push받는 대상
 * WebBrowser에서 "client/TestWebSocketClient.html" 실행
 
-### 5. 메시지 발생기
+## 5. 메시지 발생기
 * Inbound와 TCP 연결하여 KMTF 메시지를 발송
+
 $java -jar sendTcpMsg/sendWake-0.0.1-SNAPSHOT.jar
 
 # running in console (콘솔에서 실행)
 $mvn clean package
+
 $cd target
+
 $java -jar websocket.war
 
 # port that this app use
