@@ -1,4 +1,9 @@
-# hong-boot-netty-public
+# push-server-mimsWake
+
+## 개요
+비즈니스 어플리케이션에서 발생하는 이벤트에 대해 클라이언트에게 메시지를 단방향 Push 해준다.
+
+## 개발환경
 A spring boot application + websocket chat (by netty)
 
 # running in console (콘솔에서 실행)
