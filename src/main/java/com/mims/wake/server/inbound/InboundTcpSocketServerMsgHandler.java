@@ -1,4 +1,4 @@
-package com.mims.wake.server.inbound;
+﻿package com.mims.wake.server.inbound;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -139,6 +139,15 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
         /*  
          *  03. [DB] Database 에 메시지 저장   
          */
+        
+        // [+] [YPK] 
+        /*  
+         *  04. [FILE] 메시지 파일로 저장  
+         */
+        serviceId = "server.file";
+        PushMessage pushMsg2File = new PushMessage(serviceId, pushMsg.getGroupId(), pushMsg.getClientId(), pushMsg.getMessage());
+        inboundQueues.get(serviceId).enqueue(pushMsg2File);
+        // [-]
     }
 
     /**

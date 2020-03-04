@@ -1,4 +1,4 @@
-package com.mims.wake.server;
+﻿package com.mims.wake.server;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -11,8 +11,10 @@ import org.springframework.stereotype.Component;
 import com.mims.wake.server.inbound.InboundTcpSocketServer;
 import com.mims.wake.server.outbound.OutboundServer;
 import com.mims.wake.server.outbound.OutboundServerFactory;
+import com.mims.wake.server.property.FileChannel;
 import com.mims.wake.server.property.PushBaseProperty;
 import com.mims.wake.server.property.PushServiceProperty;
+import com.mims.wake.server.property.ServerType;
 import com.mims.wake.server.queue.InboundQueue;
 import com.mims.wake.server.queue.InboundQueueChecker;
 import com.mims.wake.server.queue.OutboundQueueChecker;
@@ -57,6 +59,12 @@ public class Server {
                 outboundServers.put(serviceId, OutboundServerFactory.getInstance(property, outboundQueueManager));
                 inboundQueues.put(serviceId, new InboundQueue(serviceId, property.getInboundQueueCapacity(), outboundQueueManager));
                 outboundQueueManager.addOutboundQueueGroup(serviceId);
+                // [+] [YPK]
+                if(property.getOutboundServerType().equals(ServerType.FILESOCKET)) {
+                	FileChannel channel = new FileChannel(serviceId, property.getOutboundServerPath());
+                	outboundQueueManager.startOutboundQueue(property.getServiceId(), property.getInboundQueueCapacity(), channel);
+                }
+                // [-]
             });
         }
 

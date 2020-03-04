@@ -1,4 +1,4 @@
-package com.mims.wake.server.queue;
+﻿package com.mims.wake.server.queue;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -95,6 +95,13 @@ public class OutboundQueueManager {
                 if (clientId.equals(queue.clientId())) {
                     queue.enqueue(pushMessage);
                 }
+                // [+] [YPK]
+                else {
+                	if(channelId.asShortText().equals(serviceId)) {
+                		queue.enqueue(pushMessage);
+                	}
+                }
+                // [-]
             });
         } else {
             String groupId = pushMessage.getGroupId();
