@@ -8,6 +8,7 @@ import java.net.SocketAddress;
 
 import com.mims.wake.common.PushMessage;
 import com.mims.wake.util.commonUtil;
+import com.mims.wake.server.property.FileChannelId;
 
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.Channel;

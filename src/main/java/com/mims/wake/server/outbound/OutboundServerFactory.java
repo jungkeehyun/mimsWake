@@ -1,4 +1,4 @@
-﻿package com.mims.wake.server.outbound;
+package com.mims.wake.server.outbound;
 
 import com.mims.wake.server.property.PushServiceProperty;
 import com.mims.wake.server.property.ServerType;

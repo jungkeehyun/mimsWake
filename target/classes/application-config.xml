@@ -11,7 +11,7 @@
 
     <!-- 서버 기본 속성 -->
     <bean id="baseProperty" class="com.mims.wake.server.property.PushBaseProperty">
-        <property name="inboundServerPort" value="8000" />
+        <property name="inboundServerPort" value="13100" />
         <property name="inboundQueueCheckInterval" value="5" />
         <property name="outboundQueueCheckInterval" value="5" />
     </bean>
@@ -21,17 +21,26 @@
         <property name="outboundQueueCapacity" value="10000" />
     </bean>
 
-    <!-- 개별 Push 서비스 속성 -->
+    <!-- Server Push Service Properties -->
     <bean parent="serviceProperty">
-        <property name="serviceId" value="test1.tcpsocket" />
-        <property name="outboundServerPort" value="8001" />
+        <property name="serviceId" value="server.tcpsocket" />
+        <property name="outboundServerPort" value="13101" />
         <property name="outboundServerType" value="TCPSOCKET" />
     </bean>
+    <!-- Client Push Service Properties -->
     <bean parent="serviceProperty">
-        <property name="serviceId" value="test2.websocket" />
-        <property name="outboundServerPort" value="8002" />
+        <property name="serviceId" value="client.websocket" />
+        <property name="outboundServerPort" value="13102" />
         <property name="outboundServerType" value="WEBSOCKET" />
-        <property name="outboundServerWsUri" value="/test2" />
+        <property name="outboundServerWsUri" value="/mimsWake" />
+    </bean>
+
+<!-- [YPK] Server Push Service Properties -->
+    <bean parent="serviceProperty">
+        <property name="serviceId" value="server.file" />
+		<property name="outboundServerPort" value="13103" />
+        <property name="outboundServerType" value="FILESOCKET" />
+        <property name="outboundServerPath" value="mimsWake" />
     </bean>
 
 </beans>

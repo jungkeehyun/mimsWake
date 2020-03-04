@@ -1,13 +1,16 @@
-netty:
-  server:
-    transfer:
-      type: tcp
-      port: 9812
-    thread:
-      count:
-        boss: 1
-        worker: 1
-    log:
-      level:
-        pipeline: ERROR
-        bootstrap: ERROR
+base:
+  inboundServerPort: 13100
+  inboundQueueCheckInterval: 5
+  outboundQueueCheckInterval: 5
+capacity:
+  inboundQueue: 100000
+  outboundQueue: 10000
+tcpService:
+  serviceId: server.tcpsocket
+  port: 13101
+  type: TCPSOCKET
+webService:
+  serviceId: client.websocket
+  port: 13102
+  type: WEBSOCKET
+  wsUrl: /mimsWake
