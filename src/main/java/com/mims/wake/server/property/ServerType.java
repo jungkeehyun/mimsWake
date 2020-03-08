@@ -16,7 +16,7 @@ public enum ServerType {
 
 	// [+] YPK
 	/**
-	 * File 저장
+	 * FileSocket
 	 */
 	FILESOCKET;
 	// [-]

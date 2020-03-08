@@ -61,7 +61,7 @@ public class Server {
                 outboundQueueManager.addOutboundQueueGroup(serviceId);
                 // [+] [YPK]
                 if(property.getOutboundServerType().equals(ServerType.FILESOCKET)) {
-                	FileChannel channel = new FileChannel(serviceId, property.getOutboundServerPath());
+                	FileChannel channel = new FileChannel(serviceId, property.getOutboundServerPath(), outboundServers.get(serviceId));
                 	outboundQueueManager.startOutboundQueue(property.getServiceId(), property.getInboundQueueCapacity(), channel);
                 }
                 // [-]

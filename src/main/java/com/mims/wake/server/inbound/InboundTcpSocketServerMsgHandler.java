@@ -11,6 +11,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mims.wake.common.PushMessage;
 import com.mims.wake.server.kmtf.Field;
 import com.mims.wake.server.kmtf.KmtfMessage;
@@ -28,68 +30,84 @@ import io.netty.channel.SimpleChannelInboundHandler;
  */
 public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(InboundTcpSocketServerMsgHandler.class);
+	private static final Logger LOG = LoggerFactory.getLogger(InboundTcpSocketServerMsgHandler.class);
 
-    private final Map<String, InboundQueue> inboundQueues;		// Inbound Queue collection
-	
-    /**
-     * constructor with a parameter
-     * @param inboundQueues Inbound Queue collection
-     */
-    public InboundTcpSocketServerMsgHandler(Map<String, InboundQueue> inboundQueues) {
-        this.inboundQueues = inboundQueues;
-    }
+	private final Map<String, InboundQueue> inboundQueues; // Inbound Queue collection
 
-    /**
-     * 클라이언트와 채널이 연결되어 사용 가능한 상태가 되었을 때 동작<br>
-     * -연결 정보 로깅
-     * @param ctx ChannelHandlerContext object
-     * @see io.netty.channel.ChannelInboundHandlerAdapter#channelActive(io.netty.channel.ChannelHandlerContext)
-     */
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) {
-        LOG.info("[InboundServerHandler] connected {}", ctx.channel());
-        
-        try {
-        	LOG.info("[{}] Welcom to [{}]", new Date(), InetAddress.getLocalHost().getHostAddress());
-        } catch (UnknownHostException e) {
-        	e.printStackTrace();
-        }
-        
-        ctx.fireChannelActive();
-    }
+	/**
+	 * constructor with a parameter
+	 * 
+	 * @param inboundQueues Inbound Queue collection
+	 */
+	public InboundTcpSocketServerMsgHandler(Map<String, InboundQueue> inboundQueues) {
+		this.inboundQueues = inboundQueues;
+	}
 
-    /**
-     * 클라이언트로부터 메시지 수신했을 때 동작<br>
-     * -Service ID에 해당하는 InboundQueue에 추가
-     * @param ctx ChannelHandlerContext object
-     * @param msg 수신된 메시지
-     * @see io.netty.channel.SimpleChannelInboundHandler#channelRead0(io.netty.channel.ChannelHandlerContext, java.lang.Object)
-     */
-    @Override
-    protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) {
-        //LOG.info("[InboundServerHandler] received {} from {}", msg.toString(), ctx.channel());
-    	LOG.info("[InboundServerHandler] FROM {}", ctx.channel());
-        
-    	ByteBuf req = (ByteBuf)msg;
-        String content = req.toString(Charset.defaultCharset());
-       
-        /*  
-         *  01. [Client] Web Browser 에게 메시지를 전달   
-         *     -  Service ID is "client.websocket"
-         */
-        
-        // [Client] ServiceID
-        String serviceId = "client.websocket";
-        
-        // [Client] KMTF parse
-        PushMessage pushMsg = new PushMessage();
-        
-        KmtfMessage message;
+	/**
+	 * 클라이언트와 채널이 연결되어 사용 가능한 상태가 되었을 때 동작<br>
+	 * -연결 정보 로깅
+	 * 
+	 * @param ctx ChannelHandlerContext object
+	 * @see io.netty.channel.ChannelInboundHandlerAdapter#channelActive(io.netty.channel.ChannelHandlerContext)
+	 */
+	@Override
+	public void channelActive(ChannelHandlerContext ctx) {
+		LOG.info("[InboundServerHandler] connected {}", ctx.channel());
+
 		try {
+			LOG.info("[{}] Welcom to [{}]", new Date(), InetAddress.getLocalHost().getHostAddress());
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+
+		ctx.fireChannelActive();
+	}
+
+	/**
+	 * 클라이언트로부터 메시지 수신했을 때 동작<br>
+	 * -Service ID에 해당하는 InboundQueue에 추가
+	 * 
+	 * @param ctx ChannelHandlerContext object
+	 * @param msg 수신된 메시지
+	 * @see io.netty.channel.SimpleChannelInboundHandler#channelRead0(io.netty.channel.ChannelHandlerContext,
+	 *      java.lang.Object)
+	 */
+	@Override
+	protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) {
+		// LOG.info("[InboundServerHandler] received {} from {}", msg.toString(),
+		// ctx.channel());
+		LOG.info("[InboundServerHandler] FROM {}", ctx.channel());
+
+		ByteBuf req = (ByteBuf) msg;
+		String content = req.toString(Charset.defaultCharset());
+
+		/*
+		 * 01. [Client] Web Browser 에게 메시지를 전달 - Service ID is "client.websocket"
+		 */
+
+		// [Client] ServiceID
+		String serviceId = "client.websocket";
+
+		// [Client] KMTF parse
+		PushMessage pushMsg = new PushMessage();
+
+		KmtfMessage message;
+		try {
+			// [+] YPK
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, String> mapJson = mapper.readValue(content, new TypeReference<Map<String, String>>(){});
+			String szServiceId = mapJson.get("serviceId");
+			if(szServiceId != null && szServiceId.equals("polling.file")) {
+				System.out.println("====================================[+] [YPK]===========================================");
+				System.out.println("========== Receive from file polling outbound server ===================================");
+				System.out.println(content);
+				System.out.println("====================================[-] [YPK]===========================================");
+				return;
+			}
+			// [-]
 			message = kmtfParser.parseFormat(content);
-			
-	        System.out.println("------------------");
+
+			System.out.println("------------------");
 			System.out.println("kmtfId : " + message.getKmtfId());
 			System.out.println("setId : " + message.getSetId());
 			System.out.println("createTime : " + message.getCreateTime());
@@ -104,77 +122,79 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 
 			List<Set> setList = message.getSetList();
 
-			for(Set s : setList){
+			for (Set s : setList) {
 				LinkedHashMap<Integer, Field> map = s.getFieldMap();
-				for(Object key : map.keySet()) {
+				for (Object key : map.keySet()) {
 					Field ff = map.get(key);
-					System.out.println(s.getSid()+" | " +ff.getIndex()+" | " + ff.getName() + " | " + ff.getValue());
+					System.out
+							.println(s.getSid() + " | " + ff.getIndex() + " | " + ff.getName() + " | " + ff.getValue());
 				}
 				System.out.println("");
 			}
-			
-			//System.out.println(message.getData());
-			//System.out.println(JsonUtil.getJsonStringFromList(message.getData()));
-					
-			// [Client]  PushMessage Setting
-	        pushMsg.setServiceId(serviceId);
-	        pushMsg.setGroupId(message.getMode());
-	        pushMsg.setClientId(message.getSetId());
-	        pushMsg.setMessage(JsonUtil.getJsonStringFromList(message.getData()));
-			
+
+			// System.out.println(message.getData());
+			// System.out.println(JsonUtil.getJsonStringFromList(message.getData()));
+
+			// [Client] PushMessage Setting
+			pushMsg.setServiceId(serviceId);
+			pushMsg.setGroupId(message.getMode());
+			pushMsg.setClientId(message.getSetId());
+			pushMsg.setMessage(JsonUtil.getJsonStringFromList(message.getData()));
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-        //
-         
-        //LOG.info("[InboundServerHandler] RECEIVED {} ", content);
-        inboundQueues.get(serviceId).enqueue(pushMsg);
-        
-        /*  
-         *  02. [Server] 다른 Server 에게 메시지를 전달   
-         */
-        //String serviceId = "server.tcpsocket";
-        
-        
-        /*  
-         *  03. [DB] Database 에 메시지 저장   
-         */
-        
-        // [+] [YPK] 
-        /*  
-         *  04. [FILE] 메시지 파일로 저장  
-         */
-        serviceId = "server.file";
-        PushMessage pushMsg2File = new PushMessage(serviceId, pushMsg.getGroupId(), pushMsg.getClientId(), pushMsg.getMessage());
-        inboundQueues.get(serviceId).enqueue(pushMsg2File);
-        // [-]
-    }
+		//
 
-    /**
-     * 클라이언트와 채널이 해제되어 사용 불가능한 상태가 되었을 때 동작<br>
-     * -연결해제 정보 로깅
-     * @param ctx ChannelHandlerContext object
-     * @see io.netty.channel.ChannelInboundHandlerAdapter#channelInactive(io.netty.channel.ChannelHandlerContext)
-     */
-    @Override
-    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        LOG.info("[InboundServerHandler] DISCONNECTED {}", ctx.channel());
-    }
+		// LOG.info("[InboundServerHandler] RECEIVED {} ", content);
+		inboundQueues.get(serviceId).enqueue(pushMsg);
 
-    /**
-     * 채널의 I/O 오퍼레이션 도중 예외가 발생했을 때 동작<br>
-     * -예외 정보 로깅<br>
-     * -채널 연결해제
-     * @param ctx ChannelHandlerContext object
-     * @param cause 발생한 예외
-     * @see io.netty.channel.ChannelInboundHandlerAdapter#exceptionCaught(io.netty.channel.ChannelHandlerContext, java.lang.Throwable)
-     */
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        LOG.error("[InboundServerHandler] ERROR " + ctx.channel() + ", it will be closed", cause);
-        ctx.close();
-    }
-    
-    
-    
+		/*
+		 * 02. [Server] 다른 Server 에게 메시지를 전달
+		 */
+		// String serviceId = "server.tcpsocket";
+
+		/*
+		 * 03. [DB] Database 에 메시지 저장
+		 */
+
+		// [+] [YPK]
+		/*
+		 * 04. [FILE] 메시지 파일로 저장
+		 */
+		serviceId = "push.file";
+		PushMessage pushMsg2File = new PushMessage(serviceId, pushMsg.getGroupId(), pushMsg.getClientId(),
+				pushMsg.getMessage());
+		inboundQueues.get(serviceId).enqueue(pushMsg2File);
+		// [-]
+	}
+
+	/**
+	 * 클라이언트와 채널이 해제되어 사용 불가능한 상태가 되었을 때 동작<br>
+	 * -연결해제 정보 로깅
+	 * 
+	 * @param ctx ChannelHandlerContext object
+	 * @see io.netty.channel.ChannelInboundHandlerAdapter#channelInactive(io.netty.channel.ChannelHandlerContext)
+	 */
+	@Override
+	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+		LOG.info("[InboundServerHandler] DISCONNECTED {}", ctx.channel());
+	}
+
+	/**
+	 * 채널의 I/O 오퍼레이션 도중 예외가 발생했을 때 동작<br>
+	 * -예외 정보 로깅<br>
+	 * -채널 연결해제
+	 * 
+	 * @param ctx   ChannelHandlerContext object
+	 * @param cause 발생한 예외
+	 * @see io.netty.channel.ChannelInboundHandlerAdapter#exceptionCaught(io.netty.channel.ChannelHandlerContext,
+	 *      java.lang.Throwable)
+	 */
+	@Override
+	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+		LOG.error("[InboundServerHandler] ERROR " + ctx.channel() + ", it will be closed", cause);
+		ctx.close();
+	}
+
 }

@@ -21,7 +21,7 @@ public class OutboundQueue extends Thread {
 
     private String serviceId;					// Push Service ID
     private BlockingQueue<PushMessage> queue;	// message queue
-    private final int capacity;				// message queue capacity
+    private final int capacity;					// message queue capacity
     private Channel channel;					// Client Channel instance
 
     /**
@@ -43,7 +43,7 @@ public class OutboundQueue extends Thread {
      */
     public String groupId() {
     	// [+] [YPK]
-    	if(channel.id().asShortText().equals("server.file")) {
+    	if(channel.id().asShortText().contains(".file")) {
     		return this.serviceId;
     	}
     	// [-]
@@ -57,7 +57,7 @@ public class OutboundQueue extends Thread {
      */
     public String clientId() {
     	// [+] [YPK]
-    	if(channel.id().asShortText().equals("server.file")) {
+    	if(channel.id().asShortText().contains(".file")) {
     		return this.serviceId;
     	}
     	// [-]
@@ -90,7 +90,7 @@ public class OutboundQueue extends Thread {
         String msgClientId = pushMessage.getClientId();
 
         // [+] [YPK]
-        if (msgServiceId != null && msgServiceId.equals("server.file")) {
+        if (msgServiceId != null && msgServiceId.contains(".file")) {
             return true;
         }
         // [-]

@@ -1,6 +1,7 @@
 package com.mims.wake.util;
 
 import java.io.File;
+import java.util.Vector;
 
 public class commonUtil {
 
@@ -8,7 +9,7 @@ public class commonUtil {
 
 	// pathToken
 	public static String pathToken() {
-		System.out.println(OS);
+		//System.out.println(OS);
 
 		String token = "/";
 		if (isWindows()) {
@@ -40,19 +41,44 @@ public class commonUtil {
 	public static boolean isSolaris() {
 		return (OS.indexOf("sunos") >= 0);
 	}
-	
+
 	// makeFolder
 	public static void makeFolder(String path) {
 		File folder = new File(path);
 		if (!folder.exists()) {
 			try {
 				folder.mkdir();
-				//System.out.println("폴더가 생성되었습니다.");
+				// System.out.println("폴더가 생성되었습니다.");
 			} catch (Exception e) {
 				e.getStackTrace();
 			}
 		} else {
-			//System.out.println("이미 폴더가 생성되어 있습니다.");
+			// System.out.println("이미 폴더가 생성되어 있습니다.");
 		}
+	}
+
+	public static Vector<String> getFileNames(String targetDirName, String fileExt) {
+		Vector<String> fileNames = new Vector<String>();
+		File dir = new File(targetDirName);
+		fileExt = fileExt.toLowerCase();
+		String pathToken = pathToken();
+
+		if (dir.isDirectory()) {
+			String dirName = dir.getPath();
+			String[] filenames = dir.list(null);
+
+			for (int iFile = 0; iFile < filenames.length; ++iFile) {
+				String filename = filenames[iFile];
+				String fullFileName = dirName + pathToken + filename;
+				File file = new File(fullFileName);
+
+				boolean isDirectory = file.isDirectory();
+				if (!isDirectory && filename.toLowerCase().endsWith(fileExt)) {
+					fileNames.add(fullFileName);
+				}
+			}
+		}
+
+		return fileNames;
 	}
 }

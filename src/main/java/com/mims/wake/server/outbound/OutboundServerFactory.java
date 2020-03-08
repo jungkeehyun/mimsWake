@@ -30,8 +30,8 @@ public class OutboundServerFactory {
                 return new OutboundTcpSocketServer(property, outboundQueueManager);
             case WEBSOCKET:
                 return new OutboundWebSocketServer(property, outboundQueueManager);
-            case FILESOCKET: // [YPK]
-            	return new OutboundFileSocketServer(property, outboundQueueManager);
+            case FILESOCKET: // [YPK] File Push & Polling
+            	return new OutboundTcpSocketSender(property, outboundQueueManager);
             default:
                 throw new IllegalArgumentException("Unknown server type [" + type + "]");
         }
