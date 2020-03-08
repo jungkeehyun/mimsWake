@@ -1,9 +1,9 @@
 #!/bin/bash
 
-### Create Package ###
-#/Volumes/Data\ Storage/WORKSPACE/sendWake/mvnw clean package
-
-#cd target
-java -jar target/sendWake-0.0.2-SNAPSHOT.jar --sendWake.Ip=127.0.0.1 --sendWake.Port=13100 --sendWake.Sid=A2R
-java -jar target/sendWake-0.0.2-SNAPSHOT.jar --sendWake.Ip=127.0.0.1 --sendWake.Port=13100 --sendWake.Sid=S2R
-java -jar target/sendWake-0.0.2-SNAPSHOT.jar --sendWake.Ip=127.0.0.1 --sendWake.Port=13100 --sendWake.Sid=S2E
+java -jar sendWake_0.4.jar --spring.config.location=file:application-sw.properties --sendWake.type=AFMI0270.kmtf
+#java -jar sendWake_0.4.jar --spring.config.location=file:application-sw.properties --sendWake.type=KNMI0080.kmtf
+#java -jar sendWake_0.4.jar --spring.config.location=file:application-sw.properties --sendWake.type=KNMI0081.kmtf
+#java -jar sendWake_0.4.jar --spring.config.location=file:application-sw.properties --sendWake.type=A2R
+#java -jar sendWake_0.4.jar --spring.config.location=file:application-sw.properties --sendWake.type=S2R
+#java -jar sendWake_0.4.jar --spring.config.location=file:application-sw.properties --sendWake.type=S2E
+#java -jar sendWake_0.4.jar --spring.config.location=file:application-sw.properties --sendWake.type=ALL
