@@ -49,8 +49,13 @@ A spring boot application + websocket/tcp (by netty)
 
 ## 5. 메시지 발생기
 * Inbound와 TCP 연결하여 KMTF 메시지를 발송
+* 기본설정 파일 : application-sw.properties  (ip, port 설정)
+* {TYPE} = {파일명}                          // 동일 폴더의 (KMTF)파일을 읽어서 발송
+         = "A2R" | "S2R" | "S2E" | "ALL"   // 임의의 KMTF 생성 및 발송
+* start.sh 파일 참조
 
-$java -jar sendTcpMsg/sendWake-0.0.1-SNAPSHOT.jar
+$java -jar sendTcpMsg/sendWake_0.4.jar --spring.config.location=file:application-sw.properties --sendWake.type={TYPE}
+
 
 # running in console (콘솔에서 실행)
 $mvn clean package
