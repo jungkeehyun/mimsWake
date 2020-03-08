@@ -94,6 +94,7 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 		KmtfMessage message;
 		try {
 			// [+] YPK
+			/* 20200309 JKH (because Error)
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, String> mapJson = mapper.readValue(content, new TypeReference<Map<String, String>>(){});
 			String szServiceId = mapJson.get("serviceId");
@@ -104,6 +105,7 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 				System.out.println("====================================[-] [YPK]===========================================");
 				return;
 			}
+			*/
 			// [-]
 			message = kmtfParser.parseFormat(content);
 
