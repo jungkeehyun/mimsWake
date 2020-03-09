@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.mims.wake.common.PushMessage;
+import com.mims.wake.server.property.ServiceType;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelId;
@@ -97,7 +98,10 @@ public class OutboundQueueManager {
                 }
                 // [+] [YPK]
                 else {
-                	if(channelId.asShortText().equals(serviceId)) {
+                	if(serviceId.equals(ServiceType.TCPSOCKET)) {
+                		queue.enqueue(pushMessage);
+                	}
+                	else if(serviceId.equals(ServiceType.FILE_SERVER)) {
                 		queue.enqueue(pushMessage);
                 	}
                 }

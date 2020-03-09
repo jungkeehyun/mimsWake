@@ -1,4 +1,4 @@
-package com.mims.wake.server.property;
+﻿package com.mims.wake.server.property;
 
 import javax.annotation.PostConstruct;
 
@@ -19,6 +19,9 @@ public class PushBaseProperty {
     
 	@Value("outboundQueueCheckInterval")
 	private String outboundQueueCheckInterval;		// OutboundQueue 상태 모니터링 주기 (초)
+
+	@Value("outboundServerWsUri")
+	private String outboundServerWsUri;				// Outbound Server Connection IP
 
     @PostConstruct
     public void afterPropertiesSet() {
@@ -57,6 +60,14 @@ public class PushBaseProperty {
         this.outboundQueueCheckInterval = Integer.toString(outboundQueueCheckInterval);
     }
 
+    public String getoutboundServerWsUri() {
+        return this.outboundServerWsUri;
+    }
+    
+    public void setoutboundServerWsUri(String outboundServerWsUri) {
+        this.outboundServerWsUri = outboundServerWsUri;
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
@@ -64,6 +75,7 @@ public class PushBaseProperty {
                .append("inboundServerPort=").append(inboundServerPort)
                .append(", inboundQueueCheckInterval=").append(inboundQueueCheckInterval)
                .append(", outboundQueueCheckInterval=").append(outboundQueueCheckInterval)
+               .append(", outboundServerWsUri=").append(outboundServerWsUri)
                .append("]");
         return builder.toString();
     }

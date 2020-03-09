@@ -14,6 +14,7 @@
         <property name="inboundServerPort" value="13100" />
         <property name="inboundQueueCheckInterval" value="5" />
         <property name="outboundQueueCheckInterval" value="5" />
+    <property name="outboundServerWsUri" value="" />
     </bean>
 
     <bean abstract="true" id="serviceProperty" class="com.mims.wake.server.property.PushServiceProperty">
@@ -36,7 +37,7 @@
         <property name="outboundServerWsUri" value="/mimsWake" />
     </bean>
 
-	<!-- [YPK] Server Push Service Properties -->
+<!-- [YPK] Server Push Service Properties -->
     <bean parent="serviceProperty">
         <property name="serviceId" value="server.file" />
 		<property name="outboundServerPort" value="13103" />

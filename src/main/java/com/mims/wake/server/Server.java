@@ -63,7 +63,7 @@ public class Server {
 						new InboundQueue(serviceId, property.getInboundQueueCapacity(), outboundQueueManager));
                 outboundQueueManager.addOutboundQueueGroup(serviceId);
 				// [+] [YPK] Push File and TCP, Polling File
-				if (serviceId.equals(ServiceType.TCPSOCKET) || serviceId.equals(ServiceType.FILE_SERVER)) {
+				if (serviceId.equals(ServiceType.FILE_SERVER)) {
 					SendChannel channel = new SendChannel(serviceId, property.getOutboundServerWsUri(),
 							outboundServers.get(serviceId));
 					outboundQueueManager.startOutboundQueue(property.getServiceId(), property.getInboundQueueCapacity(),
@@ -96,7 +96,7 @@ public class Server {
 			if (inboundFilePolling != null) {
 				inboundFilePolling.startup(inboundQueues);
 			} else {
-            inboundServer = new InboundTcpSocketServer(baseProperty.getInboundServerPort());
+				inboundServer = new InboundTcpSocketServer(baseProperty);
             inboundServer.startup(inboundQueues);
         }
 			// [-]

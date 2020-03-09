@@ -44,7 +44,7 @@ public class OutboundQueue extends Thread {
      */
     public String groupId() {
     	// [+] [YPK]
-    	if(serviceId.equals(ServiceType.TCPSOCKET) || serviceId.equals(ServiceType.FILE_SERVER)) {
+    	if(serviceId.equals(ServiceType.FILE_SERVER)) {
     		return this.serviceId;
     	}
     	// [-]
@@ -58,7 +58,7 @@ public class OutboundQueue extends Thread {
      */
     public String clientId() {
     	// [+] [YPK]
-    	if(serviceId.equals(ServiceType.TCPSOCKET) || serviceId.equals(ServiceType.FILE_SERVER)) {
+    	if(serviceId.equals(ServiceType.FILE_SERVER)) {
     		return this.serviceId;
     	}
     	// [-]

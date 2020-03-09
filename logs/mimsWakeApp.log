@@ -5145,3 +5145,137 @@ Caused by: java.io.FileNotFoundException: class path resource [application.xml] 
 
 2020-Feb-15 16:25:45.829 INFO  [Thread-2] o.s.c.a.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@512ddf17: startup date [Sat Feb 15 16:18:45 KST 2020]; root of context hierarchy
 2020-Feb-15 16:25:45.831 INFO  [Thread-2] o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+2020-3월-09 22:33:08.921 INFO  [main] c.m.w.MimsWakeApplication - Starting MimsWakeApplication on DESKTOP-NEVADOG with PID 9624 (D:\Project\06_MIMS\WAKE\mimsWake-KHJ\target\classes started by goodfeel in D:\Project\06_MIMS\WAKE\mimsWake-KHJ)
+2020-3월-09 22:33:08.922 INFO  [main] c.m.w.MimsWakeApplication - No active profile set, falling back to default profiles: default
+2020-3월-09 22:33:09.029 INFO  [main] o.s.c.a.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@3e74829: startup date [Mon Mar 09 22:33:09 KST 2020]; root of context hierarchy
+2020-3월-09 22:33:09.474 INFO  [main] o.s.b.f.x.XmlBeanDefinitionReader - Loading XML bean definitions from URL [file:/D:/Project/06_MIMS/WAKE/mimsWake-KHJ/target/classes/application-config.xml]
+2020-3월-09 22:33:10.281 INFO  [main] o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+2020-3월-09 22:33:10.297 INFO  [main] o.s.c.s.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6a74d228: startup date [Mon Mar 09 22:33:10 KST 2020]; root of context hierarchy
+2020-3월-09 22:33:10.298 INFO  [main] o.s.b.f.x.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [application-config.xml]
+2020-3월-09 22:33:10.427 INFO  [main] c.m.w.s.Server - Wake Push Server STARTING...
+2020-3월-09 22:33:10.446 INFO  [main] c.m.w.s.o.OutboundServer - [OutboundServer:server.tcpsocket] starting...
+2020-3월-09 22:33:10.445 INFO  [OutboundQueueThread:server.file] c.m.w.s.q.OutboundQueue - [OutboundQueueThread:server.file] [server.file] [server.file] started
+2020-3월-09 22:33:10.934 INFO  [nioEventLoopGroup-2-1] i.n.h.l.LoggingHandler - [id: 0x66d3ef16] REGISTERED
+2020-3월-09 22:33:10.937 INFO  [nioEventLoopGroup-2-1] i.n.h.l.LoggingHandler - [id: 0x66d3ef16] BIND: 0.0.0.0/0.0.0.0:13101
+2020-3월-09 22:33:10.938 INFO  [main] c.m.w.s.o.OutboundServer - [OutboundServer:server.tcpsocket] started, listening on port 13101
+2020-3월-09 22:33:10.938 INFO  [main] c.m.w.s.o.OutboundServer - [OutboundServer:server.file] starting...
+2020-3월-09 22:33:10.938 INFO  [main] c.m.w.s.o.OutboundServer - [OutboundServer:client.websocket] starting...
+2020-3월-09 22:33:10.939 INFO  [nioEventLoopGroup-2-1] i.n.h.l.LoggingHandler - [id: 0x66d3ef16, L:/0:0:0:0:0:0:0:0:13101] ACTIVE
+2020-3월-09 22:33:10.951 INFO  [nioEventLoopGroup-4-1] i.n.h.l.LoggingHandler - [id: 0xd1d708af] REGISTERED
+2020-3월-09 22:33:10.952 INFO  [nioEventLoopGroup-4-1] i.n.h.l.LoggingHandler - [id: 0xd1d708af] BIND: 0.0.0.0/0.0.0.0:13102
+2020-3월-09 22:33:10.953 INFO  [nioEventLoopGroup-4-1] i.n.h.l.LoggingHandler - [id: 0xd1d708af, L:/0:0:0:0:0:0:0:0:13102] ACTIVE
+2020-3월-09 22:33:10.953 INFO  [main] c.m.w.s.o.OutboundServer - [OutboundServer:client.websocket] started, listening on port 13102
+2020-3월-09 22:33:10.955 INFO  [main] c.m.w.s.i.InboundTcpSocketServer - [InboundServer] starting...
+2020-3월-09 22:33:10.966 INFO  [InboundQueueThread:server.tcpsocket] c.m.w.s.q.InboundQueue - [InboundQueueThread:server.tcpsocket] started
+2020-3월-09 22:33:10.967 INFO  [InboundQueueThread:server.file] c.m.w.s.q.InboundQueue - [InboundQueueThread:server.file] started
+2020-3월-09 22:33:10.971 INFO  [OutboundQueueCheckerThread] c.m.w.s.q.OutboundQueueChecker - [OutboundQueueCheckerThread] started [interval: 5]
+2020-3월-09 22:33:10.977 INFO  [InboundQueueCheckerThread] c.m.w.s.q.InboundQueueChecker - [InboundQueueCheckerThread] started [interval: 5]
+2020-3월-09 22:33:10.978 INFO  [InboundQueueCheckerThread] c.m.w.s.q.InboundQueueChecker - 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 100000, current: 0
+[server.file] capacity: 100000, current: 0
+[client.websocket] capacity: 100000, current: 0
+
+2020-3월-09 22:33:10.979 INFO  [OutboundQueueCheckerThread] c.m.w.s.q.OutboundQueueChecker - 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[server.file]
+	groupId: server.file, clientId: server.file, channel: com.mims.wake.server.outbound.SendChannel@502d46d1, capacity: 100000, current: 0
+[client.websocket]
+	No Outbound Queue
+
+2020-3월-09 22:33:10.980 INFO  [InboundQueueThread:client.websocket] c.m.w.s.q.InboundQueue - [InboundQueueThread:client.websocket] started
+2020-3월-09 22:33:10.988 INFO  [nioEventLoopGroup-6-1] i.n.h.l.LoggingHandler - [id: 0x8e869c7f] REGISTERED
+2020-3월-09 22:33:10.988 INFO  [nioEventLoopGroup-6-1] i.n.h.l.LoggingHandler - [id: 0x8e869c7f] BIND: 0.0.0.0/0.0.0.0:13100
+2020-3월-09 22:33:10.988 INFO  [nioEventLoopGroup-6-1] i.n.h.l.LoggingHandler - [id: 0x8e869c7f, L:/0:0:0:0:0:0:0:0:13100] ACTIVE
+2020-3월-09 22:33:10.988 INFO  [main] c.m.w.s.i.InboundTcpSocketServer - [InboundServer] started, listening on port 13100
+2020-3월-09 22:33:10.988 INFO  [main] c.m.w.s.Server - [simple-push-server] startup complete....
+2020-3월-09 22:33:15.978 INFO  [InboundQueueCheckerThread] c.m.w.s.q.InboundQueueChecker - 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 100000, current: 0
+[server.file] capacity: 100000, current: 0
+[client.websocket] capacity: 100000, current: 0
+
+2020-3월-09 22:33:15.979 INFO  [OutboundQueueCheckerThread] c.m.w.s.q.OutboundQueueChecker - 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[server.file]
+	groupId: server.file, clientId: server.file, channel: com.mims.wake.server.outbound.SendChannel@502d46d1, capacity: 100000, current: 0
+[client.websocket]
+	No Outbound Queue
+
+2020-3월-09 22:33:20.979 INFO  [InboundQueueCheckerThread] c.m.w.s.q.InboundQueueChecker - 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 100000, current: 0
+[server.file] capacity: 100000, current: 0
+[client.websocket] capacity: 100000, current: 0
+
+2020-3월-09 22:33:20.980 INFO  [OutboundQueueCheckerThread] c.m.w.s.q.OutboundQueueChecker - 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[server.file]
+	groupId: server.file, clientId: server.file, channel: com.mims.wake.server.outbound.SendChannel@502d46d1, capacity: 100000, current: 0
+[client.websocket]
+	No Outbound Queue
+
+2020-3월-09 22:33:23.822 INFO  [nioEventLoopGroup-6-1] i.n.h.l.LoggingHandler - [id: 0x8e869c7f, L:/0:0:0:0:0:0:0:0:13100] READ: [id: 0x994547c9, L:/127.0.0.1:13100 - R:/127.0.0.1:53032]
+2020-3월-09 22:33:23.823 INFO  [nioEventLoopGroup-6-1] i.n.h.l.LoggingHandler - [id: 0x8e869c7f, L:/0:0:0:0:0:0:0:0:13100] READ COMPLETE
+2020-3월-09 22:33:23.826 INFO  [nioEventLoopGroup-7-1] c.m.w.s.i.InboundTcpSocketServerMsgHandler - [InboundServerHandler] connected [id: 0x994547c9, L:/127.0.0.1:13100 - R:/127.0.0.1:53032]
+2020-3월-09 22:33:23.827 INFO  [nioEventLoopGroup-7-1] c.m.w.s.i.InboundTcpSocketServerMsgHandler - [Mon Mar 09 22:33:23 KST 2020] Welcom to [192.168.1.16]
+2020-3월-09 22:33:23.847 INFO  [nioEventLoopGroup-7-1] c.m.w.s.i.InboundTcpSocketServerMsgHandler - [InboundServerHandler] FROM [id: 0x994547c9, L:/127.0.0.1:13100 - R:/127.0.0.1:53032]
+2020-3월-09 22:33:23.866 INFO  [nioEventLoopGroup-7-1] c.m.w.s.q.InboundQueue - [InboundQueue:client.websocket] enqueued PushMessage[serviceId=client.websocket, groupId=OPER, clientId=A2R, message=[{"CLSGN":"CALLSIGN001","SPD":"999.001","LTDLNGT_COORD":"52SCH1000010000","ALT":"100.02","AZ":"9999","ACFTFNFDVCD":"03","TKOF_BASENO":"BASE001","ACFT_CNTUNT":"1000001","ROW_SID":"A2R","ACFTNO":"AIRCRAFT01","KNDAP_NM":"?��공기001"}]]
+2020-3월-09 22:33:23.867 INFO  [nioEventLoopGroup-7-1] c.m.w.s.q.InboundQueue - [InboundQueue:server.tcpsocket] enqueued PushMessage[serviceId=server.tcpsocket, groupId=OPER, clientId=A2R, message=[{"CLSGN":"CALLSIGN001","SPD":"999.001","LTDLNGT_COORD":"52SCH1000010000","ALT":"100.02","AZ":"9999","ACFTFNFDVCD":"03","TKOF_BASENO":"BASE001","ACFT_CNTUNT":"1000001","ROW_SID":"A2R","ACFTNO":"AIRCRAFT01","KNDAP_NM":"?��공기001"}]]
+2020-3월-09 22:33:23.867 INFO  [nioEventLoopGroup-7-1] c.m.w.s.q.InboundQueue - [InboundQueue:server.file] enqueued PushMessage[serviceId=server.file, groupId=OPER, clientId=A2R, message=[{"CLSGN":"CALLSIGN001","SPD":"999.001","LTDLNGT_COORD":"52SCH1000010000","ALT":"100.02","AZ":"9999","ACFTFNFDVCD":"03","TKOF_BASENO":"BASE001","ACFT_CNTUNT":"1000001","ROW_SID":"A2R","ACFTNO":"AIRCRAFT01","KNDAP_NM":"?��공기001"}]]
+2020-3월-09 22:33:23.867 INFO  [InboundQueueThread:client.websocket] c.m.w.s.q.InboundQueue - [InboundQueueThread:client.websocket] take PushMessage[serviceId=client.websocket, groupId=OPER, clientId=A2R, message=[{"CLSGN":"CALLSIGN001","SPD":"999.001","LTDLNGT_COORD":"52SCH1000010000","ALT":"100.02","AZ":"9999","ACFTFNFDVCD":"03","TKOF_BASENO":"BASE001","ACFT_CNTUNT":"1000001","ROW_SID":"A2R","ACFTNO":"AIRCRAFT01","KNDAP_NM":"?��공기001"}]]
+2020-3월-09 22:33:23.867 INFO  [InboundQueueThread:server.tcpsocket] c.m.w.s.q.InboundQueue - [InboundQueueThread:server.tcpsocket] take PushMessage[serviceId=server.tcpsocket, groupId=OPER, clientId=A2R, message=[{"CLSGN":"CALLSIGN001","SPD":"999.001","LTDLNGT_COORD":"52SCH1000010000","ALT":"100.02","AZ":"9999","ACFTFNFDVCD":"03","TKOF_BASENO":"BASE001","ACFT_CNTUNT":"1000001","ROW_SID":"A2R","ACFTNO":"AIRCRAFT01","KNDAP_NM":"?��공기001"}]]
+2020-3월-09 22:33:23.869 INFO  [nioEventLoopGroup-7-1] c.m.w.s.i.InboundTcpSocketServerMsgHandler - [InboundServerHandler] DISCONNECTED [id: 0x994547c9, L:/127.0.0.1:13100 ! R:/127.0.0.1:53032]
+2020-3월-09 22:33:23.869 INFO  [InboundQueueThread:server.file] c.m.w.s.q.InboundQueue - [InboundQueueThread:server.file] take PushMessage[serviceId=server.file, groupId=OPER, clientId=A2R, message=[{"CLSGN":"CALLSIGN001","SPD":"999.001","LTDLNGT_COORD":"52SCH1000010000","ALT":"100.02","AZ":"9999","ACFTFNFDVCD":"03","TKOF_BASENO":"BASE001","ACFT_CNTUNT":"1000001","ROW_SID":"A2R","ACFTNO":"AIRCRAFT01","KNDAP_NM":"?��공기001"}]]
+2020-3월-09 22:33:23.870 INFO  [OutboundQueueThread:server.file] c.m.w.s.q.OutboundQueue - [OutboundQueueThread:server.file] [server.file] [server.file] take PushMessage[serviceId=server.file, groupId=OPER, clientId=A2R, message=[{"CLSGN":"CALLSIGN001","SPD":"999.001","LTDLNGT_COORD":"52SCH1000010000","ALT":"100.02","AZ":"9999","ACFTFNFDVCD":"03","TKOF_BASENO":"BASE001","ACFT_CNTUNT":"1000001","ROW_SID":"A2R","ACFTNO":"AIRCRAFT01","KNDAP_NM":"?��공기001"}]]
+2020-3월-09 22:33:25.979 INFO  [InboundQueueCheckerThread] c.m.w.s.q.InboundQueueChecker - 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 100000, current: 0
+[server.file] capacity: 100000, current: 0
+[client.websocket] capacity: 100000, current: 0
+
+2020-3월-09 22:33:25.980 INFO  [OutboundQueueCheckerThread] c.m.w.s.q.OutboundQueueChecker - 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[server.file]
+	groupId: server.file, clientId: server.file, channel: com.mims.wake.server.outbound.SendChannel@502d46d1, capacity: 100000, current: 0
+[client.websocket]
+	No Outbound Queue
+
+2020-3월-09 22:33:30.980 INFO  [InboundQueueCheckerThread] c.m.w.s.q.InboundQueueChecker - 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 100000, current: 0
+[server.file] capacity: 100000, current: 0
+[client.websocket] capacity: 100000, current: 0
+
+2020-3월-09 22:33:30.981 INFO  [OutboundQueueCheckerThread] c.m.w.s.q.OutboundQueueChecker - 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[server.file]
+	groupId: server.file, clientId: server.file, channel: com.mims.wake.server.outbound.SendChannel@502d46d1, capacity: 100000, current: 0
+[client.websocket]
+	No Outbound Queue
+
+2020-3월-09 22:33:35.980 INFO  [InboundQueueCheckerThread] c.m.w.s.q.InboundQueueChecker - 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 100000, current: 0
+[server.file] capacity: 100000, current: 0
+[client.websocket] capacity: 100000, current: 0
+
+2020-3월-09 22:33:35.981 INFO  [OutboundQueueCheckerThread] c.m.w.s.q.OutboundQueueChecker - 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[server.file]
+	groupId: server.file, clientId: server.file, channel: com.mims.wake.server.outbound.SendChannel@502d46d1, capacity: 100000, current: 0
+[client.websocket]
+	No Outbound Queue
+

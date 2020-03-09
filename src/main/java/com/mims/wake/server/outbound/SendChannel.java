@@ -1,4 +1,4 @@
-// [YPK]
+﻿// [YPK]
 package com.mims.wake.server.outbound;
 
 import java.io.File;
@@ -35,7 +35,7 @@ public class SendChannel implements Channel {
 		this.outboundServer = outboundServer;
 	}
 	
-	private void messageHandler(PushMessage msg) throws Exception {
+	private void messageHandler(PushMessage msg) {
 		if(msg.getServiceId().equals(ServiceType.TCPSOCKET)) {
 			System.out.println("========== Outbound TCPSOCKET Push ===================================");
 			System.out.println(msg);
@@ -65,7 +65,7 @@ public class SendChannel implements Channel {
 		}
 	}
 	
-	private void tcpSend(PushMessage msg) throws Exception {
+	private void tcpSend(PushMessage msg) {
 		if(outboundServer != null)
 			outboundServer.send(msg);
 	}

@@ -23,7 +23,7 @@
 		<dependency>
 			<groupId>io.netty</groupId>
 			<artifactId>netty-all</artifactId>
-			<version>4.1.9.Final</version>
+			<version>4.1.42.Final</version>
 			<scope>compile</scope>
 		</dependency>
 		
@@ -78,6 +78,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>net.minidev</groupId>
+		    <artifactId>json-smart</artifactId>
+		    <version>1.0.9</version>
 		</dependency>
 
 	</dependencies>

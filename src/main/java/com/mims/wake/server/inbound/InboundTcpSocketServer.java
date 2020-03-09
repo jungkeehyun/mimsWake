@@ -5,9 +5,13 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mims.wake.server.property.PushBaseProperty;
 import com.mims.wake.server.queue.InboundQueue;
 
+import io.netty.bootstrap.Bootstrap;
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.ChannelPipeline;
@@ -15,6 +19,7 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
@@ -26,7 +31,8 @@ public class InboundTcpSocketServer {
 
     private static final Logger LOG = LoggerFactory.getLogger(InboundTcpSocketServer.class);
 
-    private final int port;		// Inbound Server listen port
+	private String host;						// Outbound Server IP
+	private int port; 							// Inbound Server listen port
 
     private EventLoopGroup bossGroup;		// EventLoopGroup that accepts an incoming connection
     private EventLoopGroup workerGroup;	// EventLoopGroup that handles the traffic of the accepted connection
@@ -36,10 +42,12 @@ public class InboundTcpSocketServer {
 	 * 
      * @param port Inbound Server listen port
      */
-    public InboundTcpSocketServer(int port) {
-        this.port = port;
+	public InboundTcpSocketServer(PushBaseProperty property) {
+		this.host = property.getoutboundServerWsUri();
+		this.port = property.getInboundServerPort();
     }
 
+	// [+] YPK
     /**
      * InboundServer 인스턴스를 기동한다.<br>
      * -TCP 스트림에 대한 메시지 구분자 지정<br>
@@ -49,6 +57,14 @@ public class InboundTcpSocketServer {
      * @param inboundQueues Inbound Queue collection
      */
     public void startup(Map<String, InboundQueue> inboundQueues) {
+		if (host.isEmpty()) {
+			bind(inboundQueues);
+		} else {
+			connect(inboundQueues);
+		}
+	}
+	
+	public void bind(Map<String, InboundQueue> inboundQueues) {
         LOG.info("[InboundServer] starting...");
 
         bossGroup = new NioEventLoopGroup();
@@ -80,6 +96,30 @@ public class InboundTcpSocketServer {
         }
     }
 
+	public void connect(Map<String, InboundQueue> inboundQueues) {
+		LOG.info("[InboundClient] starting...");
+		
+		bossGroup = new NioEventLoopGroup();
+		try {
+			Bootstrap bootstrap = new Bootstrap();
+			bootstrap.group(bossGroup).channel(NioSocketChannel.class).handler(new ChannelInitializer<SocketChannel>() {
+				@Override
+				protected void initChannel(SocketChannel ch) throws Exception {
+					ChannelPipeline pipeline = ch.pipeline();
+					//pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
+					//pipeline.addLast(new PushMessageEncoder(PushConstant.DEFAULT_DELIMITER_STR));
+					pipeline.addLast(new InboundTcpSocketServerMsgHandler(inboundQueues));
+				}
+			});
+
+			ChannelFuture cf = bootstrap.connect(host, port).sync();
+			cf.addListener(new OutboundTcpSocketListener()).sync();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	// [-] 
+
     /**
      * InboundServer 인스턴스를 중지한다.<br>
      * -shutdown worker EventLoopGroup<br>
@@ -95,4 +135,17 @@ public class InboundTcpSocketServer {
 
         LOG.info("[InboundServer] shutdown");
     }
+}
+
+// [YPK]
+class OutboundTcpSocketListener implements ChannelFutureListener {
+	
+	public OutboundTcpSocketListener() {
+	}
+
+	@Override
+	public void operationComplete(ChannelFuture future) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("========== Connented TCPSOCKET Outbound Server ==========================");
+	}
 }

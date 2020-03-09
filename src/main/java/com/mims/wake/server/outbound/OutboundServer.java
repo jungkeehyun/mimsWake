@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import com.mims.wake.common.PushMessage;
 import com.mims.wake.server.property.PushServiceProperty;
 import com.mims.wake.server.property.ServerType;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -38,7 +39,6 @@ public abstract class OutboundServer {
 		this.property = property;
 	}
 
-	// [+] [YPK]
 	/**
 	 * OutboundServer 인스턴스를 기동한다.<br>
 	 * -소켓채널에 대한 이벤트 핸들러 지정<br>
@@ -46,18 +46,11 @@ public abstract class OutboundServer {
 	 */
 	public void startup() {
 		LOG.info("[OutboundServer:{}] starting...", property.getServiceId());
-		if(property.getOutboundServerType().equals(ServerType.TCPSOCKET)) {
-			// do nothing
-		}
-		else if(property.getOutboundServerType().equals(ServerType.WEBSOCKET)) {
-			bind();
-		}
-		else if(property.getOutboundServerType().equals(ServerType.FILESOCKET)) {
+		if(property.getOutboundServerType().equals(ServerType.FILESOCKET)) {
 			// do nothing
 		}
 		else {
-			LOG.error("[OutboundServer:" + property.getServiceId() + "] not found");
-			return;
+			bind();
 		}
 	}
 
@@ -82,10 +75,10 @@ public abstract class OutboundServer {
 		}
 	}
 
-	public void send(PushMessage msg) throws Exception {
+	// [YPK]
+	public void send(PushMessage msg) {
 		// do nothing
 	}
-	// [-] 
 
 	/**
 	 * OutboundServer 인스턴스를 중지한다.<br>
