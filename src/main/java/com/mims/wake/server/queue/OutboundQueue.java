@@ -1,4 +1,4 @@
-package com.mims.wake.server.queue;
+﻿package com.mims.wake.server.queue;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import com.mims.wake.common.PushConstant;
 import com.mims.wake.common.PushMessage;
+import com.mims.wake.server.property.ServiceType;
 
 import io.netty.channel.Channel;
 
@@ -43,7 +44,7 @@ public class OutboundQueue extends Thread {
      */
     public String groupId() {
     	// [+] [YPK]
-    	if(channel.id().asShortText().contains(".file")) {
+    	if(serviceId.equals(ServiceType.TCPSOCKET) || serviceId.equals(ServiceType.FILE_SERVER)) {
     		return this.serviceId;
     	}
     	// [-]
@@ -57,7 +58,7 @@ public class OutboundQueue extends Thread {
      */
     public String clientId() {
     	// [+] [YPK]
-    	if(channel.id().asShortText().contains(".file")) {
+    	if(serviceId.equals(ServiceType.TCPSOCKET) || serviceId.equals(ServiceType.FILE_SERVER)) {
     		return this.serviceId;
     	}
     	// [-]
@@ -90,7 +91,7 @@ public class OutboundQueue extends Thread {
         String msgClientId = pushMessage.getClientId();
 
         // [+] [YPK]
-        if (msgServiceId != null && msgServiceId.contains(".file")) {
+        if (msgServiceId != null && (msgServiceId.equals(ServiceType.TCPSOCKET) || msgServiceId.equals(ServiceType.FILE_SERVER))) {
             return true;
         }
         // [-]

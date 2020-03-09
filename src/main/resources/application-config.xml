@@ -26,6 +26,7 @@
         <property name="serviceId" value="server.tcpsocket" />
         <property name="outboundServerPort" value="13101" />
         <property name="outboundServerType" value="TCPSOCKET" />
+    <property name="outboundServerWsUri" value="127.0.0.1" />
     </bean>
     <!-- Client Push Service Properties -->
     <bean parent="serviceProperty">
@@ -37,17 +38,10 @@
 
 	<!-- [YPK] Server Push Service Properties -->
     <bean parent="serviceProperty">
-        <property name="serviceId" value="push.file" />
+        <property name="serviceId" value="server.file" />
 		<property name="outboundServerPort" value="13103" />
         <property name="outboundServerType" value="FILESOCKET" />
-        <property name="outboundServerPath" value="mimsWake" />
-    </bean>
-	<bean parent="serviceProperty">
-        <property name="serviceId" value="polling.file" />
-		<property name="outboundServerPort" value="14100" />
-        <property name="outboundServerType" value="FILESOCKET" />
-		<property name="outboundServerWsUri" value="127.0.0.1" />
-        <property name="outboundServerPath" value="mimsWake" />
+        <property name="outboundServerWsUri" value="filePush" />
     </bean>
 
 </beans>

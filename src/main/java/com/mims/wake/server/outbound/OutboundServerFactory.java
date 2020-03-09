@@ -1,4 +1,4 @@
-package com.mims.wake.server.outbound;
+﻿package com.mims.wake.server.outbound;
 
 import com.mims.wake.server.property.PushServiceProperty;
 import com.mims.wake.server.property.ServerType;
@@ -30,8 +30,8 @@ public class OutboundServerFactory {
                 return new OutboundTcpSocketServer(property, outboundQueueManager);
             case WEBSOCKET:
                 return new OutboundWebSocketServer(property, outboundQueueManager);
-            case FILESOCKET: // [YPK] File Push & Polling
-            	return new OutboundTcpSocketSender(property, outboundQueueManager);
+            case FILESOCKET: // [YPK] File Push
+            	return new OutboundTcpSocketServer(property, outboundQueueManager);
             default:
                 throw new IllegalArgumentException("Unknown server type [" + type + "]");
         }

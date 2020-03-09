@@ -1,4 +1,4 @@
-package com.mims.wake.server.inbound;
+﻿package com.mims.wake.server.inbound;
 
 import java.util.Map;
 
@@ -30,7 +30,6 @@ public class InboundTcpSocketServer {
 
     private EventLoopGroup bossGroup;		// EventLoopGroup that accepts an incoming connection
     private EventLoopGroup workerGroup;	// EventLoopGroup that handles the traffic of the accepted connection
-	private InboundFilePolling inboundFilePolling; // [YPK]
 
     /**
      * constructor with a paramter
@@ -73,11 +72,6 @@ public class InboundTcpSocketServer {
 
             bootstrap.bind(port).sync();
 
-			// [+] [YPK] start InboundFilePlling
-			inboundFilePolling = new InboundFilePolling(500, "mimsWake");
-			inboundFilePolling.startup(inboundQueues);
-			// [-]
-
             LOG.info("[InboundServer] started, listening on port " + port);
 
         } catch (InterruptedException e) {
@@ -98,11 +92,6 @@ public class InboundTcpSocketServer {
         if (bossGroup != null) {
             bossGroup.shutdownGracefully();
         }
-		// [+] [YPK]
-		if (inboundFilePolling != null) {
-			inboundFilePolling.shutdown();
-		}
-		// [-]
 
         LOG.info("[InboundServer] shutdown");
     }

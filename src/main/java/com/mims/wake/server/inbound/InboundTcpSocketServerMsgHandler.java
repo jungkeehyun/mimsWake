@@ -1,4 +1,4 @@
-package com.mims.wake.server.inbound;
+﻿package com.mims.wake.server.inbound;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -18,6 +18,7 @@ import com.mims.wake.server.kmtf.Field;
 import com.mims.wake.server.kmtf.KmtfMessage;
 import com.mims.wake.server.kmtf.Set;
 import com.mims.wake.server.kmtf.kmtfParser;
+import com.mims.wake.server.property.ServiceType;
 import com.mims.wake.server.queue.InboundQueue;
 import com.mims.wake.util.JsonUtil;
 
@@ -93,22 +94,25 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 
 		KmtfMessage message;
 		try {
-			// [+] YPK
-			/* 20200309 JKH (because Error)
+			message = kmtfParser.parseFormat(content);
+			if (message.getKmtfId() == null) {
+				// [+] [YPK] Receive JSON
 			ObjectMapper mapper = new ObjectMapper();
-			Map<String, String> mapJson = mapper.readValue(content, new TypeReference<Map<String, String>>(){});
-			String szServiceId = mapJson.get("serviceId");
-			if(szServiceId != null && szServiceId.equals("polling.file")) {
-				System.out.println("====================================[+] [YPK]===========================================");
-				System.out.println("========== Receive from file polling outbound server ===================================");
+				Map<String, String> mapJson = mapper.readValue(content, new TypeReference<Map<String, String>>() {
+				});
+				serviceId = mapJson.get("serviceId");
+				if (serviceId != null && serviceId.contains(ServiceType.TCPSOCKET)) {
+					System.out.println("========== Receive JSON from File Polling Server ===================");
 				System.out.println(content);
-				System.out.println("====================================[-] [YPK]===========================================");
+					pushMsg.setServiceId(serviceId);
+					pushMsg.setGroupId(mapJson.get("groupId"));
+					pushMsg.setClientId(mapJson.get("clientId"));
+					pushMsg.setMessage(mapJson.get("message"));
+				} else {
 				return;
 			}
-			*/
 			// [-]
-			message = kmtfParser.parseFormat(content);
-
+			} else {
 			System.out.println("------------------");
 			System.out.println("kmtfId : " + message.getKmtfId());
 			System.out.println("setId : " + message.getSetId());
@@ -128,8 +132,8 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 				LinkedHashMap<Integer, Field> map = s.getFieldMap();
 				for (Object key : map.keySet()) {
 					Field ff = map.get(key);
-					System.out
-							.println(s.getSid() + " | " + ff.getIndex() + " | " + ff.getName() + " | " + ff.getValue());
+						System.out.println(
+								s.getSid() + " | " + ff.getIndex() + " | " + ff.getName() + " | " + ff.getValue());
 				}
 				System.out.println("");
 			}
@@ -142,32 +146,36 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 			pushMsg.setGroupId(message.getMode());
 			pushMsg.setClientId(message.getSetId());
 			pushMsg.setMessage(JsonUtil.getJsonStringFromList(message.getData()));
-
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		//
 
 		// LOG.info("[InboundServerHandler] RECEIVED {} ", content);
+		serviceId = ServiceType.WEBSOCKET;
+		pushMsg.setServiceId(serviceId);
 		inboundQueues.get(serviceId).enqueue(pushMsg);
 
 		/*
-		 * 02. [Server] 다른 Server 에게 메시지를 전달
+		 * 02. [YPK] [Server] 다른 Server 에게 메시지를 전달
 		 */
-		// String serviceId = "server.tcpsocket";
+		serviceId = ServiceType.TCPSOCKET;
+		PushMessage msg2Tcp = new PushMessage(serviceId, pushMsg.getGroupId(), pushMsg.getClientId(),
+				pushMsg.getMessage());
+		inboundQueues.get(serviceId).enqueue(msg2Tcp);
 
 		/*
 		 * 03. [DB] Database 에 메시지 저장
 		 */
 
-		// [+] [YPK]
 		/*
-		 * 04. [FILE] 메시지 파일로 저장
+		 * 04. [YPK] [FILE] 메시지 파일로 저장
 		 */
-		serviceId = "push.file";
-		PushMessage pushMsg2File = new PushMessage(serviceId, pushMsg.getGroupId(), pushMsg.getClientId(),
+		serviceId = ServiceType.FILE_SERVER;
+		PushMessage msg2File = new PushMessage(serviceId, pushMsg.getGroupId(), pushMsg.getClientId(),
 				pushMsg.getMessage());
-		inboundQueues.get(serviceId).enqueue(pushMsg2File);
+		inboundQueues.get(serviceId).enqueue(msg2File);
 		// [-]
 	}
 

@@ -1,4 +1,4 @@
-// [YPK]
+﻿// [YPK]
 package com.mims.wake.server.inbound;
 
 import java.io.BufferedReader;
@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mims.wake.common.PushMessage;
+import com.mims.wake.server.property.ServiceType;
 import com.mims.wake.server.queue.InboundQueue;
 import com.mims.wake.util.commonUtil;
 
@@ -21,13 +22,13 @@ public class InboundFilePolling {
 	private static final Logger LOG = LoggerFactory.getLogger(InboundFilePolling.class);
 
 	private int interval;
-	private String subPath;
+	private String pathFile;
 	private Timer timer;
 	private Map<String, InboundQueue> inboundQueues;
 
 	public InboundFilePolling(int interval, String subPath) {
 		this.interval = interval;
-		this.subPath = subPath;
+		this.pathFile = getPathFile(subPath);
 		this.setInboundQueues(null);
 	}
 
@@ -44,7 +45,7 @@ public class InboundFilePolling {
 			};
 
 			this.timer.schedule(timerTask, 0, this.interval);
-			LOG.info("[InboundFilePolling] started, file paht " + this.subPath);
+			LOG.info("[InboundFilePolling] started, file paht " + this.pathFile);
 
 		} catch (Exception e) {
 			LOG.error("[InboundFilePolling] failed to startup", e);
@@ -52,12 +53,10 @@ public class InboundFilePolling {
 		}
 	}
 
+
 	public void fileRead() {
 		try {
-			String token = commonUtil.pathToken();
-			String path = System.getProperty("user.dir") + token + subPath;
-
-			Vector<String> arrFile = commonUtil.getFileNames(path, "json");
+			Vector<String> arrFile = commonUtil.getFileNames(pathFile, "json");
 			for (int ix = 0; ix < arrFile.size(); ++ix) {
 				String pathFile = arrFile.get(ix);
 
@@ -85,16 +84,19 @@ public class InboundFilePolling {
 				file.delete(); // read only once
 
 				// send to websocket
-				String serviceId = "client.websocket";
+				String serviceId = ServiceType.WEBSOCKET;
 				PushMessage pushMsgWeb = new PushMessage(serviceId, groupId, clientId, msg);
 				inboundQueues.get(serviceId).enqueue(pushMsgWeb);
 
 				// send to tcpsocket
-				serviceId = "polling.file";
+				serviceId = ServiceType.TCPSOCKET;
 				PushMessage pushMsgTcp = new PushMessage(serviceId, groupId, clientId, msg);
 				inboundQueues.get(serviceId).enqueue(pushMsgTcp);
 
 				LOG.info("[InboundFilePolling] Scan : " + msg);
+				
+				System.out.println("========== Outbound File Polling ===================================");
+				System.out.println(msg);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -114,5 +116,10 @@ public class InboundFilePolling {
 
 	public void setInboundQueues(Map<String, InboundQueue> inboundQueues) {
 		this.inboundQueues = inboundQueues;
+	}
+	
+	private String getPathFile(String subPath) {
+		String token = commonUtil.pathToken();
+		return System.getProperty("user.dir") + token + subPath;
 	}
 }

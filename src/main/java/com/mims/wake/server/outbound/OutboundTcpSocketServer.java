@@ -1,14 +1,26 @@
-package com.mims.wake.server.outbound;
+﻿package com.mims.wake.server.outbound;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.mims.wake.common.PushConstant;
+import com.mims.wake.common.PushMessage;
 import com.mims.wake.common.PushMessageDecoder;
 import com.mims.wake.common.PushMessageEncoder;
 import com.mims.wake.server.property.PushServiceProperty;
 import com.mims.wake.server.queue.OutboundQueueManager;
 
+import io.netty.bootstrap.Bootstrap;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
+import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
@@ -21,6 +33,10 @@ public class OutboundTcpSocketServer extends OutboundServer {
 
 	private final PushServiceProperty property; // Push Service property
 	private final OutboundQueueManager outboundQueueManager; // OutboundQueue 인스턴스 관리자
+	// [+] [YPK]
+	private String inboundServerHost;
+	private int inboundServerPort;
+	// [-]
 
 	/**
 	 * constructor with parameters
@@ -32,6 +48,10 @@ public class OutboundTcpSocketServer extends OutboundServer {
 		super(property);
 		this.property = property;
 		this.outboundQueueManager = outboundQueueManager;
+		// [+] [YPK]
+		this.inboundServerHost = property.getOutboundServerWsUri().replaceAll("/", "");
+		this.inboundServerPort = property.getOutboundServerPort();
+		// [-]
 	}
 
 	/**
@@ -52,5 +72,58 @@ public class OutboundTcpSocketServer extends OutboundServer {
 				pipeline.addLast(new OutboundServerHandler(property, outboundQueueManager));
 			}
 		};
+	}
+	
+	// [YPK]
+	@Override
+	public void send(PushMessage msg) throws Exception {
+		String serviceId = msg.getServiceId();
+		String groupId = msg.getGroupId();
+		String clientId = msg.getClientId();
+
+		EventLoopGroup group = new NioEventLoopGroup();
+		try {
+			Bootstrap bootstrap = new Bootstrap();
+			bootstrap.group(group).channel(NioSocketChannel.class).handler(new ChannelInitializer<SocketChannel>() {
+				@Override
+				protected void initChannel(SocketChannel ch) throws Exception {
+					ChannelPipeline pipeline = ch.pipeline();
+					pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
+					pipeline.addLast(new PushMessageEncoder(PushConstant.DEFAULT_DELIMITER_STR));
+					pipeline.addLast(new TcpSocketSenderHandler());
+				}
+			});
+
+			ChannelFuture future = bootstrap.connect(inboundServerHost, inboundServerPort);
+
+			future.addListener(new ChannelFutureListener() {
+				@Override
+				public void operationComplete(ChannelFuture future) throws Exception {
+					PushMessage message = new PushMessage(serviceId, groupId, clientId, msg.getMessage());
+					future.channel().writeAndFlush(message);
+					Thread.sleep(10L);
+				}
+			}).addListener(ChannelFutureListener.CLOSE).sync();
+
+		} finally {
+			group.shutdownGracefully();
+		}
+	}
+}
+
+// [YPK]
+class TcpSocketSenderHandler extends SimpleChannelInboundHandler<PushMessage> {
+
+	private static final Logger LOG = LoggerFactory.getLogger(TcpSocketSenderHandler.class);
+
+	@Override
+	public void channelRead0(ChannelHandlerContext ctx, PushMessage msg) throws Exception {
+		// do nothing
+	}
+
+	@Override
+	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+		LOG.error("[TestTcpSocketSenderHandler] error " + ctx.channel() + ", it will be closed", cause);
+		ctx.close();
 	}
 }
