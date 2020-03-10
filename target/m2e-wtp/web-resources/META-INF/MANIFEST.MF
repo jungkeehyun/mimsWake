@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: mimsWake
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: goodfeel
+Built-By: YPK
 Implementation-Vendor-Id: mimsWake.springboot
 Build-Jdk: 1.8.0_181-1-ojdkbuild
 Implementation-URL: http://projects.spring.io/spring-boot/mimsWake/
