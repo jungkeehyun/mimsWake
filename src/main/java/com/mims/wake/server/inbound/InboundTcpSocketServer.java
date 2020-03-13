@@ -68,8 +68,9 @@ public class InboundTcpSocketServer {
 		}
 	}
 	
-	public void startupFilePush(Map<String, InboundQueue> inboundQueues) {
+	public void startupFilePush(Map<String, InboundQueue> inboundQueues, int port) {
 		this.host = "127.0.0.1";
+		this.port = port;
 		connect(inboundQueues);
 	}
 	
@@ -125,12 +126,12 @@ public class InboundTcpSocketServer {
 			future.addListener(new ChannelFutureListener() {
 				@Override
 				public void operationComplete(ChannelFuture future) throws Exception {
-					LOG.info("[Connented Outbound TCPSOCKET Server] >>>>>>>>>>>>>>>>>>>>");
+					LOG.info("[Connented Outbound TCPSOCKET Server] >>>>>>>>>> {}:{}", host, port);
 				}
 			}).sync();
 		} catch (Exception e) {
 			e.printStackTrace();
-			LOG.error("[Cannot connent to Outbound TCPSOCKET Server] >>>>>>>>>>>>>>>>>>>>");
+			LOG.error("[Cannot connent to Outbound TCPSOCKET Server] >>>>>>>>>> {}:{}", host, port);
 		}
 	}
 	// [-] 

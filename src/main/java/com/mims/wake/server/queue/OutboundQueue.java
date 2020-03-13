@@ -43,11 +43,10 @@ public class OutboundQueue extends Thread {
      * @return 클라이언트 채널 속성 중 그룹ID
      */
     public String groupId() {
-    	// [+] [YPK]
-    	if(serviceId.equals(ServiceType.FILESOCKET)) {
+    	// [YPK] file push first way
+    	if(serviceId.equals(ServiceType.FILESOCKET))
     		return this.serviceId;
-    	}
-    	// [-]
+    	
         // 그룹ID는 런타임에 변경될 수 있으므로 항상 채널에서 조회 필요
         return channel.attr(PushConstant.GROUP_ID).get();
     }
@@ -57,11 +56,10 @@ public class OutboundQueue extends Thread {
      * @return 클라이언트 채널 속성 중 클라이언트ID
      */
     public String clientId() {
-    	// [+] [YPK]
-    	if(serviceId.equals(ServiceType.FILESOCKET)) {
+    	// [YPK] file push first way
+    	if(serviceId.equals(ServiceType.FILESOCKET))
     		return this.serviceId;
-    	}
-    	// [-]
+    	
         // 클라이언트ID는 런타임에 변경될 수 있으므로 항상 채널에서 조회 필요
         return channel.attr(PushConstant.CLIENT_ID).get();
     }

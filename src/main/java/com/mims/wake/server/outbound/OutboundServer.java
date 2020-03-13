@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import com.mims.wake.common.PushMessage;
 import com.mims.wake.server.property.PushServiceProperty;
 import com.mims.wake.server.property.ServerType;
+import com.mims.wake.server.queue.OutboundQueueManager;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
@@ -46,13 +47,13 @@ public abstract class OutboundServer {
 	 */
 	public void startup() {
 		LOG.info("[OutboundServer:{}] starting...", property.getServiceId());
+		// [YPK] file push first way
 		if(property.getOutboundServerType().equals(ServerType.FILESOCKET)) {
 			// do nothing
 		}
-		else {
+		else
 			bind();
 		}
-	}
 
 	public void bind() {	
 		bossGroup = new NioEventLoopGroup();
@@ -80,6 +81,12 @@ public abstract class OutboundServer {
 		// do nothing
 	}
 
+	// [YPK]
+	public void regQueueForFilePush(OutboundQueueManager outboundQueueManager) {
+		SendChannel channel = new SendChannel(property.getServiceId(), property.getOutboundServerWsUri(), this);
+		outboundQueueManager.startOutboundQueue(property.getServiceId(), property.getInboundQueueCapacity(), channel);
+	}
+	
 	// [YPK]
 	public PushServiceProperty getPushServiceProperty() {
 		return property;

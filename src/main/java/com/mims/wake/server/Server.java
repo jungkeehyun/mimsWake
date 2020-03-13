@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import com.mims.wake.server.inbound.InboundFilePolling;
 import com.mims.wake.server.inbound.InboundTcpSocketServer;
-import com.mims.wake.server.outbound.SendChannel;
 import com.mims.wake.server.outbound.OutboundServer;
 import com.mims.wake.server.outbound.OutboundServerFactory;
 import com.mims.wake.server.property.PushBaseProperty;
@@ -91,23 +90,22 @@ public class Server {
 				// inbound file push
 				OutboundServer outboundFilePush = outboundServers.get(ServiceType.FILESOCKET);
 				if(outboundFilePush != null) {
+					// file push first way
+					outboundFilePush.regQueueForFilePush(outboundQueueManager);
+					/*/ file push second way
 					PushServiceProperty prop = outboundFilePush.getPushServiceProperty();
-					//inboundFilePush = new InboundTcpSocketServer(prop);
-					//inboundFilePush.startupFilePush(inboundQueues);
-					SendChannel channel = new SendChannel(prop.getServiceId(), prop.getOutboundServerWsUri(),
-							outboundServers.get(prop.getServiceId()));
-					outboundQueueManager.startOutboundQueue(prop.getServiceId(), prop.getInboundQueueCapacity(),
-							channel);
+					inboundFilePush = new InboundTcpSocketServer(baseProperty);
+					inboundFilePush.startupFilePush(inboundQueues, prop.getOutboundServerPort());*/
 				}
 			} else if (type == ServerType.FILESOCKET) {
 				inboundFilePolling = new InboundFilePolling(baseProperty);
 				inboundFilePolling.startup(inboundQueues);
 			} else {
-				LOG.info("[Choose a server type TCPSOCKET or FILESOCKET] >>>>>>>>>>>>>>>>>>>> {}", type);
+				LOG.info("[Choose a server type TCPSOCKET or FILESOCKET] >>>>>>>>>> {}", type);
 				return null;
         }
 		}
-        LOG.info("[simple-push-server] startup complete.... >>>>>>>>>>>>>>>>>>>> {}", type);
+        LOG.info("[simple-push-server] startup complete.... >>>>>>>>>> {}", type);
 
         return inboundQueues;
     }

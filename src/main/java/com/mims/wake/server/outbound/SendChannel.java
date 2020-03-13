@@ -29,23 +29,23 @@ import io.netty.util.AttributeKey;
 public class SendChannel implements Channel {
 	private static final Logger LOG = LoggerFactory.getLogger(SendChannel.class);
 	
-	private final SendChannelId fcid;
+	private final SendChannelId channelId;
 	private final String outboundServerWsUri;
 	private final OutboundServer outboundServer;
 	
 	public SendChannel(String serviceId, String outboundServerWsUri, OutboundServer outboundServer) {
-		this.fcid = new SendChannelId(serviceId);
+		this.channelId = new SendChannelId(serviceId);
 		this.outboundServerWsUri = outboundServerWsUri;
 		this.outboundServer = outboundServer;
 	}
 	
 	private void messageHandler(PushMessage msg) {
 		if(msg.getServiceId().equals(ServiceType.TCPSOCKET)) {
-			LOG.info("[Outbound TCPSOCKET Push] >>>>>>>>>>>>>>>>>>>> {}", msg);
+			LOG.info("[Outbound TCPSOCKET Push] >>>>>>>>>> {}", msg);
 			tcpSend(msg);
 		}
 		else if(msg.getServiceId().equals(ServiceType.FILESOCKET)) {
-			LOG.info("[Outbound FILESOCKET Push] >>>>>>>>>>>>>>>>>>>> {}", msg);
+			LOG.info("[Outbound FILESOCKET Push] >>>>>>>>>> {}", msg);
 			filePush(msg);
 		}
 	}
@@ -230,7 +230,7 @@ public class SendChannel implements Channel {
 	@Override
 	public ChannelId id() {
 		// TODO Auto-generated method stub
-		return fcid;
+		return channelId;
 	}
 
 	@Override
