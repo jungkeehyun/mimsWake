@@ -26,9 +26,8 @@ public class PushServiceProperty {
 	//@Value("outboundServerType")
     private ServerType outboundServerType;	// Outbound Server communication type
     
-	@Value("outboundServerWsUri")				// Outbound Server TcpSocket IP / Outbound Server FileSocket SubPath
+	@Value("outboundServerWsUri")				// Inbound, Outbound Server TcpSocket IP / Outbound Server FileSocket SubPath
     private String outboundServerWsUri;		// Outbound Server WebSocket URI, if Outbound Server type is WEBSOCKET
-
 
     @PostConstruct
     public void afterPropertiesSet() {
@@ -91,10 +90,10 @@ public class PushServiceProperty {
         return outboundServerWsUri;
     }
     public void setOutboundServerWsUri(String outboundServerWsUri) {
-        if (outboundServerWsUri != null && !outboundServerWsUri.startsWith("/")) {
+		this.outboundServerWsUri = outboundServerWsUri;
+		if (this.outboundServerType == ServerType.WEBSOCKET) {
+			if (outboundServerWsUri != null && !outboundServerWsUri.startsWith("/"))
             this.outboundServerWsUri = "/" + outboundServerWsUri;
-        } else {
-            this.outboundServerWsUri = outboundServerWsUri;
         }
     }
 

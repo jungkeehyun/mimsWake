@@ -11,6 +11,8 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan
 public class PushBaseProperty {
 
+    private ServerType inboundServerType;			// Inbound Server Type
+	
 	@Value("inboundServerPort")
     private String inboundServerPort;				// Inbound Server listen port
 	
@@ -23,8 +25,14 @@ public class PushBaseProperty {
 	@Value("outboundServerWsUri")
 	private String outboundServerWsUri;				// Outbound Server Connection IP
 
+	@Value("inboundPollingInterval")
+	private String inboundPollingInterval;			// Inbound File Polling Interval
+
     @PostConstruct
     public void afterPropertiesSet() {
+        if (inboundServerType == null) {
+            throw new IllegalArgumentException("The 'inboundServerType' property is invalid [" + inboundServerType + "]");
+        }
         if (Integer.parseInt(inboundServerPort) <= 0) {
             throw new IllegalArgumentException("The 'inboundServerPort' property is invalid [" + inboundServerPort + "]");
         }
@@ -34,6 +42,17 @@ public class PushBaseProperty {
         if (Integer.parseInt(outboundQueueCheckInterval) <= 0) {
             throw new IllegalArgumentException("The 'outboundQueueCheckInterval' property is invalid [" + outboundQueueCheckInterval + "]");
         }
+        if(inboundServerType == ServerType.FILESOCKET && Integer.parseInt(inboundPollingInterval) <= 0) {
+        	throw new IllegalArgumentException("The 'inboundPollingInterval' property is invalid [" + inboundPollingInterval + "]");
+        }
+    }
+
+	public ServerType getInboundServerType() {
+		return this.inboundServerType;
+	}
+    
+    public void setInboundServerType(ServerType type) {
+    	this.inboundServerType = type;
     }
 
     public int getInboundServerPort() {
@@ -60,22 +79,32 @@ public class PushBaseProperty {
         this.outboundQueueCheckInterval = Integer.toString(outboundQueueCheckInterval);
     }
 
-    public String getoutboundServerWsUri() {
+    public String getOutboundServerWsUri() {
         return this.outboundServerWsUri;
     }
     
-    public void setoutboundServerWsUri(String outboundServerWsUri) {
+    public void setOutboundServerWsUri(String outboundServerWsUri) {
         this.outboundServerWsUri = outboundServerWsUri;
+    }
+
+    public int getInboundPollingInterval() {
+        return Integer.parseInt(inboundPollingInterval);
+    }
+    
+    public void setInboundPollingInterval(String interval) {
+        this.inboundPollingInterval = interval;
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append(getClass().getSimpleName()).append("[")
-               .append("inboundServerPort=").append(inboundServerPort)
+        		.append("inboundServerType=").append(inboundServerType)
+               .append(", inboundServerPort=").append(inboundServerPort)
                .append(", inboundQueueCheckInterval=").append(inboundQueueCheckInterval)
                .append(", outboundQueueCheckInterval=").append(outboundQueueCheckInterval)
                .append(", outboundServerWsUri=").append(outboundServerWsUri)
+               .append(", inboundPollingInterval=").append(inboundPollingInterval)
                .append("]");
         return builder.toString();
     }

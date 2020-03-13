@@ -101,7 +101,7 @@ public class OutboundQueueManager {
                 	if(serviceId.equals(ServiceType.TCPSOCKET)) {
                 		queue.enqueue(pushMessage);
                 	}
-                	else if(serviceId.equals(ServiceType.FILE_SERVER)) {
+                	else if(serviceId.equals(ServiceType.FILESOCKET)) {
                 		queue.enqueue(pushMessage);
                 	}
                 }

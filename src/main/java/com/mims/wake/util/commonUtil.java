@@ -1,7 +1,8 @@
-package com.mims.wake.util;
+﻿package com.mims.wake.util;
 
 import java.io.File;
 import java.util.Vector;
+import java.util.regex.Pattern;
 
 public class commonUtil {
 
@@ -80,5 +81,25 @@ public class commonUtil {
 		}
 
 		return fileNames;
+	}
+	
+	public static String getCurrentPath(String subPath) {
+		String token = pathToken();
+		String[] arrWord = subPath.split("");
+		if(arrWord[0].equals(token))
+			subPath.replaceFirst(token, "");
+		return System.getProperty("user.dir") + token + subPath;
+	}
+	
+	public static boolean isFullPathName(String pathFile) {
+		String token = commonUtil.pathToken();
+		String[] arrWord = pathFile.split("");
+		if(!Pattern.matches("^[a-zA-Z0-9]*$", arrWord[0]))
+			return false;
+		if(!arrWord[1].equals(":"))
+			return false;
+		if(!token.equals(arrWord[2]))
+			return false;
+		return true;
 	}
 }

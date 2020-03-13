@@ -44,7 +44,7 @@ public class OutboundQueue extends Thread {
      */
     public String groupId() {
     	// [+] [YPK]
-    	if(serviceId.equals(ServiceType.FILE_SERVER)) {
+    	if(serviceId.equals(ServiceType.FILESOCKET)) {
     		return this.serviceId;
     	}
     	// [-]
@@ -58,7 +58,7 @@ public class OutboundQueue extends Thread {
      */
     public String clientId() {
     	// [+] [YPK]
-    	if(serviceId.equals(ServiceType.FILE_SERVER)) {
+    	if(serviceId.equals(ServiceType.FILESOCKET)) {
     		return this.serviceId;
     	}
     	// [-]
@@ -91,9 +91,10 @@ public class OutboundQueue extends Thread {
         String msgClientId = pushMessage.getClientId();
 
         // [+] [YPK]
-        if (msgServiceId != null && (msgServiceId.equals(ServiceType.TCPSOCKET) || msgServiceId.equals(ServiceType.FILE_SERVER))) {
+        if (msgServiceId != null && msgServiceId.equals(ServiceType.TCPSOCKET))
+        	return channel.isActive();
+        if (msgServiceId != null && msgServiceId.equals(ServiceType.FILESOCKET))
             return true;
-        }
         // [-]
         if (msgServiceId == null || !msgServiceId.equals(serviceId)) {
             return false;

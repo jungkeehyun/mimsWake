@@ -80,6 +80,11 @@ public abstract class OutboundServer {
 		// do nothing
 	}
 
+	// [YPK]
+	public PushServiceProperty getPushServiceProperty() {
+		return property;
+	}
+
 	/**
 	 * OutboundServer 인스턴스를 중지한다.<br>
 	 * -shutdown worker EventLoopGroup<br>

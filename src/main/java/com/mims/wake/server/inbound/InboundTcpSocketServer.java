@@ -5,6 +5,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mims.wake.common.PushConstant;
+import com.mims.wake.common.PushMessageEncoder;
 import com.mims.wake.server.property.PushBaseProperty;
 import com.mims.wake.server.queue.InboundQueue;
 
@@ -20,8 +22,10 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import io.netty.util.CharsetUtil;
 
 /**
  * Business Application으로부터 Push를 요청받는 Inbound Server<br>
@@ -43,7 +47,7 @@ public class InboundTcpSocketServer {
      * @param port Inbound Server listen port
      */
 	public InboundTcpSocketServer(PushBaseProperty property) {
-		this.host = property.getoutboundServerWsUri();
+		this.host = property.getOutboundServerWsUri();
 		this.port = property.getInboundServerPort();
     }
 
@@ -62,6 +66,11 @@ public class InboundTcpSocketServer {
 		} else {
 			connect(inboundQueues);
 		}
+	}
+	
+	public void startupFilePush(Map<String, InboundQueue> inboundQueues) {
+		this.host = "127.0.0.1";
+		connect(inboundQueues);
 	}
 	
 	public void bind(Map<String, InboundQueue> inboundQueues) {
@@ -106,16 +115,22 @@ public class InboundTcpSocketServer {
 				@Override
 				protected void initChannel(SocketChannel ch) throws Exception {
 					ChannelPipeline pipeline = ch.pipeline();
-					//pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
-					//pipeline.addLast(new PushMessageEncoder(PushConstant.DEFAULT_DELIMITER_STR));
+					pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
+					pipeline.addLast(new PushMessageEncoder(PushConstant.DEFAULT_DELIMITER_STR));
 					pipeline.addLast(new InboundTcpSocketServerMsgHandler(inboundQueues));
 				}
 			});
 
-			ChannelFuture cf = bootstrap.connect(host, port).sync();
-			cf.addListener(new OutboundTcpSocketListener()).sync();
+			ChannelFuture future = bootstrap.connect(host, port).sync();
+			future.addListener(new ChannelFutureListener() {
+				@Override
+				public void operationComplete(ChannelFuture future) throws Exception {
+					LOG.info("[Connented Outbound TCPSOCKET Server] >>>>>>>>>>>>>>>>>>>>");
+				}
+			}).sync();
 		} catch (Exception e) {
 			e.printStackTrace();
+			LOG.error("[Cannot connent to Outbound TCPSOCKET Server] >>>>>>>>>>>>>>>>>>>>");
 		}
 	}
 	// [-] 
@@ -135,17 +150,4 @@ public class InboundTcpSocketServer {
 
         LOG.info("[InboundServer] shutdown");
     }
-}
-
-// [YPK]
-class OutboundTcpSocketListener implements ChannelFutureListener {
-	
-	public OutboundTcpSocketListener() {
-	}
-
-	@Override
-	public void operationComplete(ChannelFuture future) throws Exception {
-		// TODO Auto-generated method stub
-		System.out.println("========== Connented TCPSOCKET Outbound Server ==========================");
-	}
 }

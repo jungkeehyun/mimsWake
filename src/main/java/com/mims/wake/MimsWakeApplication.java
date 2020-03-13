@@ -1,6 +1,7 @@
-package com.mims.wake;
+﻿package com.mims.wake;
 
 import java.util.Collection;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.mims.wake.server.Server;
 import com.mims.wake.server.property.PushBaseProperty;
 import com.mims.wake.server.property.PushServiceProperty;
+import com.mims.wake.server.property.UserProperty;
+import com.mims.wake.server.queue.InboundQueue;
 
 /**
  * Spring-Boot Start (with Main)
@@ -34,7 +37,6 @@ public class MimsWakeApplication implements CommandLineRunner  {
 	public static void main(String[] args) throws Exception {
 		logger.info("■□■□■MIM Wake Websocket Server Start■□■□■");
 		SpringApplication.run(MimsWakeApplication.class, args);
-		
 	}
 	
 	/**
@@ -47,13 +49,27 @@ public class MimsWakeApplication implements CommandLineRunner  {
 	public void run(String... strings) throws Exception {
 
 		Server server = new Server();
-		
+		/*
 		try (ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("application-config.xml")) {
             PushBaseProperty baseProperty = context.getBean(PushBaseProperty.class);
-            Collection<PushServiceProperty> serviceProperties = context.getBeansOfType(PushServiceProperty.class).values();
+            Collection<PushServiceProperty> serviceProperties = context.getBeansOfType(PushServiceProperty.class).values(); */
+		try {				
+            // [YPK] get properties
+			String propName = null;
+			if(strings.length > 0)
+				propName = strings[0];
+			
+            UserProperty prop = new UserProperty();
+            prop.readPrpoerties(propName);
+            PushBaseProperty baseProperty = prop.getBaseProperty();
+            if(baseProperty == null)
+            	throw new Exception();
+            Collection<PushServiceProperty> serviceProperties = prop.getServiceProperty();
 
             // Push 서버 모듈 기동
-            server.startupServer(false, baseProperty, serviceProperties);
+            if(server.startupServer(false, baseProperty, serviceProperties) == null) {
+            	throw new Exception();
+            }
             
             synchronized (MimsWakeApplication.class) {
             	MimsWakeApplication.class.wait();
@@ -61,12 +77,8 @@ public class MimsWakeApplication implements CommandLineRunner  {
 
         } catch (Exception e) {
         	logger.error("startup failed", e);
-
         } finally {
             server.shutdownServer();
         }
-		
-
 	}
-	
 }

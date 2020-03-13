@@ -102,8 +102,7 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 				});
 				serviceId = mapJson.get("serviceId");
 				if (serviceId != null && serviceId.contains(ServiceType.TCPSOCKET)) {
-					System.out.println("========== Receive JSON from Outbound Server ===================");
-				System.out.println(content);
+					LOG.info("[Receive JSON from Outbound Server] >>>>>>>>>>>>>>>>>>>> {}", content);
 					pushMsg.setServiceId(serviceId);
 					pushMsg.setGroupId(mapJson.get("groupId"));
 					pushMsg.setClientId(mapJson.get("clientId"));
@@ -153,30 +152,18 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 		//
 
 		// LOG.info("[InboundServerHandler] RECEIVED {} ", content);
-		serviceId = ServiceType.WEBSOCKET;
-		pushMsg.setServiceId(serviceId);
-		inboundQueues.get(serviceId).enqueue(pushMsg);
-
-		/*
-		 * 02. [YPK] [Server] 다른 Server 에게 메시지를 전달
-		 */
-		serviceId = ServiceType.TCPSOCKET;
-		PushMessage msg2Tcp = new PushMessage(serviceId, pushMsg.getGroupId(), pushMsg.getClientId(),
-				pushMsg.getMessage());
-		inboundQueues.get(serviceId).enqueue(msg2Tcp);
+		//serviceId = ServiceType.WEBSOCKET;
+		//pushMsg.setServiceId(serviceId);
+		//inboundQueues.get(serviceId).enqueue(pushMsg);
 
 		/*
 		 * 03. [DB] Database 에 메시지 저장
 		 */
 
-		/*
-		 * 04. [YPK] [FILE] 메시지 파일로 저장
-		 */
-		serviceId = ServiceType.FILE_SERVER;
-		PushMessage msg2File = new PushMessage(serviceId, pushMsg.getGroupId(), pushMsg.getClientId(),
-				pushMsg.getMessage());
-		inboundQueues.get(serviceId).enqueue(msg2File);
-		// [-]
+		// [YPK] 모든 Service 메세지 전달 
+		inboundQueues.forEach((sid, queue) -> {
+			queue.enqueue(new PushMessage(sid, pushMsg.getGroupId(), pushMsg.getClientId(), pushMsg.getMessage()));
+        });
 	}
 
 	/**

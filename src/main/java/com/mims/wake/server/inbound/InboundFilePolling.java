@@ -5,6 +5,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -14,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mims.wake.common.PushMessage;
+import com.mims.wake.server.property.PushBaseProperty;
 import com.mims.wake.server.property.ServiceType;
 import com.mims.wake.server.queue.InboundQueue;
 import com.mims.wake.util.commonUtil;
@@ -22,18 +25,24 @@ public class InboundFilePolling {
 	private static final Logger LOG = LoggerFactory.getLogger(InboundFilePolling.class);
 
 	private int interval;
-	private String pathFile;
+	private String subPath;
+	private String targetPath;
 	private Timer timer;
 	private Map<String, InboundQueue> inboundQueues;
 
-	public InboundFilePolling(int interval, String subPath) {
-		this.interval = interval;
-		this.pathFile = getPathFile(subPath);
+	public InboundFilePolling(PushBaseProperty property) {
+		this.interval = property.getInboundPollingInterval();
+		this.subPath = property.getOutboundServerWsUri();
 		this.setInboundQueues(null);
 	}
 
 	public void startup(Map<String, InboundQueue> inboundQueues) {
 		try {
+			if(commonUtil.isFullPathName(subPath))
+				this.targetPath = subPath; 
+			else	
+				this.targetPath = commonUtil.getCurrentPath(subPath);
+			
 			this.timer = new Timer();
 			this.setInboundQueues(inboundQueues);
 
@@ -45,7 +54,7 @@ public class InboundFilePolling {
 			};
 
 			this.timer.schedule(timerTask, 0, this.interval);
-			LOG.info("[InboundFilePolling] started, file paht " + this.pathFile);
+			LOG.info("[InboundFilePolling] started, " + this.targetPath);
 
 		} catch (Exception e) {
 			LOG.error("[InboundFilePolling] failed to startup", e);
@@ -53,10 +62,9 @@ public class InboundFilePolling {
 		}
 	}
 
-
 	public void fileRead() {
 		try {
-			Vector<String> arrFile = commonUtil.getFileNames(pathFile, "json");
+			Vector<String> arrFile = commonUtil.getFileNames(this.targetPath, ServiceType.EXE_PUSH_SIDE);
 			for (int ix = 0; ix < arrFile.size(); ++ix) {
 				String pathFile = arrFile.get(ix);
 
@@ -72,31 +80,26 @@ public class InboundFilePolling {
 				String groupId = fname.substring(0, pos);
 				String clientId = fname.substring(pos + 1, fname.length());
 
+				// read message
+				String msg = "";
 				FileReader fileReader = new FileReader(file);
 				BufferedReader bufReader = new BufferedReader(fileReader);
 				String buff = "";
-				String msg = "";
 				while ((buff = bufReader.readLine()) != null) {
 					msg += buff;
 				}
 				bufReader.close();
 				fileReader.close();
-				file.delete(); // read only once
+				backupFile(pathFile, file.getParentFile().toString());
+				//file.delete(); // read only once
 
-				// send to websocket
-				String serviceId = ServiceType.WEBSOCKET;
-				PushMessage pushMsgWeb = new PushMessage(serviceId, groupId, clientId, msg);
-				inboundQueues.get(serviceId).enqueue(pushMsgWeb);
+				PushMessage pushMsg = new PushMessage("", groupId, clientId, msg);
+				inboundQueues.forEach((sid, queue) -> {
+					queue.enqueue(
+							new PushMessage(sid, pushMsg.getGroupId(), pushMsg.getClientId(), pushMsg.getMessage()));
+				});
 
-				// send to tcpsocket
-				serviceId = ServiceType.TCPSOCKET;
-				PushMessage pushMsgTcp = new PushMessage(serviceId, groupId, clientId, msg);
-				inboundQueues.get(serviceId).enqueue(pushMsgTcp);
-
-				LOG.info("[InboundFilePolling] Scan : " + msg);
-				
-				System.out.println("========== Outbound File Polling ===================================");
-				System.out.println(msg);
+				LOG.info("[InboundFilePolling] >>>>>>>>>>>>>>>>>>>> {}", msg);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -118,8 +121,16 @@ public class InboundFilePolling {
 		this.inboundQueues = inboundQueues;
 	}
 	
-	private String getPathFile(String subPath) {
-		String token = commonUtil.pathToken();
-		return System.getProperty("user.dir") + token + subPath;
+	private void backupFile(String pathFile, String path) {
+		String pathToken = commonUtil.pathToken();
+		long time = System.currentTimeMillis();
+		SimpleDateFormat dayTime  = new SimpleDateFormat("yyyyMMddHHmmss");
+		String name = dayTime.format(new Date(time));
+		String newPathFile = path + pathToken + name + "." + ServiceType.EXE_POLLING_SIDE;
+
+		File file = new File(pathFile);
+		File fileNew = new File(newPathFile);
+		if (file.exists())
+			file.renameTo(fileNew);
 	}
 }

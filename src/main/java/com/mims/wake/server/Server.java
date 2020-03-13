@@ -15,6 +15,7 @@ import com.mims.wake.server.outbound.OutboundServer;
 import com.mims.wake.server.outbound.OutboundServerFactory;
 import com.mims.wake.server.property.PushBaseProperty;
 import com.mims.wake.server.property.PushServiceProperty;
+import com.mims.wake.server.property.ServerType;
 import com.mims.wake.server.property.ServiceType;
 import com.mims.wake.server.queue.InboundQueue;
 import com.mims.wake.server.queue.InboundQueueChecker;
@@ -36,6 +37,7 @@ public class Server {
     private OutboundQueueChecker outboundQueueChecker;	// OutboundQueue 상태 모니터링 쓰레드
     private InboundQueueChecker inboundQueueChecker;	// InboundQueue 상태 모니터링 쓰레드
     private InboundTcpSocketServer inboundServer;				// Push 요청을 수용하는 InboundServer
+    private InboundTcpSocketServer inboundFilePush;				// [YPK]
     private InboundFilePolling inboundFilePolling; 				// [YPK]
 
     public Server() {
@@ -62,17 +64,6 @@ public class Server {
 				inboundQueues.put(serviceId,
 						new InboundQueue(serviceId, property.getInboundQueueCapacity(), outboundQueueManager));
                 outboundQueueManager.addOutboundQueueGroup(serviceId);
-				// [+] [YPK] Push File and TCP, Polling File
-				if (serviceId.equals(ServiceType.FILE_SERVER)) {
-					SendChannel channel = new SendChannel(serviceId, property.getOutboundServerWsUri(),
-							outboundServers.get(serviceId));
-					outboundQueueManager.startOutboundQueue(property.getServiceId(), property.getInboundQueueCapacity(),
-							channel);
-				}
-				else if(serviceId.equals(ServiceType.FILE_CLIENT)) {
-					inboundFilePolling = new InboundFilePolling(1000, property.getOutboundServerWsUri());
-                }
-                // [-]
             });
         }
 
@@ -90,19 +81,33 @@ public class Server {
         inboundQueueChecker = new InboundQueueChecker(inboundQueues, baseProperty.getInboundQueueCheckInterval());
         inboundQueueChecker.start();
 
+        // [YPK] Start by server type
         // startup InboundServer
+		ServerType type = baseProperty.getInboundServerType();
         if (!embedded) {
-			// [+] [YPK] Start by server type
-			if (inboundFilePolling != null) {
+			if (type == ServerType.TCPSOCKET) {
+				inboundServer = new InboundTcpSocketServer(baseProperty);
+				inboundServer.startup(inboundQueues);
+				// inbound file push
+				OutboundServer outboundFilePush = outboundServers.get(ServiceType.FILESOCKET);
+				if(outboundFilePush != null) {
+					PushServiceProperty prop = outboundFilePush.getPushServiceProperty();
+					//inboundFilePush = new InboundTcpSocketServer(prop);
+					//inboundFilePush.startupFilePush(inboundQueues);
+					SendChannel channel = new SendChannel(prop.getServiceId(), prop.getOutboundServerWsUri(),
+							outboundServers.get(prop.getServiceId()));
+					outboundQueueManager.startOutboundQueue(prop.getServiceId(), prop.getInboundQueueCapacity(),
+							channel);
+				}
+			} else if (type == ServerType.FILESOCKET) {
+				inboundFilePolling = new InboundFilePolling(baseProperty);
 				inboundFilePolling.startup(inboundQueues);
 			} else {
-				inboundServer = new InboundTcpSocketServer(baseProperty);
-            inboundServer.startup(inboundQueues);
+				LOG.info("[Choose a server type TCPSOCKET or FILESOCKET] >>>>>>>>>>>>>>>>>>>> {}", type);
+				return null;
         }
-			// [-]
 		}
-
-        LOG.info("[simple-push-server] startup complete....");
+        LOG.info("[simple-push-server] startup complete.... >>>>>>>>>>>>>>>>>>>> {}", type);
 
         return inboundQueues;
     }
@@ -136,11 +141,15 @@ public class Server {
             outboundServers.forEach((serviceId, outboundServer) -> outboundServer.shutdown());
         }
         
-		// [+] [YPK]
+		// shutdown InboundFilePush
+		if (inboundFilePush != null) {
+			inboundFilePush.shutdown();
+		}
+        
+		// shutdown InboundFilePolling
 		if (inboundFilePolling != null) {
 			inboundFilePolling.shutdown();
 		}
-		// [-]
     }
 
 }

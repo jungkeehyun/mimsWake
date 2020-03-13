@@ -61,7 +61,7 @@ public class OutboundTcpSocketServer extends OutboundServer {
 		};
 	}
 	
-	// [+] [YPK]
+	// [YPK]
 	@Override
 	public void send(PushMessage msg) {
 		String serviceId = msg.getServiceId();
@@ -101,5 +101,4 @@ public class OutboundTcpSocketServer extends OutboundServer {
 			group.shutdownGracefully();
 		}
 	}
-	// [-]
 }

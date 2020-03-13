@@ -11,10 +11,11 @@
 
     <!-- 서버 기본 속성 -->
     <bean id="baseProperty" class="com.mims.wake.server.property.PushBaseProperty">
+        <property name="inboundServerType" value="TCPSOCKET" />
         <property name="inboundServerPort" value="13100" />
         <property name="inboundQueueCheckInterval" value="5" />
         <property name="outboundQueueCheckInterval" value="5" />
-    <property name="outboundServerWsUri" value="" />
+		<property name="outboundServerWsUri" value="" />
     </bean>
 
     <bean abstract="true" id="serviceProperty" class="com.mims.wake.server.property.PushServiceProperty">
@@ -27,7 +28,7 @@
         <property name="serviceId" value="server.tcpsocket" />
         <property name="outboundServerPort" value="13101" />
         <property name="outboundServerType" value="TCPSOCKET" />
-    <property name="outboundServerWsUri" value="127.0.0.1" />
+		<property name="outboundServerWsUri" value="127.0.0.1" />
     </bean>
     <!-- Client Push Service Properties -->
     <bean parent="serviceProperty">
@@ -36,13 +37,12 @@
         <property name="outboundServerType" value="WEBSOCKET" />
         <property name="outboundServerWsUri" value="/mimsWake" />
     </bean>
-
-<!-- [YPK] Server Push Service Properties -->
+	<!-- [YPK] Server Push Service Properties -->
     <bean parent="serviceProperty">
-        <property name="serviceId" value="server.file" />
+        <property name="serviceId" value="server.filesocket" />
 		<property name="outboundServerPort" value="13103" />
         <property name="outboundServerType" value="FILESOCKET" />
-        <property name="outboundServerWsUri" value="filePush" />
-    </bean>
+        <property name="outboundServerWsUri" value="SharedStorage" />
+	</bean>
 
 </beans>
