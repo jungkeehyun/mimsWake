@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mims.wake.common.PushMessage;
+import com.mims.wake.server.property.PushServiceProperty;
 import com.mims.wake.server.property.ServiceType;
 import com.mims.wake.util.commonUtil;
 
@@ -30,13 +31,22 @@ public class SendChannel implements Channel {
 	private static final Logger LOG = LoggerFactory.getLogger(SendChannel.class);
 	
 	private final SendChannelId channelId;
-	private final String outboundServerWsUri;
 	private final OutboundServer outboundServer;
+	private String targetPath;
 	
-	public SendChannel(String serviceId, String outboundServerWsUri, OutboundServer outboundServer) {
-		this.channelId = new SendChannelId(serviceId);
-		this.outboundServerWsUri = outboundServerWsUri;
+	public SendChannel(OutboundServer outboundServer) {
+		PushServiceProperty prop = outboundServer.getPushServiceProperty(); 
+		
+		this.channelId = new SendChannelId(prop.getServiceId());
 		this.outboundServer = outboundServer;
+		
+		String outboundServerWsUri = prop.getOutboundServerWsUri();
+		if(commonUtil.isFullPathName(outboundServerWsUri))
+			targetPath = outboundServerWsUri;
+		else
+			targetPath = commonUtil.getCurrentPath(outboundServerWsUri);
+		commonUtil.makeFolder(targetPath);
+		targetPath += commonUtil.pathToken();
 	}
 	
 	private void messageHandler(PushMessage msg) {
@@ -52,15 +62,8 @@ public class SendChannel implements Channel {
 	
 	private void filePush(PushMessage msg) {
 		try {
-			String targetPath;
-			if(commonUtil.isFullPathName(outboundServerWsUri))
-				targetPath = outboundServerWsUri;
-			else
-				targetPath = commonUtil.getCurrentPath(outboundServerWsUri);
-			String token = commonUtil.pathToken();
-			commonUtil.makeFolder(targetPath);
 			String fileName = msg.getGroupId() + "_" + msg.getClientId() + "." + ServiceType.EXE_PUSH_SIDE;
-			String pathFile = targetPath + token + fileName;
+			String pathFile = targetPath + fileName;
 
 			File file = new File(pathFile);
 			FileWriter fw = new FileWriter(file);
@@ -68,6 +71,7 @@ public class SendChannel implements Channel {
 			fw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+			LOG.error("[Outbound FILESOCKET Push] >>>>>>>>>> {}", msg);
 		}
 	}
 	

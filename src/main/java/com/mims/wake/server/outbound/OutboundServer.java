@@ -83,7 +83,7 @@ public abstract class OutboundServer {
 
 	// [YPK]
 	public void regQueueForFilePush(OutboundQueueManager outboundQueueManager) {
-		SendChannel channel = new SendChannel(property.getServiceId(), property.getOutboundServerWsUri(), this);
+		SendChannel channel = new SendChannel(this);
 		outboundQueueManager.startOutboundQueue(property.getServiceId(), property.getInboundQueueCapacity(), channel);
 	}
 	
