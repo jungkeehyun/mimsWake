@@ -81,11 +81,16 @@ public class UserProperty {
 			}
 			_baseProperty = new PushBaseProperty();
 			_baseProperty.setInboundServerType(serverType);
-			_baseProperty.setInboundServerPort(Integer.parseInt(prop.getProperty("server.port")));
 			_baseProperty.setInboundQueueCheckInterval(5);
 			_baseProperty.setOutboundQueueCheckInterval(5);
+			if (serverType == ServerType.TCPSOCKET) {
+				_baseProperty.setInboundServerPort(Integer.parseInt(prop.getProperty("server.port")));
 			_baseProperty.setOutboundServerWsUri(prop.getProperty("server.host"));
+			}
+			else {
+				_baseProperty.setOutboundServerWsUri(prop.getProperty("server.path"));
 			_baseProperty.setInboundPollingInterval(prop.getProperty("server.intv"));
+			}
 
 			Map<Integer, PushServiceProperty> mapProp = new HashMap<Integer, PushServiceProperty>();
 

@@ -96,8 +96,7 @@ public class OutboundQueueManager {
                 if (clientId.equals(queue.clientId())) {
                     queue.enqueue(pushMessage);
                 }
-                // [+] [YPK]
-                else {
+                else { // [YPK]
                 	if(serviceId.equals(ServiceType.TCPSOCKET)) {
                 		queue.enqueue(pushMessage);
                 	}
@@ -105,7 +104,6 @@ public class OutboundQueueManager {
                 		queue.enqueue(pushMessage);
                 	}
                 }
-                // [-]
             });
         } else {
             String groupId = pushMessage.getGroupId();

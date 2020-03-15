@@ -1,6 +1,8 @@
 package com.mims.wake.util;
 
 import java.io.File;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 import java.util.regex.Pattern;
 
@@ -101,5 +103,12 @@ public class commonUtil {
 		if(!token.equals(arrWord[2]))
 			return false;
 		return true;
+	}
+	
+	public static String dayTimeString() {
+		long time = System.currentTimeMillis();
+		SimpleDateFormat dayTime  = new SimpleDateFormat("yyyyMMddHHmmss");
+		String dateString = dayTime.format(new Date(time));
+		return dateString;
 	}
 }

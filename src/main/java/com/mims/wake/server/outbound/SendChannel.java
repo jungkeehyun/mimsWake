@@ -60,9 +60,15 @@ public class SendChannel implements Channel {
 		}
 	}
 	
+	private void tcpSend(PushMessage msg) {
+		if(outboundServer != null)
+			outboundServer.send(msg);
+	}
+	
 	private void filePush(PushMessage msg) {
 		try {
-			String fileName = msg.getGroupId() + "_" + msg.getClientId() + "." + ServiceType.EXE_PUSH_SIDE;
+			String dayTimeStr = commonUtil.dayTimeString();
+			String fileName = dayTimeStr + "_" + msg.getGroupId() + "_" + msg.getClientId() + "." + ServiceType.EXE_PUSH_SIDE;
 			String pathFile = targetPath + fileName;
 
 			File file = new File(pathFile);
@@ -75,11 +81,6 @@ public class SendChannel implements Channel {
 		}
 	}
 	
-	private void tcpSend(PushMessage msg) {
-		if(outboundServer != null)
-			outboundServer.send(msg);
-	}
-
 	@Override
 	public ChannelFuture writeAndFlush(Object msg) {
 		// TODO file put

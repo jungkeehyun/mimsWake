@@ -61,7 +61,7 @@ public class InboundTcpSocketServer {
      * @param inboundQueues Inbound Queue collection
      */
     public void startup(Map<String, InboundQueue> inboundQueues) {
-		if (host.isEmpty()) {
+		if (host == null || host.isEmpty()) {
 			bind(inboundQueues);
 		} else {
 			connect(inboundQueues);

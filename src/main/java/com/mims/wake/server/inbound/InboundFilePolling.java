@@ -5,8 +5,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -72,13 +70,10 @@ public class InboundFilePolling {
 				if (file.exists() == false)
 					continue;
 
-				// parsing gid and cid
-				String fname = file.getName();
-				int pos = fname.lastIndexOf(".");
-				fname = fname.substring(0, pos);
-				pos = fname.lastIndexOf("_");
-				String groupId = fname.substring(0, pos);
-				String clientId = fname.substring(pos + 1, fname.length());
+				// get groupId and clientId
+				String[] ids = getID(file.getName());
+				if(ids.length != 2)
+					continue;
 
 				// read message
 				String msg = "";
@@ -90,16 +85,16 @@ public class InboundFilePolling {
 				}
 				bufReader.close();
 				fileReader.close();
-				backupFile(pathFile, file.getParentFile().toString());
+				completePolling(file.getParent().toString(), file.getName());
 				//file.delete(); // read only once
 
-				PushMessage pushMsg = new PushMessage("", groupId, clientId, msg);
+				PushMessage pushMsg = new PushMessage("", ids[0], ids[1], msg);
 				inboundQueues.forEach((sid, queue) -> {
 					queue.enqueue(
 							new PushMessage(sid, pushMsg.getGroupId(), pushMsg.getClientId(), pushMsg.getMessage()));
 				});
 
-				LOG.info("[InboundFilePolling] >>>>>>>>>>>>>>>>>>>> {}", msg);
+				LOG.info("[InboundFilePolling] >>>>>>>>>> {}", msg);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -121,16 +116,33 @@ public class InboundFilePolling {
 		this.inboundQueues = inboundQueues;
 	}
 	
-	private void backupFile(String pathFile, String path) {
-		String pathToken = commonUtil.pathToken();
-		long time = System.currentTimeMillis();
-		SimpleDateFormat dayTime  = new SimpleDateFormat("yyyyMMddHHmmss");
-		String name = dayTime.format(new Date(time));
-		String newPathFile = path + pathToken + name + "." + ServiceType.EXE_POLLING_SIDE;
+	private String[] getID(String fileName) {
+		int pos = fileName.indexOf("_");
+		String ids = fileName.substring(pos + 1, fileName.length());
+		pos = ids.lastIndexOf("_");
+		String groupId = ids.substring(0, pos);
+		int pos2 = ids.lastIndexOf(".");
+		String clientId = ids.substring(pos + 1, pos2);
+		String[] arrIds = new String[] { groupId, clientId };
+		if(arrIds.length != 2)
+			LOG.error("[InboundFilePolling] incorrect groudId or clientId");
 
-		File file = new File(pathFile);
+		return arrIds;
+	}
+
+	private void completePolling(String path, String fileName) {
+		String token = commonUtil.pathToken();
+		String oldPathFile = path + token + fileName;
+		
+		int pos = fileName.indexOf("_");
+		String newFileName = fileName.substring(0, pos);
+		String newPathFile = path + token + newFileName + "." + ServiceType.EXE_POLLING_SIDE;
+		
+		File file = new File(oldPathFile);
 		File fileNew = new File(newPathFile);
 		if (file.exists())
 			file.renameTo(fileNew);
+		else
+			LOG.error("[InboudFilePolling] {} file not found.", oldPathFile);
 	}
 }
