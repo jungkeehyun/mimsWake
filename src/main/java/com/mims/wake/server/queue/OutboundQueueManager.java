@@ -1,4 +1,4 @@
-﻿package com.mims.wake.server.queue;
+package com.mims.wake.server.queue;
 
 import java.util.Collections;
 import java.util.HashMap;

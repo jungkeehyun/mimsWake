@@ -96,55 +96,58 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 		try {
 			message = kmtfParser.parseFormat(content);
 			if (message.getKmtfId() == null) {
+				
 				// [+] [YPK] Receive JSON
-			ObjectMapper mapper = new ObjectMapper();
-				Map<String, String> mapJson = mapper.readValue(content, new TypeReference<Map<String, String>>() {
-				});
-				serviceId = mapJson.get("serviceId");
-				if (serviceId != null && serviceId.contains(ServiceType.TCPSOCKET)) {
-					LOG.info("[Receive JSON from Outbound Server] >>>>>>>>>>>>>>>>>>>> {}", content);
-					pushMsg.setServiceId(serviceId);
-					pushMsg.setGroupId(mapJson.get("groupId"));
-					pushMsg.setClientId(mapJson.get("clientId"));
-					pushMsg.setMessage(mapJson.get("message"));
-				} else {
-				return;
-			}
-			// [-]
-			} else {
-			System.out.println("------------------");
-			System.out.println("kmtfId : " + message.getKmtfId());
-			System.out.println("setId : " + message.getSetId());
-			System.out.println("createTime : " + message.getCreateTime());
-			System.out.println("sourceSystemId : " + message.getSourceSystemId());
-			System.out.println("destnationSystemId : " + message.getDestnationSystemId());
-			System.out.println("messageId : " + message.getMessageId());
-			System.out.println("cudm : " + message.getCudm());
-			System.out.println("mode : " + message.getMode());
-			System.out.println("version : " + message.getVersion());
-			System.out.println("msgSeq : " + message.getMsgSeq());
-			System.out.println("------------------");
-
-			List<Set> setList = message.getSetList();
-
-			for (Set s : setList) {
-				LinkedHashMap<Integer, Field> map = s.getFieldMap();
-				for (Object key : map.keySet()) {
-					Field ff = map.get(key);
-						System.out.println(
-								s.getSid() + " | " + ff.getIndex() + " | " + ff.getName() + " | " + ff.getValue());
+				ObjectMapper mapper = new ObjectMapper();
+					Map<String, String> mapJson = mapper.readValue(content, new TypeReference<Map<String, String>>() {
+					});
+					serviceId = mapJson.get("serviceId");
+					if (serviceId != null && serviceId.contains(ServiceType.TCPSOCKET)) {
+						LOG.info("[Receive JSON from Outbound Server] >>>>>>>>>>>>>>>>>>>> {}", content);
+						pushMsg.setServiceId(serviceId);
+						pushMsg.setGroupId(mapJson.get("groupId"));
+						pushMsg.setClientId(mapJson.get("clientId"));
+						pushMsg.setMessage(mapJson.get("message"));
+					} else {
+					return;
 				}
-				System.out.println("");
-			}
-
-			// System.out.println(message.getData());
-			// System.out.println(JsonUtil.getJsonStringFromList(message.getData()));
-
-			// [Client] PushMessage Setting
-			pushMsg.setServiceId(serviceId);
-			pushMsg.setGroupId(message.getMode());
-			pushMsg.setClientId(message.getSetId());
-			pushMsg.setMessage(JsonUtil.getJsonStringFromList(message.getData()));
+				// [-]
+					
+			} else {
+				
+				System.out.println("------------------");
+				System.out.println("kmtfId : " + message.getKmtfId());
+				System.out.println("setId : " + message.getSetId());
+				System.out.println("createTime : " + message.getCreateTime());
+				System.out.println("sourceSystemId : " + message.getSourceSystemId());
+				System.out.println("destnationSystemId : " + message.getDestnationSystemId());
+				System.out.println("messageId : " + message.getMessageId());
+				System.out.println("cudm : " + message.getCudm());
+				System.out.println("mode : " + message.getMode());
+				System.out.println("version : " + message.getVersion());
+				System.out.println("msgSeq : " + message.getMsgSeq());
+				System.out.println("------------------");
+	
+				List<Set> setList = message.getSetList();
+	
+				for (Set s : setList) {
+					LinkedHashMap<Integer, Field> map = s.getFieldMap();
+					for (Object key : map.keySet()) {
+						Field ff = map.get(key);
+							System.out.println(
+									s.getSid() + " | " + ff.getIndex() + " | " + ff.getName() + " | " + ff.getValue());
+					}
+					System.out.println("");
+				}
+	
+				// System.out.println(message.getData());
+				// System.out.println(JsonUtil.getJsonStringFromList(message.getData()));
+	
+				// [Client] PushMessage Setting
+				pushMsg.setServiceId(serviceId);
+				pushMsg.setGroupId(message.getMode());
+				pushMsg.setClientId(message.getSetId());
+				pushMsg.setMessage(JsonUtil.getJsonStringFromList(message.getData()));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
