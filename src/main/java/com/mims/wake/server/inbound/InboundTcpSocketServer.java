@@ -1,4 +1,4 @@
-﻿package com.mims.wake.server.inbound;
+package com.mims.wake.server.inbound;
 
 import java.util.Map;
 

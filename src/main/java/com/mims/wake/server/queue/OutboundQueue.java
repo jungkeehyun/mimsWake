@@ -1,4 +1,4 @@
-﻿package com.mims.wake.server.queue;
+package com.mims.wake.server.queue;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;

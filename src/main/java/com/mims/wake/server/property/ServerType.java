@@ -1,4 +1,4 @@
-﻿package com.mims.wake.server.property;
+package com.mims.wake.server.property;
 
 /**
  * Outbound Server 유형 정의

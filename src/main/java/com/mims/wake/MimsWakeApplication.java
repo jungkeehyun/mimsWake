@@ -1,4 +1,4 @@
-﻿package com.mims.wake;
+package com.mims.wake;
 
 import java.util.Collection;
 import java.util.Map;

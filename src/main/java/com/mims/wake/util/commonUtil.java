@@ -1,4 +1,4 @@
-﻿package com.mims.wake.util;
+package com.mims.wake.util;
 
 import java.io.File;
 import java.util.Vector;

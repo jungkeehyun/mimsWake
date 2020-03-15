@@ -1,4 +1,4 @@
-﻿package com.mims.wake.server.property;
+package com.mims.wake.server.property;
 
 import javax.annotation.PostConstruct;
 

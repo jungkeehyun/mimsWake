@@ -1,4 +1,4 @@
-﻿// [YPK]
+// [YPK]
 package com.mims.wake.server.inbound;
 
 import java.io.BufferedReader;

@@ -1,4 +1,4 @@
-﻿package com.mims.wake.server.outbound;
+package com.mims.wake.server.outbound;
 
 import com.mims.wake.common.PushConstant;
 import com.mims.wake.common.PushMessage;
