@@ -26,6 +26,13 @@ public class PushMessage {
         this.message = message;
     }
 
+    public PushMessage(PushMessage msg) {
+        this.serviceId = msg.getServiceId();
+        this.groupId = msg.getGroupId();
+        this.clientId = msg.getClientId();
+        this.message = msg.getMessage();
+    } 
+
     public String getServiceId() {
         return serviceId;
     }

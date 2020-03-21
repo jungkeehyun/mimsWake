@@ -19,9 +19,12 @@ public class OutboundQueueManager {
     // 서비스ID에 따른 OutboundQueue 그룹을 보관하는 collection
     // -OutboundQueue 그룹 내부에서는 Netty Channel 인스턴스의 ChannelId를 key로 하여 관리
     private final Map<String, Map<ChannelId, OutboundQueue>> outboundQueueGroups;
+    private final OutboundQueueStack queueStack; // message stack
 
     public OutboundQueueManager() {
         outboundQueueGroups = new HashMap<String, Map<ChannelId, OutboundQueue>>();
+        queueStack = new OutboundQueueStack(10000, this);
+        queueStack.start();
     }
 
     /**
@@ -53,6 +56,8 @@ public class OutboundQueueManager {
         Map<ChannelId, OutboundQueue> queueGroup = outboundQueueGroups.get(serviceId);
         synchronized (queueGroup) {
             queueGroup.put(channel.id(), newQueue);
+			if (serviceId.equals(ServiceType.TCPSOCKET))
+				popStack(serviceId);  // pop stack message
         }
     }
 
@@ -90,20 +95,21 @@ public class OutboundQueueManager {
         }
 
         Map<ChannelId, OutboundQueue> queueGroup = outboundQueueGroups.get(serviceId);
+        // [YPK] 못보낸 메세지 보관
+        if(queueGroup.isEmpty()) {
+        	queueStack.pushStack(pushMessage);
+        	return;
+        }
+        
         String clientId = pushMessage.getClientId();
         if (clientId != null) {
             queueGroup.forEach((channelId, queue) -> {
-                if (clientId.equals(queue.clientId())) {
+				if (serviceId == ServiceType.WEBSOCKET) {
+					if (clientId.equals(queue.clientId()))
                     queue.enqueue(pushMessage);
-                }
-                else { // [YPK]
-                	if(serviceId.equals(ServiceType.TCPSOCKET)) {
+				} else { // [YPK]
                 		queue.enqueue(pushMessage);
                 	}
-                	else if(serviceId.equals(ServiceType.FILESOCKET)) {
-                		queue.enqueue(pushMessage);
-                	}
-                }
             });
         } else {
             String groupId = pushMessage.getGroupId();
@@ -129,4 +135,17 @@ public class OutboundQueueManager {
         return Collections.unmodifiableMap(outboundQueueGroups);
     }
 
+    /**
+     * OutboundQueueStack Pop Stack Message 
+     */
+    public void popStack(String serviceId) {
+    	queueStack.popStack(serviceId);
+    }
+    
+    /**
+     * OutboundQueueStack Thread Shutdown
+     */
+    public void shutdown() {
+    	queueStack.shutdown();
+    }
 }

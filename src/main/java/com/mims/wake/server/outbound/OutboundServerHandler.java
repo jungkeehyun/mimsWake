@@ -69,6 +69,8 @@ public class OutboundServerHandler extends SimpleChannelInboundHandler<PushMessa
             ctx.channel().attr(PushConstant.CLIENT_ID).set(clientId);
             LOG.info("[OutboundServerHandler:{}] set client id [{}] to {}", property.getServiceId(), clientId, ctx.channel());
         }
+        
+        outboundQueueManager.popStack(property.getServiceId()); // pop stack message
     }
 
     /**
@@ -98,5 +100,4 @@ public class OutboundServerHandler extends SimpleChannelInboundHandler<PushMessa
         LOG.error("[OutboundServerHandler:" + property.getServiceId() + "] error " + ctx.channel() + ", it will be closed", cause);
         ctx.close();
     }
-
 }

@@ -149,5 +149,4 @@ public class OutboundQueue extends Thread {
 
         LOG.info("[{}] [{}] [{}] shutdown", getName(), groupId(), clientId());
     }
-
 }

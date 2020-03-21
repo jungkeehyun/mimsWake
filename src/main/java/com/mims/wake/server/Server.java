@@ -148,6 +148,11 @@ public class Server {
 		if (inboundFilePolling != null) {
 			inboundFilePolling.shutdown();
 		}
+		
+		// shutdown OutboundQueueManager
+		if(outboundQueueManager != null) {
+			outboundQueueManager.shutdown();
+		}
     }
 
 }
