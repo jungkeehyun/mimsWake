@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import com.mims.wake.common.PushConstant;
 import com.mims.wake.common.PushMessage;
 import com.mims.wake.server.property.PushServiceProperty;
+import com.mims.wake.server.property.ServiceType;
 import com.mims.wake.server.queue.OutboundQueueManager;
 
 import io.netty.channel.ChannelHandlerContext;
@@ -70,7 +71,7 @@ public class OutboundServerHandler extends SimpleChannelInboundHandler<PushMessa
             LOG.info("[OutboundServerHandler:{}] set client id [{}] to {}", property.getServiceId(), clientId, ctx.channel());
         }
         
-        outboundQueueManager.popStack(property.getServiceId()); // pop stack message
+        outboundQueueManager.popStack(property.getServiceId(), ctx.channel()); // pop stack message
     }
 
     /**
@@ -85,6 +86,8 @@ public class OutboundServerHandler extends SimpleChannelInboundHandler<PushMessa
         LOG.info("[OutboundServerHandler:{}] disconnected {}", property.getServiceId(), ctx.channel());
 
         outboundQueueManager.shutdownOutboundQueue(property.getServiceId(), ctx.channel());
+        // disconnection queue stack
+        outboundQueueManager.disconnection(property.getServiceId());
     }
 
     /**

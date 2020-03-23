@@ -4,10 +4,17 @@ import java.io.File;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.regex.Pattern;
 
 public class commonUtil {
 
+	public static Semaphore semaphorePopStack = new Semaphore(1);
+	
+	public static Lock mutexStack = new ReentrantLock(true);
+	
 	private static String OS = System.getProperty("os.name").toLowerCase();
 
 	// pathToken

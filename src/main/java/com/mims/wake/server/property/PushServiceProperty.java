@@ -29,6 +29,12 @@ public class PushServiceProperty {
 	@Value("outboundServerWsUri")				// Inbound, Outbound Server TcpSocket IP / Outbound Server FileSocket SubPath
     private String outboundServerWsUri;		// Outbound Server WebSocket URI, if Outbound Server type is WEBSOCKET
 
+	@Value("outboundConnectionNumber")
+	private String outboundConnectionNumber;		// Number of clients to connect to TCP
+	
+	@Value("outboundQueueClearTime")
+	private String outboundQueueClearTime;			// Queue stack clear time (min)
+
     @PostConstruct
     public void afterPropertiesSet() {
         if (serviceId == null) {
@@ -97,6 +103,20 @@ public class PushServiceProperty {
         }
     }
 
+	public int getOutboundConnectionNumber() {
+		return Integer.parseInt(outboundConnectionNumber);
+	}
+	public void setOutboundConnectionNumber(String outboundConnectionNumber) {
+		this.outboundConnectionNumber = outboundConnectionNumber;
+	}
+	
+	public int getOutboundQueueClearTime() {
+		return Integer.parseInt(outboundQueueClearTime);
+	}
+	public void setOutboundQueueClearTime(String outboundQueueClearTime) {
+		this.outboundQueueClearTime = outboundQueueClearTime;
+	}
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
@@ -107,8 +127,9 @@ public class PushServiceProperty {
                .append(", outboundServerPort=").append(outboundServerPort)
                .append(", outboundServerType=").append(outboundServerType)
                .append(", outboundServerWsUri=").append(outboundServerWsUri)
+               .append(", outboundConnectionNumber=").append(outboundConnectionNumber)
+               .append(", outboundQueueClearTime=").append(outboundQueueClearTime)
                .append("]");
         return builder.toString();
     }
-
 }

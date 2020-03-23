@@ -105,7 +105,16 @@ public class UserProperty {
 				sprop.setOutboundServerWsUri(addr);
 				sprop.setInboundQueueCapacity(10000);
 				sprop.setOutboundQueueCapacity(10000);
-				mapProp.put(1, sprop);
+				String conNum = prop.getProperty("tcp.conNum");
+				if(conNum == null || conNum.isEmpty())
+					conNum = "1";
+				sprop.setOutboundConnectionNumber(conNum);
+				String clearTime = prop.getProperty("tcp.Qcleartime");
+				if(clearTime == null || clearTime.isEmpty())
+					clearTime = "10";
+				sprop.setOutboundQueueClearTime(clearTime);
+				
+				mapProp.put(mapProp.size(), sprop);
 			}
 
 			port = prop.getProperty("web.port");
@@ -118,7 +127,15 @@ public class UserProperty {
 				sprop.setOutboundServerWsUri(addr);
 				sprop.setInboundQueueCapacity(10000);
 				sprop.setOutboundQueueCapacity(10000);
-				mapProp.put(2, sprop);
+				String conNum = prop.getProperty("web.conNum");
+				if(conNum == null || conNum.isEmpty())
+					conNum = "1";
+				sprop.setOutboundConnectionNumber(conNum);
+				String clearTime = prop.getProperty("web.Qcleartime");
+				if(clearTime == null || clearTime.isEmpty())
+					clearTime = "10";
+				sprop.setOutboundQueueClearTime(clearTime);
+				mapProp.put(mapProp.size(), sprop);
 			}
 
 			port = prop.getProperty("file.port");
@@ -131,7 +148,7 @@ public class UserProperty {
 				sprop.setOutboundServerWsUri(addr);
 				sprop.setInboundQueueCapacity(10000);
 				sprop.setOutboundQueueCapacity(10000);
-				mapProp.put(3, sprop);
+				mapProp.put(mapProp.size(), sprop);
 			}
 
 			_serviceProperties = mapProp.values();

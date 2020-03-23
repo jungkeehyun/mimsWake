@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.mims.wake.common.PushMessage;
+import com.mims.wake.server.property.PushServiceProperty;
 import com.mims.wake.server.property.ServiceType;
 
 import io.netty.channel.Channel;
@@ -19,12 +20,12 @@ public class OutboundQueueManager {
     // 서비스ID에 따른 OutboundQueue 그룹을 보관하는 collection
     // -OutboundQueue 그룹 내부에서는 Netty Channel 인스턴스의 ChannelId를 key로 하여 관리
     private final Map<String, Map<ChannelId, OutboundQueue>> outboundQueueGroups;
-    private final OutboundQueueStack queueStack; // message stack
+    private final OutboundQueueStack queueStack; // message queue stack
 
     public OutboundQueueManager() {
         outboundQueueGroups = new HashMap<String, Map<ChannelId, OutboundQueue>>();
-        queueStack = new OutboundQueueStack(10000, this);
-        queueStack.start();
+        queueStack = new OutboundQueueStack(10000);
+        queueStack.startup();
     }
 
     /**
@@ -57,7 +58,7 @@ public class OutboundQueueManager {
         synchronized (queueGroup) {
             queueGroup.put(channel.id(), newQueue);
 			if (serviceId.equals(ServiceType.TCPSOCKET))
-				popStack(serviceId);  // pop stack message
+				popStack(serviceId, channel);  // pop stack message
         }
     }
 
@@ -95,11 +96,8 @@ public class OutboundQueueManager {
         }
 
         Map<ChannelId, OutboundQueue> queueGroup = outboundQueueGroups.get(serviceId);
-        // [YPK] 못보낸 메세지 보관
-        if(queueGroup.isEmpty()) {
-        	queueStack.pushStack(pushMessage);
-        	return;
-        }
+		// SOCKET 연결이 없을 때 메세시 보관
+		queueStack.pushStack(pushMessage, queueGroup);
         
         String clientId = pushMessage.getClientId();
         if (clientId != null) {
@@ -107,7 +105,7 @@ public class OutboundQueueManager {
 				if (serviceId == ServiceType.WEBSOCKET) {
 					if (clientId.equals(queue.clientId()))
                     queue.enqueue(pushMessage);
-				} else { // [YPK]
+				} else {
                 		queue.enqueue(pushMessage);
                 	}
             });
@@ -135,17 +133,35 @@ public class OutboundQueueManager {
         return Collections.unmodifiableMap(outboundQueueGroups);
     }
 
+    ////////////////////////////////////////////////////////////////////////////////
+    // Function for queue stack
+    //
+    
     /**
-     * OutboundQueueStack Pop Stack Message 
+     * OutboundQueueStack Add queue stack
      */
-    public void popStack(String serviceId) {
-    	queueStack.popStack(serviceId);
+    public void setStackProperty(PushServiceProperty property) {
+    	queueStack.setProperty(property);
     }
     
     /**
-     * OutboundQueueStack Thread Shutdown
+     * OutboundQueueStack Disconnection TCP
      */
-    public void shutdown() {
+    public void disconnection(String serviceId) {
+    	queueStack.disconnection(serviceId);
+    }
+    
+    /**
+     * OutboundQueueStack Pop Stack Message 
+     */
+    public void popStack(String serviceId, Channel channel) {
+    	queueStack.popStack(serviceId, channel);
+    }
+    
+    /**
+     * OutboundQueueStack Shutdown
+     */
+    public void shutdownQstack() {
     	queueStack.shutdown();
     }
 }

@@ -63,6 +63,7 @@ public class Server {
 				inboundQueues.put(serviceId,
 						new InboundQueue(serviceId, property.getInboundQueueCapacity(), outboundQueueManager));
                 outboundQueueManager.addOutboundQueueGroup(serviceId);
+				outboundQueueManager.setStackProperty(property);
             });
         }
 
@@ -87,7 +88,7 @@ public class Server {
 			if (type == ServerType.TCPSOCKET) {
 				inboundServer = new InboundTcpSocketServer(baseProperty);
 				inboundServer.startup(inboundQueues);
-				// inbound file push
+				// file push
 				OutboundServer outboundFilePush = outboundServers.get(ServiceType.FILESOCKET);
 				if(outboundFilePush != null) {
 					// file push first way
@@ -151,7 +152,7 @@ public class Server {
 		
 		// shutdown OutboundQueueManager
 		if(outboundQueueManager != null) {
-			outboundQueueManager.shutdown();
+			outboundQueueManager.shutdownQstack();
 		}
     }
 

@@ -149,4 +149,12 @@ public class OutboundQueue extends Thread {
 
         LOG.info("[{}] [{}] [{}] shutdown", getName(), groupId(), clientId());
     }
+    
+    /**
+     * 연결된 채널을 반환
+     * @return 연결 채널
+     */
+    public Channel getChannel() {
+    	return channel;
+    }
 }
