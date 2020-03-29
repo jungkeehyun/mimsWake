@@ -10,8 +10,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Vector;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
@@ -24,7 +24,8 @@ import com.mims.wake.util.commonUtil;
 
 @Service("prop")
 public class UserProperty {
-	private static final Logger LOG = LoggerFactory.getLogger(UserProperty.class);
+	
+	private static final Logger logger = LogManager.getLogger(UserProperty.class);
 	
 	private PushBaseProperty _baseProperty;
 	private Collection<PushServiceProperty> _serviceProperties;
@@ -46,7 +47,7 @@ public class UserProperty {
 			pathFile += propName + ".properties";
 			File file = new File(pathFile);
 			if (file.exists() == false) {
-				LOG.info("{} file not found.", pathFile);
+				logger.info("{} file not found.", pathFile);
 				return;
 			}
 			name = pathFile;
@@ -76,7 +77,7 @@ public class UserProperty {
 			}
 			if (serverType == null) {
 				resources.close();
-				LOG.info("Base service property not found.");
+				logger.info("Base service property not found.");
 				return;
 			}
 			_baseProperty = new PushBaseProperty();
@@ -155,7 +156,7 @@ public class UserProperty {
 			resources.close();
 			
 			if(_serviceProperties.isEmpty())
-				LOG.info("Push service properties not found.");
+				logger.info("Push service properties not found.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

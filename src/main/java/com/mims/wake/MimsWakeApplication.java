@@ -1,16 +1,13 @@
 package com.mims.wake;
 
 import java.util.Collection;
-import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ImportResource;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.mims.wake.server.Server;
 import com.mims.wake.server.property.PushBaseProperty;
@@ -25,7 +22,7 @@ import com.mims.wake.server.property.UserProperty;
 @ImportResource({"classpath*:application-config.xml"})
 public class MimsWakeApplication implements CommandLineRunner  {
 
-	private static final Logger logger = LoggerFactory.getLogger(MimsWakeApplication.class);
+	private static final Logger logger = LogManager.getLogger(MimsWakeApplication.class);
 
 	/**
 	 * MIMS 항적 프로그램(Spring Boot) 시작.

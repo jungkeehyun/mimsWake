@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.mapper">
+    <select id="getCurrentDateTime" resultType="java.lang.String">
+        SELECT SYSDATE FROM DUAL
+    </select>
+    
+    <insert id="insertTest"> 
+        INSERT INTO players (connectUserId, testnum) VALUES (#{connectUserId}, #{testnum}) 
+    </insert>
+    
+<!--    
+    <select id="getFirstPlayerName" resultType="string">
+        SELECT name FROM players LIMIT 1
+    </select>
+    
+    <select id="getFirstPlayer" resultType="map">
+        SELECT name, age FROM players LIMIT 1
+    </select>
+    
+    <select id="getPlayers" resultType="map">
+        SELECT name, age FROM players
+    </select>
+    
+    <select id="getPlayersWhere" resultType="map">
+        SELECT name, age FROM players WHERE age > #{age}
+    </select>
+    
+    <select id="getPlayersWhere2" resultType="map">
+        SELECT name, age FROM players WHERE age > #{age} AND name LIKE #{name}
+    </select>
+    
+    <insert id="insertPlayer"> 
+        INSERT INTO players (name, age) VALUES (#{name}, #{age}) 
+    </insert>
+    
+    <update id="updatePlayer">
+  		UPDATE players SET name = #{name}, age = #{age} where id = #{id}
+	</update>
+
+    <delete id="deletePlayerWhere"> 
+        DELETE FROM players WHERE name = #{name} 
+    </delete>    
+-->      
+</mapper>

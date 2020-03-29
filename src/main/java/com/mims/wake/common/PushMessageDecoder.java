@@ -3,8 +3,8 @@ package com.mims.wake.common;
 import java.io.IOException;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -16,7 +16,7 @@ import io.netty.handler.codec.MessageToMessageDecoder;
  */
 public class PushMessageDecoder extends MessageToMessageDecoder<String> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(PushMessageDecoder.class);
+    private static final Logger logger = LogManager.getLogger(PushMessageDecoder.class);
 
     /**
      * String 타입 메시지(JSON 문자열)를 PushMessage 타입으로 변환한다.
@@ -27,14 +27,14 @@ public class PushMessageDecoder extends MessageToMessageDecoder<String> {
      */
     @Override
     protected void decode(ChannelHandlerContext ctx, String msg, List<Object> out) {
-        LOG.debug("[PushMessageDecoder] decode {} from channel {}", msg, ctx.channel());
+        logger.debug("[PushMessageDecoder] decode {} from channel {}", msg, ctx.channel());
 
         PushMessage decoded = null;
         try {
             ObjectMapper mapper = new ObjectMapper();
             decoded = mapper.readValue(msg, PushMessage.class);
         } catch (IOException e) {
-            LOG.error("[PushMessageDecoder] failed to decode " + msg, e);
+        	logger.error("[PushMessageDecoder] failed to decode " + msg, e);
         }
 
         if (decoded != null) {

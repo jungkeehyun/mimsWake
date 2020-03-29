@@ -9,8 +9,8 @@ import java.util.Vector;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.mims.wake.common.PushMessage;
 import com.mims.wake.server.property.PushServiceProperty;
@@ -21,7 +21,8 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelId;
 
 public class OutboundQueueStack extends Thread {
-	private static final Logger LOG = LoggerFactory.getLogger(OutboundQueueStack.class);
+	
+	private static final Logger logger = LogManager.getLogger(OutboundQueueStack.class);
 
 	private static int MINUTE_MS = 60000;
 	private static int HMINUTE_MS = 30000;
@@ -158,7 +159,7 @@ public class OutboundQueueStack extends Thread {
 			stack = stock;
 			commonUtil.mutexStack.unlock();
 		} catch (Exception e) {
-			LOG.error("[OutboundQueueStack popStack] >>>>>");
+			logger.error("[OutboundQueueStack popStack] >>>>>");
 		}
 	}
 	
@@ -202,7 +203,7 @@ public class OutboundQueueStack extends Thread {
 			if (cInfo != null) {
 				PushMessage msg = cInfo.sendMessage();
 				if(msg != null)
-				LOG.info("[{}] [{}] [{}] Pop Stack {}", getName(), msg.getServiceId(), msg.getClientId(), msg);
+					logger.info("[{}] [{}] [{}] Pop Stack {}", getName(), msg.getServiceId(), msg.getClientId(), msg);
 			}
 		}
 	}

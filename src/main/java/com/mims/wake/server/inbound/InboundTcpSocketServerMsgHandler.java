@@ -8,8 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,7 +31,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
  */
 public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
-	private static final Logger LOG = LoggerFactory.getLogger(InboundTcpSocketServerMsgHandler.class);
+	private static final Logger logger = LogManager.getLogger(InboundTcpSocketServerMsgHandler.class);
 
 	private final Map<String, InboundQueue> inboundQueues; // Inbound Queue collection
 
@@ -53,10 +53,10 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 	 */
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) {
-		LOG.info("[InboundServerHandler] connected {}", ctx.channel());
+		logger.info("[InboundServerHandler] connected {}", ctx.channel());
 
 		try {
-			LOG.info("[{}] Welcom to [{}]", new Date(), InetAddress.getLocalHost().getHostAddress());
+			logger.info("[{}] Welcom to [{}]", new Date(), InetAddress.getLocalHost().getHostAddress());
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
@@ -77,7 +77,7 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 	protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) {
 		// LOG.info("[InboundServerHandler] received {} from {}", msg.toString(),
 		// ctx.channel());
-		LOG.info("[InboundServerHandler] FROM {}", ctx.channel());
+		logger.info("[InboundServerHandler] FROM {}", ctx.channel());
 
 		ByteBuf req = (ByteBuf) msg;
 		String content = req.toString(Charset.defaultCharset());
@@ -103,7 +103,7 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 					});
 					serviceId = mapJson.get("serviceId");
 					if (serviceId != null && serviceId.contains(ServiceType.TCPSOCKET)) {
-					LOG.info("[Receive JSON from Outbound Server] >>>>>>>>>> {}", content);
+						logger.info("[Receive JSON from Outbound Server] >>>>>>>>>> {}", content);
 						pushMsg.setServiceId(serviceId);
 						pushMsg.setGroupId(mapJson.get("groupId"));
 						pushMsg.setClientId(mapJson.get("clientId"));
@@ -178,7 +178,7 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 	 */
 	@Override
 	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-		LOG.info("[InboundServerHandler] DISCONNECTED {}", ctx.channel());
+		logger.info("[InboundServerHandler] DISCONNECTED {}", ctx.channel());
 	}
 
 	/**
@@ -193,7 +193,7 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 	 */
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-		LOG.error("[InboundServerHandler] ERROR " + ctx.channel() + ", it will be closed", cause);
+		logger.error("[InboundServerHandler] ERROR " + ctx.channel() + ", it will be closed", cause);
 		ctx.close();
 	}
 

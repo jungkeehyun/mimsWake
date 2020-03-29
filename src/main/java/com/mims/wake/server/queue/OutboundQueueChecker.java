@@ -3,8 +3,8 @@ package com.mims.wake.server.queue;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import io.netty.channel.ChannelId;
 
@@ -13,7 +13,7 @@ import io.netty.channel.ChannelId;
  */
 public class OutboundQueueChecker extends Thread {
 
-    private static final Logger LOG = LoggerFactory.getLogger(OutboundQueueChecker.class);
+    private static final Logger logger = LogManager.getLogger(OutboundQueueChecker.class);
 
     private final OutboundQueueManager outboundQueueManager;	// 서비스ID에 따라 OutboundQueue 그룹을 보관하는 collection
     private final int outboundQueueCheckInterval;				// OutboundQueue 모니터링 주기 (초)
@@ -43,7 +43,7 @@ public class OutboundQueueChecker extends Thread {
     public void run() {
         setName("OutboundQueueCheckerThread");
 
-        LOG.info("[{}] started [interval: {}]", getName(), outboundQueueCheckInterval);
+        logger.info("[{}] started [interval: {}]", getName(), outboundQueueCheckInterval);
 
         while (!isInterrupted()) {
             StringBuilder builder = new StringBuilder();
@@ -58,7 +58,7 @@ public class OutboundQueueChecker extends Thread {
                     });
                 }
             });
-            LOG.info("\n* Inbound Queue Status\n{}", builder);
+            logger.info("\n* Inbound Queue Status\n{}", builder);
 
             if (isInterrupted()) {
                 break;
@@ -71,7 +71,7 @@ public class OutboundQueueChecker extends Thread {
             }
         }
 
-        LOG.info("[{}] shutdown", getName());
+        logger.info("[{}] shutdown", getName());
     }
 
 }

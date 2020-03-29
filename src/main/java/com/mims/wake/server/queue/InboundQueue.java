@@ -3,8 +3,8 @@ package com.mims.wake.server.queue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.mims.wake.common.PushMessage;
 
@@ -15,7 +15,7 @@ import com.mims.wake.common.PushMessage;
  */
 public class InboundQueue extends Thread {
 
-    private static final Logger LOG = LoggerFactory.getLogger(InboundQueue.class);
+    private static final Logger logger = LogManager.getLogger(InboundQueue.class);
 
     private final String serviceId;								// Push Service ID
     private final BlockingQueue<PushMessage> queue;				// message queue
@@ -41,15 +41,15 @@ public class InboundQueue extends Thread {
      */
     public void enqueue(PushMessage message) {
         if (message == null || !serviceId.equals(message.getServiceId())) {
-            LOG.error("[InboundQueue:{}] invalid message {}", serviceId, message);
+        	logger.error("[InboundQueue:{}] invalid message {}", serviceId, message);
             return;
         }
 
         boolean result = queue.offer(message);
         if (result) {
-            LOG.info("[InboundQueue:{}] enqueued {}", serviceId, message);
+        	logger.info("[InboundQueue:{}] enqueued {}", serviceId, message);
         } else {
-            LOG.error("[InboundQueue:{}] failed to enqueue {}", serviceId, message);
+        	logger.error("[InboundQueue:{}] failed to enqueue {}", serviceId, message);
         }
     }
 
@@ -76,13 +76,13 @@ public class InboundQueue extends Thread {
     public void run() {
         setName("InboundQueueThread:" + serviceId);
 
-        LOG.info("[{}] started", getName());
+        logger.info("[{}] started", getName());
 
         PushMessage message = null;
         while (!isInterrupted()) {
             try {
                 message = queue.take();
-                LOG.info("[{}] take {}", getName(), message);
+                logger.info("[{}] take {}", getName(), message);
             } catch (InterruptedException e) {
                 break;
             }
@@ -91,14 +91,14 @@ public class InboundQueue extends Thread {
                 try {
                     outboundQueueManager.transfer(message);
                 } catch (Exception e) {
-                    LOG.error("[" + getName() + "] failed to transfer " + message, e);
+                	logger.error("[" + getName() + "] failed to transfer " + message, e);
                 } finally {
                     message = null;
                 }
             }
         }
 
-        LOG.info("[{}] shutdown", getName());
+        logger.info("[{}] shutdown", getName());
     }
 
 }

@@ -2,8 +2,8 @@ package com.mims.wake.server.inbound;
 
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.mims.wake.common.PushConstant;
 import com.mims.wake.common.PushMessageEncoder;
@@ -33,7 +33,7 @@ import io.netty.util.CharsetUtil;
  */
 public class InboundTcpSocketServer {
 
-    private static final Logger LOG = LoggerFactory.getLogger(InboundTcpSocketServer.class);
+    private static final Logger logger = LogManager.getLogger(InboundTcpSocketServer.class);
 
 	private String host;						// Outbound Server IP
 	private int port; 							// Inbound Server listen port
@@ -75,7 +75,7 @@ public class InboundTcpSocketServer {
 	}
 	
 	public void bind(Map<String, InboundQueue> inboundQueues) {
-        LOG.info("[InboundServer] starting...");
+		logger.info("[InboundServer] starting...");
 
         bossGroup = new NioEventLoopGroup();
         workerGroup = new NioEventLoopGroup();
@@ -98,16 +98,16 @@ public class InboundTcpSocketServer {
 
             bootstrap.bind(port).sync();
 
-            LOG.info("[InboundServer] started, listening on port " + port);
+            logger.info("[InboundServer] started, listening on port " + port);
 
         } catch (InterruptedException e) {
-            LOG.error("[InboundServer] failed to startup", e);
+        	logger.error("[InboundServer] failed to startup", e);
             shutdown();
         }
     }
 
 	public void connect(Map<String, InboundQueue> inboundQueues) {
-		LOG.info("[InboundClient] starting...");
+		logger.info("[InboundClient] starting...");
 		
 		bossGroup = new NioEventLoopGroup();
 		try {
@@ -126,12 +126,12 @@ public class InboundTcpSocketServer {
 			future.addListener(new ChannelFutureListener() {
 				@Override
 				public void operationComplete(ChannelFuture future) throws Exception {
-					LOG.info("[Connented Outbound TCPSOCKET Server] >>>>>>>>>> {}:{}", host, port);
+					logger.info("[Connented Outbound TCPSOCKET Server] >>>>>>>>>> {}:{}", host, port);
 				}
 			}).sync();
 		} catch (Exception e) {
 			e.printStackTrace();
-			LOG.error("[Cannot connent to Outbound TCPSOCKET Server] >>>>>>>>>> {}:{}", host, port);
+			logger.error("[Cannot connent to Outbound TCPSOCKET Server] >>>>>>>>>> {}:{}", host, port);
 		}
 	}
 	// [-] 
@@ -149,6 +149,6 @@ public class InboundTcpSocketServer {
             bossGroup.shutdownGracefully();
         }
 
-        LOG.info("[InboundServer] shutdown");
+        logger.info("[InboundServer] shutdown");
     }
 }

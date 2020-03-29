@@ -3,8 +3,8 @@ package com.mims.wake.common;
 import java.io.IOException;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -16,7 +16,7 @@ import io.netty.handler.codec.MessageToMessageEncoder;
  */
 public class PushMessageEncoder extends MessageToMessageEncoder<PushMessage> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(PushMessageEncoder.class);
+    private static final Logger logger = LogManager.getLogger(PushMessageEncoder.class);
 
     private String delimiter;
 
@@ -43,7 +43,7 @@ public class PushMessageEncoder extends MessageToMessageEncoder<PushMessage> {
      */
     @Override
     protected void encode(ChannelHandlerContext ctx, PushMessage msg, List<Object> out) {
-        LOG.debug("[PushMessageEncoder] encode {} to channel {}", msg, ctx.channel());
+    	logger.debug("[PushMessageEncoder] encode {} to channel {}", msg, ctx.channel());
 
         String encoded = null;
         try {
@@ -53,7 +53,7 @@ public class PushMessageEncoder extends MessageToMessageEncoder<PushMessage> {
                 encoded += delimiter;
             }
         } catch (IOException e) {
-            LOG.error("[PushMessageEncoder] failed to encode " + msg, e);
+        	logger.error("[PushMessageEncoder] failed to encode " + msg, e);
         }
 
         if (encoded != null) {

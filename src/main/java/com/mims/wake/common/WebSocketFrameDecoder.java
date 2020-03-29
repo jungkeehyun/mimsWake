@@ -2,8 +2,8 @@ package com.mims.wake.common;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
@@ -16,7 +16,7 @@ import io.netty.handler.codec.http.websocketx.WebSocketFrame;
  */
 public class WebSocketFrameDecoder extends MessageToMessageDecoder<WebSocketFrame> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(WebSocketFrameDecoder.class);
+    private static final Logger logger = LogManager.getLogger(WebSocketFrameDecoder.class);
 
     /**
      * WebSocketFrame 타입 메시지를 String 타입으로 변환한다.<br>
@@ -30,7 +30,7 @@ public class WebSocketFrameDecoder extends MessageToMessageDecoder<WebSocketFram
     protected void decode(ChannelHandlerContext ctx, WebSocketFrame frame, List<Object> out) {
         if (frame instanceof TextWebSocketFrame) {
             String decoded = ((TextWebSocketFrame) frame).text();
-            LOG.debug("[WebSocketFrameDecoder] decoded {} from channel {}", decoded, ctx.channel());
+            logger.debug("[WebSocketFrameDecoder] decoded {} from channel {}", decoded, ctx.channel());
             out.add(decoded);
         } else {
             throw new UnsupportedOperationException("Unsupported frame type [" + frame.getClass().getName() + "]");

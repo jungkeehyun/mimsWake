@@ -10,8 +10,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.mims.wake.common.PushMessage;
 import com.mims.wake.server.property.PushBaseProperty;
@@ -20,7 +20,8 @@ import com.mims.wake.server.queue.InboundQueue;
 import com.mims.wake.util.commonUtil;
 
 public class InboundFilePolling {
-	private static final Logger LOG = LoggerFactory.getLogger(InboundFilePolling.class);
+
+	private static final Logger logger = LogManager.getLogger(InboundFilePolling.class);
 
 	private int interval;
 	private String subPath;
@@ -52,10 +53,10 @@ public class InboundFilePolling {
 			};
 
 			this.timer.schedule(timerTask, 0, this.interval);
-			LOG.info("[InboundFilePolling] started, " + this.targetPath);
+			logger.info("[InboundFilePolling] started, " + this.targetPath);
 
 		} catch (Exception e) {
-			LOG.error("[InboundFilePolling] failed to startup", e);
+			logger.error("[InboundFilePolling] failed to startup", e);
 			shutdown();
 		}
 	}
@@ -94,7 +95,7 @@ public class InboundFilePolling {
 							new PushMessage(sid, pushMsg.getGroupId(), pushMsg.getClientId(), pushMsg.getMessage()));
 				});
 
-				LOG.info("[InboundFilePolling] >>>>>>>>>> {}", msg);
+				logger.info("[InboundFilePolling] >>>>>>>>>> {}", msg);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -105,7 +106,7 @@ public class InboundFilePolling {
 		if (this.timer != null) {
 			this.timer.cancel();
 		}
-		LOG.info("[InboundFilePolling] shutdown");
+		logger.info("[InboundFilePolling] shutdown");
 	}
 
 	public Map<String, InboundQueue> getInboundQueues() {
@@ -125,7 +126,7 @@ public class InboundFilePolling {
 		String clientId = ids.substring(pos + 1, pos2);
 		String[] arrIds = new String[] { groupId, clientId };
 		if(arrIds.length != 2)
-			LOG.error("[InboundFilePolling] incorrect groudId or clientId");
+			logger.error("[InboundFilePolling] incorrect groudId or clientId");
 
 		return arrIds;
 	}
@@ -143,6 +144,6 @@ public class InboundFilePolling {
 		if (file.exists())
 			file.renameTo(fileNew);
 		else
-			LOG.error("[InboudFilePolling] {} file not found.", oldPathFile);
+			logger.error("[InboudFilePolling] {} file not found.", oldPathFile);
 	}
 }

@@ -1,12 +1,11 @@
 package com.mims.wake.server.outbound;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.mims.wake.common.PushConstant;
 import com.mims.wake.common.PushMessage;
 import com.mims.wake.server.property.PushServiceProperty;
-import com.mims.wake.server.property.ServiceType;
 import com.mims.wake.server.queue.OutboundQueueManager;
 
 import io.netty.channel.ChannelHandlerContext;
@@ -17,7 +16,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
  */
 public class OutboundServerHandler extends SimpleChannelInboundHandler<PushMessage> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(OutboundServerHandler.class);
+    private static final Logger logger = LogManager.getLogger(OutboundServerHandler.class);
 
     private final PushServiceProperty property;					// Push Service property
     private final OutboundQueueManager outboundQueueManager;	// OutboundQueue 인스턴스 관리자
@@ -41,7 +40,7 @@ public class OutboundServerHandler extends SimpleChannelInboundHandler<PushMessa
      */
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        LOG.info("[OutboundServerHandler:{}] connected {}", property.getServiceId(), ctx.channel());
+    	logger.info("[OutboundServerHandler:{}] connected {}", property.getServiceId(), ctx.channel());
 
         outboundQueueManager.startOutboundQueue(property.getServiceId(), property.getOutboundQueueCapacity(), ctx.channel());
 
@@ -57,18 +56,18 @@ public class OutboundServerHandler extends SimpleChannelInboundHandler<PushMessa
      */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, PushMessage msg) {
-        LOG.info("[OutboundServerHandler:{}] received {} from {}", property.getServiceId(), msg, ctx.channel());
+    	logger.info("[OutboundServerHandler:{}] received {} from {}", property.getServiceId(), msg, ctx.channel());
 
         String groupId = msg.getGroupId();
         if (groupId != null) {
             ctx.channel().attr(PushConstant.GROUP_ID).set(groupId);
-            LOG.info("[OutboundServerHandler:{}] set group id [{}] to {}", property.getServiceId(), groupId, ctx.channel());
+            logger.info("[OutboundServerHandler:{}] set group id [{}] to {}", property.getServiceId(), groupId, ctx.channel());
         }
 
         String clientId = msg.getClientId();
         if (clientId != null) {
             ctx.channel().attr(PushConstant.CLIENT_ID).set(clientId);
-            LOG.info("[OutboundServerHandler:{}] set client id [{}] to {}", property.getServiceId(), clientId, ctx.channel());
+            logger.info("[OutboundServerHandler:{}] set client id [{}] to {}", property.getServiceId(), clientId, ctx.channel());
         }
         
         outboundQueueManager.popStack(property.getServiceId(), ctx.channel()); // pop stack message
@@ -83,7 +82,7 @@ public class OutboundServerHandler extends SimpleChannelInboundHandler<PushMessa
      */
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
-        LOG.info("[OutboundServerHandler:{}] disconnected {}", property.getServiceId(), ctx.channel());
+    	logger.info("[OutboundServerHandler:{}] disconnected {}", property.getServiceId(), ctx.channel());
 
         outboundQueueManager.shutdownOutboundQueue(property.getServiceId(), ctx.channel());
         // disconnection queue stack
@@ -100,7 +99,7 @@ public class OutboundServerHandler extends SimpleChannelInboundHandler<PushMessa
      */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        LOG.error("[OutboundServerHandler:" + property.getServiceId() + "] error " + ctx.channel() + ", it will be closed", cause);
+    	logger.error("[OutboundServerHandler:" + property.getServiceId() + "] error " + ctx.channel() + ", it will be closed", cause);
         ctx.close();
     }
 }

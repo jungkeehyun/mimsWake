@@ -1,7 +1,7 @@
 package com.mims.wake.server.outbound;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.mims.wake.common.PushMessage;
 import com.mims.wake.server.property.PushServiceProperty;
@@ -24,7 +24,7 @@ import io.netty.handler.logging.LoggingHandler;
  */
 public abstract class OutboundServer {
 
-	private static final Logger LOG = LoggerFactory.getLogger(OutboundServer.class);
+	private static final Logger logger = LogManager.getLogger(OutboundServer.class);
 
 	private final PushServiceProperty property; // Push Service property
 
@@ -46,7 +46,7 @@ public abstract class OutboundServer {
 	 * -소켓옵션 지정
 	 */
 	public void startup() {
-		LOG.info("[OutboundServer:{}] starting...", property.getServiceId());
+		logger.info("[OutboundServer:{}] starting...", property.getServiceId());
 		// [YPK] file push first way
 		if(property.getOutboundServerType().equals(ServerType.FILESOCKET)) {
 			// do nothing
@@ -67,11 +67,11 @@ public abstract class OutboundServer {
 
 			bootstrap.bind(property.getOutboundServerPort()).sync();
 
-			LOG.info("[OutboundServer:{}] started, listening on port {}", property.getServiceId(),
+			logger.info("[OutboundServer:{}] started, listening on port {}", property.getServiceId(),
 					property.getOutboundServerPort());
 
 		} catch (InterruptedException e) {
-			LOG.error("[OutboundServer:" + property.getServiceId() + "] failed to startup", e);
+			logger.error("[OutboundServer:" + property.getServiceId() + "] failed to startup", e);
 			shutdown();
 		}
 	}
@@ -105,7 +105,7 @@ public abstract class OutboundServer {
 			bossGroup.shutdownGracefully();
 		}
 
-		LOG.info("[OutboundServer:{}] shutdown", property.getServiceId());
+		logger.info("[OutboundServer:{}] shutdown", property.getServiceId());
 	}
 
 	/**

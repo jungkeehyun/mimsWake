@@ -3,15 +3,15 @@ package com.mims.wake.server.queue;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * InboundQueue 상태 모니터링 쓰레드
  */
 public class InboundQueueChecker extends Thread {
 
-    private static final Logger LOG = LoggerFactory.getLogger(InboundQueueChecker.class);
+    private static final Logger logger = LogManager.getLogger(InboundQueueChecker.class);
 
     private final Map<String, InboundQueue> inboundQueues;	// Service ID를 key로 하는 InboundQueue collection
     private final int inboundQueueCheckInterval;			// InboundQueue 모니터링 주기 (초)
@@ -41,7 +41,7 @@ public class InboundQueueChecker extends Thread {
     public void run() {
         setName("InboundQueueCheckerThread");
 
-        LOG.info("[{}] started [interval: {}]", getName(), inboundQueueCheckInterval);
+        logger.info("[{}] started [interval: {}]", getName(), inboundQueueCheckInterval);
 
         while (!isInterrupted()) {
             StringBuilder builder = new StringBuilder();
@@ -52,7 +52,7 @@ public class InboundQueueChecker extends Thread {
                     builder.append("[").append(serviceId).append("] ").append(inboundQueue.status()).append("\n");
                 });
             }
-            LOG.info("\n* Inbound Queue Status\n{}", builder);
+            logger.info("\n* Inbound Queue Status\n{}", builder);
 
             if (isInterrupted()) {
                 break;
@@ -65,7 +65,7 @@ public class InboundQueueChecker extends Thread {
             }
         }
 
-        LOG.info("[{}] shutdown", getName());
+        logger.info("[{}] shutdown", getName());
     }
 
 }

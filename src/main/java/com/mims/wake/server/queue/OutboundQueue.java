@@ -3,8 +3,8 @@ package com.mims.wake.server.queue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.mims.wake.common.PushConstant;
 import com.mims.wake.common.PushMessage;
@@ -18,7 +18,7 @@ import io.netty.channel.Channel;
  */
 public class OutboundQueue extends Thread {
 
-    private static final Logger LOG = LoggerFactory.getLogger(OutboundQueue.class);
+    private static final Logger logger = LogManager.getLogger(OutboundQueue.class);
 
     private String serviceId;					// Push Service ID
     private BlockingQueue<PushMessage> queue;	// message queue
@@ -70,12 +70,12 @@ public class OutboundQueue extends Thread {
      */
     public void enqueue(PushMessage pushMessage) {
         if (!isValid(pushMessage)) {
-            LOG.error("[OutboundQueue:{}] [{}] [{}] invalid message {}", serviceId, groupId(), clientId(), pushMessage);
+        	logger.error("[OutboundQueue:{}] [{}] [{}] invalid message {}", serviceId, groupId(), clientId(), pushMessage);
             return;
         }
 
         if (!queue.offer(pushMessage)) {
-            LOG.error("[OutboundQueue:{}] [{}] [{}] failed to enqueue {}", serviceId, groupId(), clientId(), pushMessage);
+        	logger.error("[OutboundQueue:{}] [{}] [{}] failed to enqueue {}", serviceId, groupId(), clientId(), pushMessage);
         }
     }
 
@@ -130,13 +130,13 @@ public class OutboundQueue extends Thread {
     public void run() {
         setName("OutboundQueueThread:" + serviceId);
 
-        LOG.info("[{}] [{}] [{}] started", getName(), groupId(), clientId());
+        logger.info("[{}] [{}] [{}] started", getName(), groupId(), clientId());
 
         PushMessage message = null;
         while (!isInterrupted()) {
             try {
                 message = queue.take();
-                LOG.info("[{}] [{}] [{}] take {}", getName(), groupId(), clientId(), message);
+                logger.info("[{}] [{}] [{}] take {}", getName(), groupId(), clientId(), message);
             } catch (InterruptedException e) {
                 break;
             }
@@ -147,7 +147,7 @@ public class OutboundQueue extends Thread {
             }
         }
 
-        LOG.info("[{}] [{}] [{}] shutdown", getName(), groupId(), clientId());
+        logger.info("[{}] [{}] [{}] shutdown", getName(), groupId(), clientId());
     }
     
     /**

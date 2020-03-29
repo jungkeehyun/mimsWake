@@ -4,10 +4,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
+import com.mims.wake.database.commonDAO;
 import com.mims.wake.server.inbound.InboundFilePolling;
 import com.mims.wake.server.inbound.InboundTcpSocketServer;
 import com.mims.wake.server.outbound.OutboundServer;
@@ -27,7 +28,7 @@ import com.mims.wake.server.queue.OutboundQueueManager;
 @Component
 public class Server {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Server.class);
+    private static final Logger logger = LogManager.getLogger(Server.class);
 
     private final Map<String, OutboundServer> outboundServers;	// Service ID를 key로 하는 OutboundServer collection
     private final Map<String, InboundQueue> inboundQueues;		// Service ID를 key로 하는 InboundQueue collection
@@ -53,8 +54,14 @@ public class Server {
      * @return Service ID를 key로 하는 InboundQueue collection
      */
     public Map<String, InboundQueue> startupServer(boolean embedded, PushBaseProperty baseProperty, Collection<PushServiceProperty> serviceProperties) {
-        LOG.info("Wake Push Server STARTING...");
+    	logger.info("Wake Push Server STARTING...");
 
+    	// Test 
+    	//commonDAO cdao = new commonDAO();
+    	//logger.info("!@#!@$@!$@#%@#% [" + cdao.getCurrentDataTime() + "]");
+    	//cdao.insertTest();
+    	//
+    	
         if (!serviceProperties.isEmpty()) {
             // 개별 Push 서비스 속성에 따라 필요한 인스턴스 생성하고 Service ID를 key로 하는 collection에 저장
             serviceProperties.forEach(property -> {
@@ -102,11 +109,11 @@ public class Server {
 				inboundFilePolling = new InboundFilePolling(baseProperty);
 				inboundFilePolling.startup(inboundQueues);
 			} else {
-				LOG.info("[Choose a server type TCPSOCKET or FILESOCKET] >>>>>>>>>> {}", type);
+				logger.info("[Choose a server type TCPSOCKET or FILESOCKET] >>>>>>>>>> {}", type);
 				return null;
         }
 		}
-        LOG.info("[simple-push-server] startup complete.... >>>>>>>>>> {}", type);
+        logger.info("[simple-push-server] startup complete.... >>>>>>>>>> {}", type);
 
         return inboundQueues;
     }
