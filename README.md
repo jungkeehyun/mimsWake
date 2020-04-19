@@ -72,4 +72,4 @@ $java -jar websocket.war
 * OutBound File : ~/SharedStorage
 
 # SSL - netty에서 KEY 파일만 pkcs8 포맷 변환
-* openssl pkcs8 -topk8 -inform PEM -outform PEM -in service/service.key -out service/service.pkcs8.key -nocrypt
+* openssl pkcs8 -topk8 -inform PEM -outform PEM -in service.key -out service.pkcs8.key -nocrypt
