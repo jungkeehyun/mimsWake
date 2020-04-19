@@ -65,6 +65,8 @@ $cd target
 $java -jar websocket.war
 
 # port that this app use
-* TCP Inbound  : 13100
-* TCP Outbound : 13101
-* WebSocket Outbound : 13102
+* InBound  TCP  : 13100
+* InBound  File : ~/SharedStorage
+* OutBound WebSocket : 13101
+* OutBound TCP  : 13102
+* OutBound File : ~/SharedStorage
