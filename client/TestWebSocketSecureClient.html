@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Test WebSocket Secure Client</title>
+        <script>
+            var socket = null;
+            var count = 0;
+            function connect() {
+                disconnect();
+                var ip = document.getElementById("ip").value;
+                var port = document.getElementById("port").value;
+                var uri = document.getElementById("uri").value;
+                if (!ip || !port || !uri) {
+                    alert("input ip/port/uri");
+                    return false;
+                }
+
+                var groupId = document.getElementById("groupId").value;
+                if (!groupId) {
+                    groupId = null;
+                }
+                var clientId = document.getElementById("clientId").value;
+                if (!clientId) {
+                    clientId = null;
+                }
+
+                socket = new WebSocket("wss://" + ip + ":" + port + "/" + uri);
+                socket.onopen = function() {
+                    log("WebSocket opend");
+                    socket.send(JSON.stringify({groupId:groupId,clientId:clientId}));
+                    log("sent group id [" + groupId + "] and client id [" + clientId + "]");
+                };
+                socket.onmessage = function(e) {
+                    log("received [" + ++count + "] [" + e.data + "]");
+                };
+                socket.onerror = function() {
+                    log("WebSocket error");
+                };
+                socket.onclose = function() {
+                    log("WebSocket closed");
+                };
+            }
+
+            function disconnect() {
+                if (socket && socket.readyState == WebSocket.OPEN) {
+                    count = 0;
+                    socket.close();
+                }
+            }
+
+            var logger = null;
+            function log(msg) {
+                if (!logger) {
+                    logger = document.getElementById("log");
+                }
+                if (count != 0 && count % 100 == 0) {
+                    logger.innerHTML = msg;
+                } else {
+                    logger.innerHTML = msg + "\n" + logger.innerHTML;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h2>[MIMS WAKE] Test WebSocket Secure Client</h2>
+        <table border="1" style="border-collapse:collapse;">
+            <tbody>
+                <tr>
+                    <th>WebSocket URL</th>
+                    <td>wss://<input type="text" id="ip" value="127.0.0.1" size="10" />:<input type="text" id="port" value="13102" size="5" />/<input type="text" id="uri" value="mimsWake" size="10" /></td>
+                </tr>
+                <tr>
+                    <th>실제/연습 모드</th>
+                    <td>
+                        <select id="groupId">
+                            <option value="OPER" selected>실제모드</option>
+                            <option value="EXER">연습모드</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>메시지 종류</th>
+                    <td>
+                        <select id="clientId">
+                            <option value="A2R" selected>공중항적</option>
+                            <option value="S2R">해상항적(실제)</option>
+                            <option value="S2E">해상항적(연습)</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="connect()">connect</button>
+        <button onclick="disconnect()">disconnect</button>
+        <hr />
+        <textarea id="log" style="width:100%;" rows="30"></textarea>
+    </body>
+</html>

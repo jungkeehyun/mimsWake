@@ -3,6 +3,9 @@ package com.mims.wake.util;
 import java.io.File;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Vector;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Lock;
@@ -89,13 +92,78 @@ public class commonUtil {
 			}
 		}
 
+		if(fileNames.size() > 1)
+			Collections.sort(fileNames, new CompByDate());
+
 		return fileNames;
+	}
+	
+	public static class CompByDate implements Comparator<String> { 		
+		public int compare(String pf0, String pf1) {
+			File file0 = new File(pf0);
+			File file1 = new File(pf1);
+			String one = file0.lastModified() + "";
+			String two = file1.lastModified() + "";
+			return one.compareTo(two);
+		} 
+	}
+	
+	public static File[] getFileList(String targetDirName, String fileExt) {
+		File[] files = new File(targetDirName).listFiles();
+		File[] fileNames = new File[files.length * 2];
+		File dir = new File(targetDirName);
+		fileExt = fileExt.toLowerCase();
+		String pathToken = pathToken();
+		int inx = 0;
+
+		if (dir.isDirectory()) {
+			String dirName = dir.getPath();
+			String[] filenames = dir.list(null);
+
+			for (int iFile = 0; iFile < filenames.length; ++iFile) {
+				String filename = filenames[iFile];
+				String fullFileName = dirName + pathToken + filename;
+				File file = new File(fullFileName);
+
+				boolean isDirectory = file.isDirectory();
+				if (!isDirectory && filename.toLowerCase().endsWith(fileExt)) {
+					fileNames[inx++] = file;
+				}
+			}
+		}
+		
+		return sortFileList(fileNames, COMPARETYPE_DATE);
+	}
+	
+	public static int COMPARETYPE_NAME = 0;
+	public static int COMPARETYPE_DATE = 1;
+	public static File[] sortFileList(File[] files, final int compareType) {
+		Arrays.sort(files, new Comparator<Object>() {
+			@Override
+			public int compare(Object object1, Object object2) {
+
+				String s1 = "";
+				String s2 = "";
+
+				if (compareType == COMPARETYPE_NAME) {
+					s1 = ((File) object1).getName();
+					s2 = ((File) object2).getName();
+				} else if (compareType == COMPARETYPE_DATE) {
+					s1 = ((File) object1).lastModified() + "";
+					s2 = ((File) object2).lastModified() + "";
+				}
+
+				return s1.compareTo(s2);
+			}
+		});
+
+		return files;
 	}
 	
 	public static String getCurrentPath(String subPath) {
 		String token = pathToken();
 		String[] arrWord = subPath.split("");
-		if(arrWord[0].equals(token))
+		if(arrWord.length > 0 && arrWord[0].equals(token))
 			subPath.replaceFirst(token, "");
 		return System.getProperty("user.dir") + token + subPath;
 	}

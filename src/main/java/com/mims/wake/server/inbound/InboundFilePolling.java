@@ -66,7 +66,6 @@ public class InboundFilePolling {
 			Vector<String> arrFile = commonUtil.getFileNames(this.targetPath, ServiceType.EXE_PUSH_SIDE);
 			for (int ix = 0; ix < arrFile.size(); ++ix) {
 				String pathFile = arrFile.get(ix);
-
 				File file = new File(pathFile);
 				if (file.exists() == false)
 					continue;

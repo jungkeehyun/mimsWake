@@ -235,7 +235,7 @@ public class OutboundQueueStack extends Thread {
 				sentAddr.add(rip);
 		}
 		
-		public boolean isAreadySent(String addr) {
+		public boolean isAlreadySent(String addr) {
 			String rip = extractOnlyIP(addr);
 			return sentAddr.contains(rip);
 		}
@@ -310,7 +310,7 @@ public class OutboundQueueStack extends Thread {
 				return null;
 
 			String addr = channel.remoteAddress().toString();
-			if (msgInfo.isAreadySent(addr))
+			if (msgInfo.isAlreadySent(addr))
 				return null;
 			
 			PushMessage msg = msgInfo.getMessage();
