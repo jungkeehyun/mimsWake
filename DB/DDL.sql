@@ -2,6 +2,8 @@ CREATE TABLE mimsWake.clientConn (
 	CLIENT_CONN_ID		VARCHAR(15)	not null	-- [PK] ID
 	, CONN_DTTM		VARCHAR(14)	not null	-- 접속일시
 	, CLIENT_CONN_IP	VARCHAR(10)	not null	-- 접속IP
+	, MODE			VARCHAR(5)	not null	-- 접속모드(Group ID)
+	, MSG_TYPE		VARCHAR(5)	not null	-- 메시지종류 (Client ID)
 	, REGR_DTTM		VARCHAR(14)	not null	-- [BASE] 등록일시
 )
 
