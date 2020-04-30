@@ -30,6 +30,7 @@ public class UserProperty {
 	private PushBaseProperty _baseProperty;
 	private Collection<PushServiceProperty> _serviceProperties;
 	private String _pathFile;
+	private DBServiceProperty _dbProperty;
 
 	public UserProperty() {
 		String path = System.getProperty("user.dir");
@@ -153,10 +154,30 @@ public class UserProperty {
 			}
 
 			_serviceProperties = mapProp.values();
-			resources.close();
-			
 			if(_serviceProperties.isEmpty())
 				logger.info("Push service properties not found.");
+
+			// DB service
+			_dbProperty = new DBServiceProperty();
+			String drv = prop.getProperty("db.driverClassName");
+			String url = prop.getProperty("db.url");
+			String user = prop.getProperty("db.username");
+			String pwd = prop.getProperty("db.password");
+			if (drv != null && !drv.isEmpty() && url != null && !url.isEmpty() && user != null && !user.isEmpty()
+					&& pwd != null && !pwd.isEmpty()) {
+				_dbProperty.setDriverClassName(drv);
+				_dbProperty.setUrl(url);
+				_dbProperty.setUsername(user);
+				_dbProperty.getPassword(pwd);
+			} else {
+				_dbProperty.setDriverClassName("com.mysql.cj.jdbc.Driver");
+				_dbProperty.setUrl("jdbc:mysql://localhost:3306/mims");
+				_dbProperty.setUsername("root");
+				_dbProperty.getPassword("root");
+				logger.info("DB service properties not found.");
+			}
+			
+			resources.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -23,6 +23,7 @@ import com.mims.wake.server.property.UserProperty;
 public class MimsWakeApplication implements CommandLineRunner  {
 
 	private static final Logger logger = LogManager.getLogger(MimsWakeApplication.class);
+	public static UserProperty userProperties;
 
 	/**
 	 * MIMS 항적 프로그램(Spring Boot) 시작.
@@ -55,12 +56,12 @@ public class MimsWakeApplication implements CommandLineRunner  {
 			if(strings.length > 0)
 				propName = strings[0];
 			
-            UserProperty prop = new UserProperty();
-            prop.readPrpoerties(propName);
-            PushBaseProperty baseProperty = prop.getBaseProperty();
+			userProperties= new UserProperty();
+			userProperties.readPrpoerties(propName);
+            PushBaseProperty baseProperty = userProperties.getBaseProperty();
             if(baseProperty == null)
             	throw new Exception();
-            Collection<PushServiceProperty> serviceProperties = prop.getServiceProperty();
+            Collection<PushServiceProperty> serviceProperties = userProperties.getServiceProperty();
 
             // Push 서버 모듈 기동
             if(server.startupServer(false, baseProperty, serviceProperties) == null) {
