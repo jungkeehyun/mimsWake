@@ -27,15 +27,16 @@
 
                 socket = new WebSocket("ws://" + ip + ":" + port + "/" + uri);
                 socket.onopen = function() {
-                    log("WebSocket opend");
+                    log("WebSocket opened");
                     socket.send(JSON.stringify({groupId:groupId,clientId:clientId}));
                     log("sent group id [" + groupId + "] and client id [" + clientId + "]");
                 };
                 socket.onmessage = function(e) {
                     log("received [" + ++count + "] [" + e.data + "]");
                 };
-                socket.onerror = function() {
+                socket.onerror = function(error) {
                     log("WebSocket error");
+                    log("ERROR : " + error.message);
                 };
                 socket.onclose = function() {
                     log("WebSocket closed");
@@ -68,7 +69,7 @@
             <tbody>
                 <tr>
                     <th>WebSocket URL</th>
-                    <td>ws://<input type="text" id="ip" value="127.0.0.1" size="10" />:<input type="text" id="port" value="13102" size="5" />/<input type="text" id="uri" value="mimsWake" size="10" /></td>
+                    <td>wss://<input type="text" id="ip" value="127.0.0.1" size="10" />:<input type="text" id="port" value="13102" size="5" />/<input type="text" id="uri" value="mimsWake" size="10" /></td>
                 </tr>
                 <tr>
                     <th>실제/연습 모드</th>
@@ -86,6 +87,8 @@
                             <option value="A2R" selected>공중항적</option>
                             <option value="S2R">해상항적(실제)</option>
                             <option value="S2E">해상항적(연습)</option>
+                            <option value="OPER">실제</option>
+                            <option value="EXER">연습</option>
                         </select>
                     </td>
                 </tr>

@@ -166,6 +166,14 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 		// [YPK] 모든 Service 메세지 전달 
 		inboundQueues.forEach((sid, queue) -> {
 			queue.enqueue(new PushMessage(sid, pushMsg.getGroupId(), pushMsg.getClientId(), pushMsg.getMessage()));
+			
+			// 실제모드(OPER) 또는 연습모드(EXER) 전체를 Client에 전송하기 위해 Queue에 하나 더 전달
+			// ex) "OPER"로 접속된 Client에게는 공중항적(A2R), 해상항적(S2R)를 모두 전달
+			if ("OPER".equals(pushMsg.getGroupId())) {
+				queue.enqueue(new PushMessage(sid, pushMsg.getGroupId(), "OPER", pushMsg.getMessage()));
+			} else if ("EXER".equals(pushMsg.getGroupId())) {
+				queue.enqueue(new PushMessage(sid, pushMsg.getGroupId(), "EXER", pushMsg.getMessage()));
+			}
         });
 	}
 
