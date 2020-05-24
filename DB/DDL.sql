@@ -37,7 +37,7 @@ CREATE TABLE mimsWake.seaWakeRe (
 	, EFTV_DTTM		VARCHAR(14)			-- 유효일시 (DT)
 	, TRACRLTDCD		VARCHAR(1)			-- 항적실시간구분코드
 	, REGR_DTTM		VARCHAR(14)	not null	-- [BASE] 등록일시
-}
+)
 
 CREATE TABLE mimsWake.seaWakeEx (
 	SEA_WAKE_EX_ID		VARCHAR(15)	not null	-- ID (PK)
