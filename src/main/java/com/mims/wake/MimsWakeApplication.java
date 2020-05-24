@@ -6,10 +6,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.ImportResource;
 
 import com.mims.wake.server.Server;
+import com.mims.wake.server.property.DBServiceProperty;
 import com.mims.wake.server.property.PushBaseProperty;
 import com.mims.wake.server.property.PushServiceProperty;
 import com.mims.wake.server.property.UserProperty;
@@ -19,6 +22,7 @@ import com.mims.wake.server.property.UserProperty;
  * @author GenieInBed
  */
 @SpringBootApplication
+@EnableAutoConfiguration(exclude= {DataSourceAutoConfiguration.class})
 @ImportResource({"classpath*:application-config.xml"})
 public class MimsWakeApplication implements CommandLineRunner  {
 
@@ -62,9 +66,10 @@ public class MimsWakeApplication implements CommandLineRunner  {
             if(baseProperty == null)
             	throw new Exception();
             Collection<PushServiceProperty> serviceProperties = userProperties.getServiceProperty();
+            DBServiceProperty dBServiceProperty = userProperties.getDBProperty();
 
             // Push 서버 모듈 기동
-            if(server.startupServer(false, baseProperty, serviceProperties) == null) {
+            if(server.startupServer(false, baseProperty, serviceProperties, dBServiceProperty) == null) {
             	throw new Exception();
             }
             

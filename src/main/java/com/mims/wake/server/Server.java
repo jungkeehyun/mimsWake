@@ -1,5 +1,6 @@
 package com.mims.wake.server;
 
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,11 +9,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
-import com.mims.wake.database.commonDAO;
+import com.mims.wake.database.DBHelper;
 import com.mims.wake.server.inbound.InboundFilePolling;
 import com.mims.wake.server.inbound.InboundTcpSocketServer;
 import com.mims.wake.server.outbound.OutboundServer;
 import com.mims.wake.server.outbound.OutboundServerFactory;
+import com.mims.wake.server.property.DBServiceProperty;
 import com.mims.wake.server.property.PushBaseProperty;
 import com.mims.wake.server.property.PushServiceProperty;
 import com.mims.wake.server.property.ServerType;
@@ -39,6 +41,8 @@ public class Server {
     private InboundTcpSocketServer inboundServer;				// Push 요청을 수용하는 InboundServer
     private InboundTcpSocketServer inboundFilePush;				// [YPK]
     private InboundFilePolling inboundFilePolling; 				// [YPK]
+    
+    DBHelper current;
 
     public Server() {
         outboundServers = new HashMap<String, OutboundServer>();
@@ -53,7 +57,7 @@ public class Server {
      * @param serviceProperties 개별 Push 서비스 속성 collection
      * @return Service ID를 key로 하는 InboundQueue collection
      */
-    public Map<String, InboundQueue> startupServer(boolean embedded, PushBaseProperty baseProperty, Collection<PushServiceProperty> serviceProperties) {
+    public Map<String, InboundQueue> startupServer(boolean embedded, PushBaseProperty baseProperty, Collection<PushServiceProperty> serviceProperties, DBServiceProperty dBServiceProperty) {
     	logger.info("Wake Push Server STARTING...");
 
     	// Test 
@@ -115,6 +119,15 @@ public class Server {
 		}
         logger.info("[simple-push-server] startup complete.... >>>>>>>>>> {}", type);
 
+        // DB Write
+        current = DBHelper.getInstance(dBServiceProperty);
+        if(current.open() != null)
+        {
+        	logger.info("[simple-push-server] DB open");
+        }
+        // End
+ 
+        
         return inboundQueues;
     }
 
@@ -160,6 +173,11 @@ public class Server {
 		// shutdown OutboundQueueManager
 		if(outboundQueueManager != null) {
 			outboundQueueManager.shutdownQstack();
+		}
+		
+		// DB Connection close
+		if(current != null) {
+			current.close();
 		}
     }
 

@@ -229,4 +229,8 @@ public class UserProperty {
 	public Collection<PushServiceProperty> getServiceProperty() {
 		return _serviceProperties;
 	}
+	
+	public DBServiceProperty getDBProperty() {
+		return _dbProperty;
+	}
 }

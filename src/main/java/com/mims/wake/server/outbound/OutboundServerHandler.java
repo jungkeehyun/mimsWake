@@ -1,10 +1,13 @@
 package com.mims.wake.server.outbound;
 
+import java.sql.SQLException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.mims.wake.common.PushConstant;
 import com.mims.wake.common.PushMessage;
+import com.mims.wake.database.DBHelper;
 import com.mims.wake.server.property.PushServiceProperty;
 import com.mims.wake.server.queue.OutboundQueueManager;
 
@@ -69,6 +72,17 @@ public class OutboundServerHandler extends SimpleChannelInboundHandler<PushMessa
             ctx.channel().attr(PushConstant.CLIENT_ID).set(clientId);
             logger.info("[OutboundServerHandler:{}] set client id [{}] to {}", property.getServiceId(), clientId, ctx.channel());
         }
+        
+        DBHelper current = DBHelper.getInstance();
+        
+        // DB Write
+
+        try {
+			current.insertClientConn(ctx.channel().remoteAddress().toString(), groupId, clientId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
         outboundQueueManager.popStack(property.getServiceId(), ctx.channel()); // pop stack message
     }
