@@ -3,6 +3,7 @@ package com.mims.wake.server.inbound;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.charset.Charset;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mims.wake.common.PushMessage;
+import com.mims.wake.database.DBHelper;
 import com.mims.wake.server.kmtf.Field;
 import com.mims.wake.server.kmtf.KmtfMessage;
 import com.mims.wake.server.kmtf.Set;
@@ -91,6 +93,9 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 
 		// [Client] KMTF parse
 		PushMessage pushMsg = new PushMessage();
+		
+		// [Client] DB Instance
+		DBHelper current = DBHelper.getInstance();
 
 		KmtfMessage message;
 		try {
@@ -99,16 +104,17 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 				
 				// [+] [YPK] Receive JSON
 				ObjectMapper mapper = new ObjectMapper();
-					Map<String, String> mapJson = mapper.readValue(content, new TypeReference<Map<String, String>>() {
-					});
-					serviceId = mapJson.get("serviceId");
-					if (serviceId != null && serviceId.contains(ServiceType.TCPSOCKET)) {
-						logger.info("[Receive JSON from Outbound Server] >>>>>>>>>> {}", content);
-						pushMsg.setServiceId(serviceId);
-						pushMsg.setGroupId(mapJson.get("groupId"));
-						pushMsg.setClientId(mapJson.get("clientId"));
-						pushMsg.setMessage(mapJson.get("message"));
-					} else {
+				
+				Map<String, String> mapJson = mapper.readValue(content, new TypeReference<Map<String, String>>() {
+				});
+				serviceId = mapJson.get("serviceId");
+				if (serviceId != null && serviceId.contains(ServiceType.TCPSOCKET)) {
+					logger.info("[Receive JSON from Outbound Server] >>>>>>>>>> {}", content);
+					pushMsg.setServiceId(serviceId);
+					pushMsg.setGroupId(mapJson.get("groupId"));
+					pushMsg.setClientId(mapJson.get("clientId"));
+					pushMsg.setMessage(mapJson.get("message"));
+				} else {
 					return;
 				}
 				// [-]
@@ -130,14 +136,29 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 	
 				List<Set> setList = message.getSetList();
 	
-				for (Set s : setList) {
-					LinkedHashMap<Integer, Field> map = s.getFieldMap();
+				for (Set set : setList) {
+					LinkedHashMap<Integer, Field> map = set.getFieldMap();
 					for (Object key : map.keySet()) {
-						Field ff = map.get(key);
-							System.out.println(
-									s.getSid() + " | " + ff.getIndex() + " | " + ff.getName() + " | " + ff.getValue());
+						Field field = map.get(key);
+						System.out.println(set.getSid() + " | " + field.getIndex() + " | " + field.getName() + " | " + field.getValue());
 					}
 					System.out.println("");
+					
+					// Database Write
+					switch(message.getSetId()) {
+			        	case "A2R" :
+			        		current.insertAirWake(message.getMode(), set);
+			        		break;
+			        	case "S2R" :
+			        		current.insertSeaWakeRe(set);
+			        		break;
+			        	case "S2E" :
+			        		current.insertSeaWakeEx(set);
+			        		break;
+		        		default :
+		        			logger.error("[InboundServerHandler] KMTF Message DB Write ERROR {}", message.getSetId());
+		        	}
+					//
 				}
 	
 				// System.out.println(message.getData());
@@ -149,8 +170,10 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 				pushMsg.setClientId(message.getSetId());
 				pushMsg.setMessage(JsonUtil.getJsonStringFromList(message.getData()));
 			}
+		} catch (SQLException e) {
+			logger.error("[InboundServerHandler] ERROR(SQL) [{}]", e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("[InboundServerHandler] ERROR(COM) [{}]", e);
 		}
 		//
 
@@ -159,22 +182,18 @@ public class InboundTcpSocketServerMsgHandler extends SimpleChannelInboundHandle
 		//pushMsg.setServiceId(serviceId);
 		//inboundQueues.get(serviceId).enqueue(pushMsg);
 
-		/*
-		 * 03. [DB] Database 에 메시지 저장
-		 */
-
 		// [YPK] 모든 Service 메세지 전달 
 		inboundQueues.forEach((sid, queue) -> {
 			queue.enqueue(new PushMessage(sid, pushMsg.getGroupId(), pushMsg.getClientId(), pushMsg.getMessage()));
 			
 			// 실제모드(OPER) 또는 연습모드(EXER) 전체를 Client에 전송하기 위해 Queue에 하나 더 전달
-			// ex) "OPER"로 접속된 Client에게는 공중항적(A2R), 해상항적(S2R)를 모두 전달
 			if ("OPER".equals(pushMsg.getGroupId())) {
 				queue.enqueue(new PushMessage(sid, pushMsg.getGroupId(), "OPER", pushMsg.getMessage()));
 			} else if ("EXER".equals(pushMsg.getGroupId())) {
 				queue.enqueue(new PushMessage(sid, pushMsg.getGroupId(), "EXER", pushMsg.getMessage()));
 			}
         });
+
 	}
 
 	/**

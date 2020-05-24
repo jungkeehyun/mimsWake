@@ -72,16 +72,13 @@ public class OutboundServerHandler extends SimpleChannelInboundHandler<PushMessa
             ctx.channel().attr(PushConstant.CLIENT_ID).set(clientId);
             logger.info("[OutboundServerHandler:{}] set client id [{}] to {}", property.getServiceId(), clientId, ctx.channel());
         }
-        
-        DBHelper current = DBHelper.getInstance();
-        
-        // DB Write
 
+        // DB Write
+        DBHelper current = DBHelper.getInstance();
         try {
 			current.insertClientConn(ctx.channel().remoteAddress().toString(), groupId, clientId);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("[OutboundServerHandler] Client Connection Information DB Write ERROR!!!!");
 		}
         
         outboundQueueManager.popStack(property.getServiceId(), ctx.channel()); // pop stack message

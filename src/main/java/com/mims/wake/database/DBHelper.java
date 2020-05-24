@@ -3,14 +3,14 @@ package com.mims.wake.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.LinkedHashMap;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.google.protobuf.StringValue;
+import com.mims.wake.server.kmtf.Field;
+import com.mims.wake.server.kmtf.Set;
 import com.mims.wake.server.property.DBServiceProperty;
 
 public class DBHelper {
@@ -18,12 +18,6 @@ public class DBHelper {
 	private static final Logger logger = LogManager.getLogger(DBHelper.class);
 
     // 데이터베이스 접속에 필요한 정보 정의
-//    private static String db_hostname;
-//    private static int db_portnumber;
-//    private static String db_database;
-//	private static String db_charset;
-//    private static String db_username;
-//    private static String db_password;
 	private static String url;
 	private static String driverClassName;
 	private static String username;
@@ -60,52 +54,9 @@ public class DBHelper {
         current = null;
     }
 
-    public DBHelper() {
-    	
-//    	try (InputStream input = new FileInputStream("config.properties")) {
-//
-//            Properties prop = new Properties();
-//
-//            // load a properties file
-//            prop.load(input);
-//
-//            
-//            // mysql
-//            db_hostname = prop.getProperty("db.hostname");
-//            db_portnumber = Integer.parseInt(prop.getProperty("db.portnumber"));
-//            db_database = prop.getProperty("db.database");
-//            db_charset =prop.getProperty("db.charset");
-//            db_username = prop.getProperty("db.username");
-//            db_password = prop.getProperty("db.password");
-//            
-//            
-//            /*
-//            // tibero db            
-//            db_hostname = prop.getProperty("db.hostname");
-//            db_portnumber = Integer.parseInt(prop.getProperty("db.portnumber"));
-//            db_database = prop.getProperty("db.database");
-//            db_username = prop.getProperty("db.username");
-//            db_password = prop.getProperty("db.password");
-//           	*/
-//        } 
-//    	catch (IOException ex) {
-//            ex.printStackTrace();
-//        }   	
-    }
-
     // === 싱글톤 객체 ===
     public Connection open() {
-    	
         if (conn == null) {
-        	
-            // 데이터베이스 접속 처리 
-            // 데이터베이스 명을 포함한 URL을 만든다
-        	
-        	// mysql
-            //String urlFormat = "jdbc:mysql://%s:%d/%s?charsetEncoding=%s&serverTimezone=UTC";
-            //String url = String.format(urlFormat, db_hostname, db_portnumber, db_database); 
-
-            // MySQL JDBC의 드라이버 클래스를 로딩해서 DriverManager 클래스에 등록한다.
             try {
             	logger.info("@@" + this.driverClassName);
             	logger.info("@@" + this.username);
@@ -122,26 +73,7 @@ public class DBHelper {
             catch (SQLException e) {
             	logger.info(e.getMessage());
             }
-            
 
-        	/*
-            // tibero db
-            String urlFormat = "jdbc:tibero:thin:@%s:%d:%s";
-            String url = String.format(urlFormat, db_hostname, db_portnumber, db_database);
-
-            // Tibero JDBC의 드라이버 클래스를 로딩해서 DriverManager 클래스에 등록한다.
-            try {
-                Class.forName("com.tmax.tibero.jdbc.TbDriver");
-                conn = DriverManager.getConnection(url, db_username, db_password);
-                //logger.info("DATABASE Connect Success");
-            } 
-            catch (ClassNotFoundException e) {
-            	logger.info(e.getMessage());
-            } 
-            catch (SQLException e) {
-            	logger.info(e.getMessage());
-            }
-			*/
         }
         return conn;
     }
@@ -175,52 +107,198 @@ public class DBHelper {
     		logger.info("insertClientConn [{}]", pstmt);
     		
     		int count = pstmt.executeUpdate();
-
 			logger.info("insertClientConn Insert Count : {}", count);
-    		
+			
     	} else {
     		logger.info("insertClientConn [DB Connection error!!]");
     	}
-    	
-		
-
     }
-    
-    public void insert(String name, String no) throws SQLException {
-    	
+
+    public void insertAirWake(String modeId, Set set) throws SQLException {
     	PreparedStatement pstmt = null;
-    	
-    	logger.info("@@@ INSERT start");
-    	
     	
     	if (conn != null) {
     		
-			// 3. SQL 쿼리 준비
-			String sql = "INSERT INTO test VALUES (?,?)";
-			pstmt = conn.prepareStatement(sql);
-						
-			// 4. 데이터 binding
-			pstmt.setString(1, name);
-			pstmt.setString(2, no);
-						
-			
-			logger.info("@@@ INSERT " + sql);
-			
-			
-			// 5. 쿼리 실행 및 결과 처리
-			// SELECT와 달리 INSERT는 반환되는 데이터들이 없으므로
-			// ResultSet 객체가 필요 없고, 바로 pstmt.executeUpdate()메서드를 호출하면 됩니다.
-			// INSERT, UPDATE, DELETE 쿼리는 이와 같이 메서드를 호출하며
-			int count = pstmt.executeUpdate();
-			if( count == 0 ) {
-				logger.info("데이터 입력 실패");
+    		String sql = "INSERT INTO";
+    		if ("OPER".equals(modeId)) {
+    			sql += " airWakeRe";
+    		} else {
+    			sql += " airWakeEx";
+    		}
+    		sql += "(ACFTNO, ACFTFNFDVCD, ALT, ACFT_CNTUNT, CLSGN"
+    				+ ", TKOF_BASENO, SPD, KNDAP_NM, LTDLNGT_COORD"
+    				+ ", AZ, REGR_DTTM)"
+    				+ " VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+    		
+    		LinkedHashMap<Integer, Field> map = set.getFieldMap();
+    		pstmt = conn.prepareStatement(sql);
+    		
+			for (Object key : map.keySet()) {
+				Field field = map.get(key);
+				
+				switch (field.getName()) {
+					case "ACFTNO" :
+						pstmt.setString(1, field.getValue());
+						break;
+					case "ACFTFNFDVCD" :
+						pstmt.setString(2, field.getValue());
+						break;
+					case "ALT" :
+						pstmt.setFloat(3, Float.parseFloat(field.getValue()));
+						break;
+					case "ACFT_CNTUNT" :
+						pstmt.setInt(4, Integer.parseInt(field.getValue()));
+						break;
+					case "CLSGN" :
+						pstmt.setString(5, field.getValue());
+						break;
+					case "TKOF_BASENO" :
+						pstmt.setString(6, field.getValue());
+						break;
+					case "SPD" :
+						pstmt.setFloat(7, Float.parseFloat(field.getValue()));
+						break;
+					case "KNDAP_NM" :
+						pstmt.setString(8, field.getValue());
+						break;
+					case "LTDLNGT_COORD" :
+						pstmt.setString(9, field.getValue());
+						break;
+					case "AZ" :
+						pstmt.setInt(10, Integer.parseInt(field.getValue()));
+						break;
+				}
+				
+				pstmt.setTimestamp(11, new java.sql.Timestamp(System.currentTimeMillis()));		// REGR_DTTM
 			}
-			else {
-				logger.info("데이터 입력 성공");
-			}
-	    }
+    		logger.info("insertAirWake [{}]", pstmt);
+    		
+    		int count = pstmt.executeUpdate();
+			logger.info("insertAirWake Insert Count : {}", count);
+			
+    	} else {
+    		logger.info("insertAirWake [DB Connection error!!]");
+    	}
+    }
+    
+    public void insertSeaWakeRe(Set set) throws SQLException {
+    	PreparedStatement pstmt = null;
     	
-    	logger.info("@@@ INSERT end");
-    }   
+    	if (conn != null) {
+    		
+    		String sql = "INSERT INTO seaWakeRe"
+    				+ "(SEATIFFCD, IDNO, WRSHPNO, LOCTN, AZ"
+    				+ ", SEATTGTMSCD, SEATNATCD, SPD, SEATTGTLRCCD, SEATTGTKNDCD"
+    				+ ", EFTV_DTTM, TRACRLTDCD, REGR_DTTM)"
+    				+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    		
+    		LinkedHashMap<Integer, Field> map = set.getFieldMap();
+    		pstmt = conn.prepareStatement(sql);
+    		
+			for (Object key : map.keySet()) {
+				Field field = map.get(key);
+				
+				switch (field.getName()) {
+					case "SEATIFFCD" :
+						pstmt.setString(1, field.getValue());
+						break;
+					case "IDNO" :
+						pstmt.setString(2, field.getValue());
+						break;
+					case "WRSHPNO" :
+						pstmt.setString(3, field.getValue());
+						break;
+					case "LOCTN" :
+						pstmt.setString(4, field.getValue());
+						break;
+					case "AZ" :
+						pstmt.setInt(5, Integer.parseInt(field.getValue()));
+						break;
+					case "SEATTGTMSCD" :
+						pstmt.setString(6, field.getValue());
+						break;
+					case "SEATNATCD" :
+						pstmt.setString(7, field.getValue());
+						break;
+					case "SPD" :
+						pstmt.setFloat(8, Float.parseFloat(field.getValue()));
+						break;
+					case "SEATTGTLRCCD" :
+						pstmt.setString(9, field.getValue());
+						break;
+					case "SEATTGTKNDCD" :
+						pstmt.setString(10, field.getValue());
+						break;
+					case "EFTV_DTTM" :
+						pstmt.setString(11, field.getValue());
+						break;
+					case "TRACRLTDCD" :
+						pstmt.setString(12, field.getValue());
+						break;
+				}
+				
+				pstmt.setTimestamp(13, new java.sql.Timestamp(System.currentTimeMillis()));		// REGR_DTTM
+			}
+    		logger.info("insertSeaWakeRe [{}]", pstmt);
+    		
+    		int count = pstmt.executeUpdate();
+			logger.info("insertSeaWakeRe Insert Count : {}", count);
+			
+    	} else {
+    		logger.info("insertSeaWakeRe [DB Connection error!!]");
+    	}
+    }
+    
+    public void insertSeaWakeEx(Set set) throws SQLException {
+    	PreparedStatement pstmt = null;
+    	
+    	if (conn != null) {
+    		
+    		String sql = "INSERT INTO seaWakeEx"
+    				+ "(SEATIFFCD, IDNO, WRSHPNO, LOCTN, AZ"
+    				+ ", SPD, WARSBLCD, REGR_DTTM)"
+    				+ " VALUES (?,?,?,?,?,?,?,?)";
+    		
+    		LinkedHashMap<Integer, Field> map = set.getFieldMap();
+    		pstmt = conn.prepareStatement(sql);
+    		
+			for (Object key : map.keySet()) {
+				Field field = map.get(key);
+				
+				switch (field.getName()) {
+					case "SEATIFFCD" :
+						pstmt.setString(1, field.getValue());
+						break;
+					case "IDNO" :
+						pstmt.setString(2, field.getValue());
+						break;
+					case "WRSHPNO" :
+						pstmt.setString(3, field.getValue());
+						break;
+					case "LOCTN" :
+						pstmt.setString(4, field.getValue());
+						break;
+					case "AZ" :
+						pstmt.setInt(5, Integer.parseInt(field.getValue()));
+						break;
+					case "SPD" :
+						pstmt.setFloat(6, Float.parseFloat(field.getValue()));
+						break;
+					case "WARSBLCD" :
+						pstmt.setString(7, field.getValue());
+						break;
+				}
+				
+				pstmt.setTimestamp(8, new java.sql.Timestamp(System.currentTimeMillis()));		// REGR_DTTM
+			}
+    		logger.info("insertSeaWakeEx [{}]", pstmt);
+    		
+    		int count = pstmt.executeUpdate();
+			logger.info("insertSeaWakeEx Insert Count : {}", count);
+			
+    	} else {
+    		logger.info("insertSeaWakeEx [DB Connection error!!]");
+    	}
+    }
 
 }

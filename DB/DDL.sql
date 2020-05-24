@@ -1,13 +1,13 @@
 CREATE TABLE mimsWake.clientConn (
 	CLIENT_CONN_ID 		INT 		not null AUTO_INCREMENT PRIMARY KEY	-- [PK] ID
-	, CONN_DTTM		VARCHAR(14)	not null	-- 접속일시
-	, CLIENT_CONN_IP	VARCHAR(10)	not null	-- 접속IP
+	, CONN_DTTM		TIMESTAMP	not null	-- 접속일시
+	, CLIENT_CONN_IP	VARCHAR(20)	not null	-- 접속IP
 	, MODE			VARCHAR(5)	not null	-- 접속모드(Group ID)
 	, MSG_TYPE		VARCHAR(5)	not null	-- 메시지종류 (Client ID)
 )
 
-CREATE TABLE mimsWake.airWake (
-	AIR_WAKE_ID		INT 		not null AUTO_INCREMENT PRIMARY KEY	-- [PK] ID 
+CREATE TABLE mimsWake.airWakeRe (
+	AIR_WAKE_RE_ID		INT 		not null AUTO_INCREMENT PRIMARY KEY	-- [PK] ID 
 	, ACFTNO		VARCHAR(10)	not null	-- 항공기번호
 	, ACFTFNFDVCD		VARCHAR(2)	not null	-- 항공기피아구분코드
 	, ALT			FLOAT(8,2)	not null	-- 고도 (F8.2)
@@ -18,7 +18,22 @@ CREATE TABLE mimsWake.airWake (
 	, KNDAP_NM 		VARCHAR(50)	not null	-- 항공기종명
 	, LTDLNGT_COORD		VARCHAR(50)	not null	-- 위경도좌표
 	, AZ			INT		not null	-- 방위각 (I4)
-	, REGR_DTTM		VARCHAR(14)	not null	-- [BASE] 등록일시
+	, REGR_DTTM		TIMESTAMP	not null	-- [BASE] 등록일시
+);
+
+CREATE TABLE mimsWake.airWakeEx (
+	AIR_WAKE_EX_ID		INT 		not null AUTO_INCREMENT PRIMARY KEY	-- [PK] ID 
+	, ACFTNO		VARCHAR(10)	not null	-- 항공기번호
+	, ACFTFNFDVCD		VARCHAR(2)	not null	-- 항공기피아구분코드
+	, ALT			FLOAT(8,2)	not null	-- 고도 (F8.2)
+	, ACFT_CNTUNT		INT				-- 항공기대수 (I7)
+	, CLSGN			VARCHAR(50)	not null	-- 호출부호
+	, TKOF_BASENO		VARCHAR(5)	not null	-- 이륙기지번호
+	, SPD			FLOAT(13,3)	not null	-- 속력 (F13.3)
+	, KNDAP_NM 		VARCHAR(50)	not null	-- 항공기종명
+	, LTDLNGT_COORD		VARCHAR(50)	not null	-- 위경도좌표
+	, AZ			INT		not null	-- 방위각 (I4)
+	, REGR_DTTM		TIMESTAMP	not null	-- [BASE] 등록일시
 );
 
 CREATE TABLE mimsWake.seaWakeRe (
@@ -35,8 +50,8 @@ CREATE TABLE mimsWake.seaWakeRe (
 	, SEATTGTKNDCD		VARCHAR(3)			-- 해상항적표적종류코드
 	, EFTV_DTTM		VARCHAR(14)			-- 유효일시 (DT)
 	, TRACRLTDCD		VARCHAR(1)			-- 항적실시간구분코드
-	, REGR_DTTM		VARCHAR(14)	not null	-- [BASE] 등록일시
-)
+	, REGR_DTTM		TIMESTAMP	not null	-- [BASE] 등록일시
+);
 
 CREATE TABLE mimsWake.seaWakeEx (
 	SEA_WAKE_EX_ID		INT 		not null AUTO_INCREMENT PRIMARY KEY	-- [PK] ID
@@ -47,5 +62,5 @@ CREATE TABLE mimsWake.seaWakeEx (
 	, AZ			INT				-- 방위각 (I4)
 	, SPD			FLOAT(13,3)			-- 속력 (F13.3)
 	, WARSBLCD		VARCHAR(15)			-- 군대부호코드
-	, REGR_DTTM		VARCHAR(14)	not null	-- [BASE] 등록일시
-)
+	, REGR_DTTM		TIMESTAMP	not null	-- [BASE] 등록일시
+);

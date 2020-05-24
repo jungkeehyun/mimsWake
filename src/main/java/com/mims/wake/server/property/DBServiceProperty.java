@@ -1,7 +1,5 @@
 package com.mims.wake.server.property;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
 

@@ -157,7 +157,7 @@ public class UserProperty {
 			if(_serviceProperties.isEmpty())
 				logger.info("Push service properties not found.");
 
-			// DB service
+			// Database Service
 			_dbProperty = new DBServiceProperty();
 			String drv = prop.getProperty("db.driverClassName");
 			String url = prop.getProperty("db.url");
