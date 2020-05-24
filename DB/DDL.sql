@@ -1,14 +1,13 @@
 CREATE TABLE mimsWake.clientConn (
-	CLIENT_CONN_ID		VARCHAR(15)	not null	-- [PK] ID
+	CLIENT_CONN_ID 		INT 		not null AUTO_INCREMENT PRIMARY KEY	-- [PK] ID
 	, CONN_DTTM		VARCHAR(14)	not null	-- 접속일시
 	, CLIENT_CONN_IP	VARCHAR(10)	not null	-- 접속IP
 	, MODE			VARCHAR(5)	not null	-- 접속모드(Group ID)
 	, MSG_TYPE		VARCHAR(5)	not null	-- 메시지종류 (Client ID)
-	, REGR_DTTM		VARCHAR(14)	not null	-- [BASE] 등록일시
 )
 
 CREATE TABLE mimsWake.airWake (
-	AIR_WAKE_ID		VARCHAR (15)	not null	-- [PK] ID 
+	AIR_WAKE_ID		INT 		not null AUTO_INCREMENT PRIMARY KEY	-- [PK] ID 
 	, ACFTNO		VARCHAR(10)	not null	-- 항공기번호
 	, ACFTFNFDVCD		VARCHAR(2)	not null	-- 항공기피아구분코드
 	, ALT			FLOAT(8,2)	not null	-- 고도 (F8.2)
@@ -23,7 +22,7 @@ CREATE TABLE mimsWake.airWake (
 );
 
 CREATE TABLE mimsWake.seaWakeRe (
-	SEA_WAKE_RE_ID		VARCHAR(15)	not null	-- ID (PK)
+	SEA_WAKE_RE_ID		INT 		not null AUTO_INCREMENT PRIMARY KEY	-- [PK] ID
 	, SEATIFFCD		VARCHAR(1)	not null	-- 해상항적피아식별코드
 	, IDNO			VARCHAR(15)			-- 식별번호
 	, WRSHPNO		VARCHAR(10)	not null	-- 함정번호
@@ -40,7 +39,7 @@ CREATE TABLE mimsWake.seaWakeRe (
 )
 
 CREATE TABLE mimsWake.seaWakeEx (
-	SEA_WAKE_EX_ID		VARCHAR(15)	not null	-- ID (PK)
+	SEA_WAKE_EX_ID		INT 		not null AUTO_INCREMENT PRIMARY KEY	-- [PK] ID
 	, SEATIFFCD		VARCHAR(1)	not null	-- 해상항적피아식별코드
 	, IDNO			VARCHAR(15)			-- 식별번호
 	, WRSHPNO		VARCHAR(10)	not null	-- 함정번호
