@@ -76,14 +76,15 @@ $java -jar websocket.war
 
 # Packaging
 * pkg
-./bin
-./bin/websocket.war [실행파일]
-./config
-./config/default.properties [서비스 설정파일]
-./config/log4j2.xml [로그 설정파일]
-./logs
-./logs/mimsWakeApp.log [로그파일]
-./mimsWakeDo.sh [Start/Stop Script]
-./SharedStorage [File Read/Write]
-./tmp [기타]
+* ./bin
+* ./bin/websocket.war [실행파일]
+* ./config
+* ./config/default.properties [서비스 설정파일]
+* ./config/log4j2.xml [로그 설정파일]
+* ./logs
+* ./logs/mimsWakeApp.log [로그파일]
+* ./mimsWakeDo.sh [Start/Stop Script]
+* ./SharedStorage [File Read/Write]
+* ./tmp [기타]
+*
 * Usage: ./mimsWakeDo.sh { start | stop | restart | status }
