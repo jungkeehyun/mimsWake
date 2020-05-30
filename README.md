@@ -56,14 +56,6 @@ A spring boot application + websocket/tcp (by netty)
 
 $java -jar sendTcpMsg/sendWake_0.4.jar --spring.config.location=file:application-sw.properties --sendWake.type={TYPE}
 
-
-# running in console (콘솔에서 실행)
-$mvn clean package
-
-$cd target
-
-$java -jar websocket.war
-
 # port that this app use
 * InBound  TCP  : 13100
 * InBound  File : ~/SharedStorage
@@ -73,6 +65,11 @@ $java -jar websocket.war
 
 # SSL - netty에서 KEY 파일만 pkcs8 포맷 변환
 * openssl pkcs8 -topk8 -inform PEM -outform PEM -in service.key -out service.pkcs8.key -nocrypt
+
+# Building
+* ./build.sh
+* -- /Volumes/Data\ Storage/WORKSPACE/mimsWake/mvnw clean package
+* -- cp target/bin/websocket.war pkg/websocket.war
 
 # Packaging
 * pkg
