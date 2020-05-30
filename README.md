@@ -73,3 +73,17 @@ $java -jar websocket.war
 
 # SSL - netty에서 KEY 파일만 pkcs8 포맷 변환
 * openssl pkcs8 -topk8 -inform PEM -outform PEM -in service.key -out service.pkcs8.key -nocrypt
+
+# Packaging
+* pkg
+./bin
+./bin/websocket.war [실행파일]
+./config
+./config/default.properties [서비스 설정파일]
+./config/log4j2.xml [로그 설정파일]
+./logs
+./logs/mimsWakeApp.log [로그파일]
+./mimsWakeDo.sh [Start/Stop Script]
+./SharedStorage [File Read/Write]
+./tmp [기타]
+* Usage: ./mimsWakeDo.sh { start | stop | restart | status }
