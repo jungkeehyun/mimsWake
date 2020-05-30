@@ -1,0 +1,2188 @@
+2020-05-30 15시 41분 52초: START
+2020-05-30 15:41:54,373 main INFO Log4j appears to be running in a Servlet environment, but there's no log4j-web module available. If you want better web container support, please add the log4j-web JAR to your web archive or server lib directory.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.5.2.RELEASE)
+
+java.io.FileNotFoundException: default.properties (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at java.io.FileReader.<init>(FileReader.java:58)
+	at com.mims.wake.server.property.UserProperty.readPrpoerties(UserProperty.java:59)
+	at com.mims.wake.MimsWakeApplication.run(MimsWakeApplication.java:64)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:776)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:760)
+	at org.springframework.boot.SpringApplication.afterRefresh(SpringApplication.java:747)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1162)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1151)
+	at com.mims.wake.MimsWakeApplication.main(MimsWakeApplication.java:40)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.WarLauncher.main(WarLauncher.java:59)
+2020-05-30 15:42:00 ERROR startup failed
+java.lang.NullPointerException: null
+	at java.util.Properties$LineReader.readLine(Properties.java:434) ~[?:1.8.0_231]
+	at java.util.Properties.load0(Properties.java:353) ~[?:1.8.0_231]
+	at java.util.Properties.load(Properties.java:317) ~[?:1.8.0_231]
+	at com.mims.wake.server.property.UserProperty.readPrpoerties(UserProperty.java:66) ~[classes!/:0.0.1-SNAPSHOT]
+	at com.mims.wake.MimsWakeApplication.run(MimsWakeApplication.java:64) [classes!/:0.0.1-SNAPSHOT]
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:776) [spring-boot-1.5.2.RELEASE.jar!/:1.5.2.RELEASE]
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:760) [spring-boot-1.5.2.RELEASE.jar!/:1.5.2.RELEASE]
+	at org.springframework.boot.SpringApplication.afterRefresh(SpringApplication.java:747) [spring-boot-1.5.2.RELEASE.jar!/:1.5.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315) [spring-boot-1.5.2.RELEASE.jar!/:1.5.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1162) [spring-boot-1.5.2.RELEASE.jar!/:1.5.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1151) [spring-boot-1.5.2.RELEASE.jar!/:1.5.2.RELEASE]
+	at com.mims.wake.MimsWakeApplication.main(MimsWakeApplication.java:40) [classes!/:0.0.1-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48) [websocket.war:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87) [websocket.war:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50) [websocket.war:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.WarLauncher.main(WarLauncher.java:59) [websocket.war:0.0.1-SNAPSHOT]
+2020-05-30 15:42:00 ERROR startup failed
+java.lang.NullPointerException: null
+	at java.util.Properties$LineReader.readLine(Properties.java:434) ~[?:1.8.0_231]
+	at java.util.Properties.load0(Properties.java:353) ~[?:1.8.0_231]
+	at java.util.Properties.load(Properties.java:317) ~[?:1.8.0_231]
+	at com.mims.wake.server.property.UserProperty.readPrpoerties(UserProperty.java:66) ~[classes!/:0.0.1-SNAPSHOT]
+	at com.mims.wake.MimsWakeApplication.run(MimsWakeApplication.java:64) [classes!/:0.0.1-SNAPSHOT]
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:776) [spring-boot-1.5.2.RELEASE.jar!/:1.5.2.RELEASE]
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:760) [spring-boot-1.5.2.RELEASE.jar!/:1.5.2.RELEASE]
+	at org.springframework.boot.SpringApplication.afterRefresh(SpringApplication.java:747) [spring-boot-1.5.2.RELEASE.jar!/:1.5.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315) [spring-boot-1.5.2.RELEASE.jar!/:1.5.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1162) [spring-boot-1.5.2.RELEASE.jar!/:1.5.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1151) [spring-boot-1.5.2.RELEASE.jar!/:1.5.2.RELEASE]
+	at com.mims.wake.MimsWakeApplication.main(MimsWakeApplication.java:40) [classes!/:0.0.1-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48) [websocket.war:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87) [websocket.war:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50) [websocket.war:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.WarLauncher.main(WarLauncher.java:59) [websocket.war:0.0.1-SNAPSHOT]
+Exception in thread "pool-1-thread-1" java.lang.NoClassDefFoundError: org/apache/logging/log4j/message/ParameterizedMessage
+	at org.apache.logging.log4j.message.ParameterizedNoReferenceMessageFactory.newMessage(ParameterizedNoReferenceMessageFactory.java:104)
+	at org.apache.logging.log4j.message.AbstractMessageFactory.newMessage(AbstractMessageFactory.java:75)
+	at org.apache.logging.log4j.spi.AbstractLogger.logMessage(AbstractLogger.java:2010)
+	at org.apache.logging.log4j.spi.AbstractLogger.logIfEnabled(AbstractLogger.java:1884)
+	at org.apache.logging.log4j.spi.AbstractLogger.error(AbstractLogger.java:793)
+	at org.apache.logging.log4j.core.util.DefaultShutdownCallbackRegistry.run(DefaultShutdownCallbackRegistry.java:76)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.ClassNotFoundException: org.apache.logging.log4j.message.ParameterizedMessage
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:382)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:418)
+	at org.springframework.boot.loader.LaunchedURLClassLoader.loadClass(LaunchedURLClassLoader.java:94)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
+	... 7 more
+2020-05-30 15시 43분 42초: STOP
+Exception in thread "Thread-5" java.lang.NoClassDefFoundError: org/apache/catalina/Lifecycle$SingleUse
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:240)
+	at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:353)
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.stopTomcat(TomcatEmbeddedServletContainer.java:238)
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.stop(TomcatEmbeddedServletContainer.java:292)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.stopAndReleaseEmbeddedServletContainer(EmbeddedWebApplicationContext.java:306)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.onClose(EmbeddedWebApplicationContext.java:155)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1015)
+	at org.springframework.context.support.AbstractApplicationContext$2.run(AbstractApplicationContext.java:928)
+2020-05-30 15시 43분 48초: START
+2020-05-30 15:43:49,971 main INFO Log4j appears to be running in a Servlet environment, but there's no log4j-web module available. If you want better web container support, please add the log4j-web JAR to your web archive or server lib directory.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.5.2.RELEASE)
+
+2020-05-30 15:43:56 ERROR [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 15:43:56 ERROR [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 15시 44분 55초: STOP
+2020-05-30 15시 46분 37초: START
+2020-05-30 15:46:39,028 main INFO Log4j appears to be running in a Servlet environment, but there's no log4j-web module available. If you want better web container support, please add the log4j-web JAR to your web archive or server lib directory.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.5.2.RELEASE)
+
+2020-05-30 15:46:45 ERROR [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 15:46:45 ERROR [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 15시 49분 40초: STOP
+2020-05-30 15시 50분 05초: START
+2020-05-30 15:50:07,253 main INFO Log4j appears to be running in a Servlet environment, but there's no log4j-web module available. If you want better web container support, please add the log4j-web JAR to your web archive or server lib directory.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.5.2.RELEASE)
+
+2020-05-30 15:50:13 ERROR [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 15:50:13 ERROR [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 15시 51분 12초: STOP
+2020-05-30 15시 56분 46초: START
+2020-05-30 15:56:48,504 main INFO Log4j appears to be running in a Servlet environment, but there's no log4j-web module available. If you want better web container support, please add the log4j-web JAR to your web archive or server lib directory.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.5.2.RELEASE)
+
+2020-05-30 15:56:54 ERROR [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 15:56:54 ERROR [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 15시 57분 40초: STOP
+2020-05-30 15시 57분 45초: START
+2020-05-30 15:57:46 INFO ■□■□■MIM Wake Websocket Server Start■□■□■
+2020-05-30 15:57:46 INFO ■□■□■MIM Wake Websocket Server Start■□■□■
+2020-05-30 15:57:46,865 main INFO Log4j appears to be running in a Servlet environment, but there's no log4j-web module available. If you want better web container support, please add the log4j-web JAR to your web archive or server lib directory.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.5.2.RELEASE)
+
+2020-05-30 15:57:47 INFO Starting MimsWakeApplication v0.0.1-SNAPSHOT on Gomaui-MacBook-Pro.local with PID 6043 (/Volumes/Data Storage/WORKSPACE/mimsWake/pkg/websocket.war started by goma in /Volumes/Data Storage/WORKSPACE/mimsWake/pkg)
+2020-05-30 15:57:47 INFO Starting MimsWakeApplication v0.0.1-SNAPSHOT on Gomaui-MacBook-Pro.local with PID 6043 (/Volumes/Data Storage/WORKSPACE/mimsWake/pkg/websocket.war started by goma in /Volumes/Data Storage/WORKSPACE/mimsWake/pkg)
+2020-05-30 15:57:47 INFO No active profile set, falling back to default profiles: default
+2020-05-30 15:57:47 INFO No active profile set, falling back to default profiles: default
+2020-05-30 15:57:47 INFO Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@14899482: startup date [Sat May 30 15:57:47 KST 2020]; root of context hierarchy
+2020-05-30 15:57:47 INFO Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@14899482: startup date [Sat May 30 15:57:47 KST 2020]; root of context hierarchy
+2020-05-30 15:57:47 INFO HV000001: Hibernate Validator 5.3.4.Final
+2020-05-30 15:57:47 INFO HV000001: Hibernate Validator 5.3.4.Final
+2020-05-30 15:57:48 INFO Loading XML bean definitions from URL [jar:file:/Volumes/Data%20Storage/WORKSPACE/mimsWake/pkg/websocket.war!/WEB-INF/classes!/application-config.xml]
+2020-05-30 15:57:48 INFO Loading XML bean definitions from URL [jar:file:/Volumes/Data%20Storage/WORKSPACE/mimsWake/pkg/websocket.war!/WEB-INF/classes!/application-config.xml]
+2020-05-30 15:57:49 INFO Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$f7f43a5e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-30 15:57:49 INFO Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$f7f43a5e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-30 15:57:50 INFO Tomcat initialized with port(s): 8080 (http)
+2020-05-30 15:57:50 INFO Tomcat initialized with port(s): 8080 (http)
+2020-05-30 15:57:50 INFO Starting service Tomcat
+2020-05-30 15:57:50 INFO Starting service Tomcat
+2020-05-30 15:57:50 INFO Starting Servlet Engine: Apache Tomcat/8.5.11
+2020-05-30 15:57:50 INFO Starting Servlet Engine: Apache Tomcat/8.5.11
+2020-05-30 15:57:51 INFO Initializing Spring embedded WebApplicationContext
+2020-05-30 15:57:51 INFO Initializing Spring embedded WebApplicationContext
+2020-05-30 15:57:51 INFO Root WebApplicationContext: initialization completed in 4171 ms
+2020-05-30 15:57:51 INFO Root WebApplicationContext: initialization completed in 4171 ms
+2020-05-30 15:57:51 INFO Mapping servlet: 'dispatcherServlet' to [/]
+2020-05-30 15:57:51 INFO Mapping servlet: 'dispatcherServlet' to [/]
+2020-05-30 15:57:51 INFO Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-05-30 15:57:51 INFO Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-05-30 15:57:51 INFO Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-05-30 15:57:51 INFO Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-05-30 15:57:51 INFO Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-05-30 15:57:51 INFO Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-05-30 15:57:51 INFO Mapping filter: 'requestContextFilter' to: [/*]
+2020-05-30 15:57:51 INFO Mapping filter: 'requestContextFilter' to: [/*]
+2020-05-30 15:57:52 INFO Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@14899482: startup date [Sat May 30 15:57:47 KST 2020]; root of context hierarchy
+2020-05-30 15:57:52 INFO Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@14899482: startup date [Sat May 30 15:57:47 KST 2020]; root of context hierarchy
+2020-05-30 15:57:52 INFO Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-05-30 15:57:52 INFO Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-05-30 15:57:52 INFO Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-05-30 15:57:52 INFO Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-05-30 15:57:52 INFO Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 15:57:52 INFO Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 15:57:52 INFO Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 15:57:52 INFO Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 15:57:52 INFO Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 15:57:52 INFO Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 15:57:53 INFO Registering beans for JMX exposure on startup
+2020-05-30 15:57:53 INFO Registering beans for JMX exposure on startup
+2020-05-30 15:57:53 INFO Initializing ProtocolHandler ["http-nio-8080"]
+2020-05-30 15:57:53 INFO Initializing ProtocolHandler ["http-nio-8080"]
+2020-05-30 15:57:53 INFO Starting ProtocolHandler [http-nio-8080]
+2020-05-30 15:57:53 INFO Starting ProtocolHandler [http-nio-8080]
+2020-05-30 15:57:53 INFO Using a shared selector for servlet write/read
+2020-05-30 15:57:53 INFO Using a shared selector for servlet write/read
+2020-05-30 15:57:53 INFO Tomcat started on port(s): 8080 (http)
+2020-05-30 15:57:53 INFO Tomcat started on port(s): 8080 (http)
+2020-05-30 15:57:53 INFO Wake Push Server STARTING...
+2020-05-30 15:57:53 INFO Wake Push Server STARTING...
+2020-05-30 15:57:53 INFO [certFile] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.crt
+2020-05-30 15:57:53 INFO [certFile] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.crt
+2020-05-30 15:57:53 INFO [privateKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.pkcs8.key
+2020-05-30 15:57:53 INFO [privateKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.pkcs8.key
+2020-05-30 15:57:53 INFO [caKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/rootCA.pem
+2020-05-30 15:57:53 INFO [caKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/rootCA.pem
+2020-05-30 15:57:53 ERROR [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 15:57:53 ERROR [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 15:57:53 INFO [OutboundServer:server.tcpsocket] starting...
+2020-05-30 15:57:53 INFO [OutboundServer:server.tcpsocket] starting...
+2020-05-30 15:57:53 INFO [id: 0xa70b2fc0] REGISTERED
+2020-05-30 15:57:53 INFO [id: 0xa70b2fc0] REGISTERED
+2020-05-30 15:57:53 INFO [id: 0xa70b2fc0] BIND: 0.0.0.0/0.0.0.0:13101
+2020-05-30 15:57:53 INFO [id: 0xa70b2fc0] BIND: 0.0.0.0/0.0.0.0:13101
+2020-05-30 15:57:53 INFO [OutboundServer:server.tcpsocket] started, listening on port 13101
+2020-05-30 15:57:53 INFO [OutboundServer:server.tcpsocket] started, listening on port 13101
+2020-05-30 15:57:53 INFO [OutboundServer:client.websocket] starting...
+2020-05-30 15:57:53 INFO [OutboundServer:client.websocket] starting...
+2020-05-30 15:57:53 INFO [id: 0xa70b2fc0, L:/0:0:0:0:0:0:0:0:13101] ACTIVE
+2020-05-30 15:57:53 INFO [id: 0xa70b2fc0, L:/0:0:0:0:0:0:0:0:13101] ACTIVE
+2020-05-30 15:57:53 INFO [id: 0x21526567] REGISTERED
+2020-05-30 15:57:53 INFO [id: 0x21526567] REGISTERED
+2020-05-30 15:57:53 INFO [id: 0x21526567] BIND: 0.0.0.0/0.0.0.0:13102
+2020-05-30 15:57:53 INFO [id: 0x21526567] BIND: 0.0.0.0/0.0.0.0:13102
+2020-05-30 15:57:53 INFO [id: 0x21526567, L:/0:0:0:0:0:0:0:0:13102] ACTIVE
+2020-05-30 15:57:53 INFO [id: 0x21526567, L:/0:0:0:0:0:0:0:0:13102] ACTIVE
+2020-05-30 15:57:53 INFO [OutboundServer:client.websocket] started, listening on port 13102
+2020-05-30 15:57:53 INFO [OutboundServer:client.websocket] started, listening on port 13102
+2020-05-30 15:57:53 INFO [InboundQueueThread:server.tcpsocket] started
+2020-05-30 15:57:53 INFO [InboundQueueThread:client.websocket] started
+2020-05-30 15:57:53 INFO [InboundQueueThread:server.tcpsocket] started
+2020-05-30 15:57:53 INFO [InboundQueueThread:client.websocket] started
+2020-05-30 15:57:53 INFO [OutboundQueueCheckerThread] started [interval: 5]
+2020-05-30 15:57:53 INFO [OutboundQueueCheckerThread] started [interval: 5]
+2020-05-30 15:57:53 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:57:53 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:57:53 INFO [InboundQueueCheckerThread] started [interval: 5]
+2020-05-30 15:57:53 INFO [InboundQueueCheckerThread] started [interval: 5]
+2020-05-30 15:57:53 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:57:53 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:57:53 INFO [InboundServer] starting...
+2020-05-30 15:57:53 INFO [InboundServer] starting...
+2020-05-30 15:57:53 INFO [id: 0x0e96efea] REGISTERED
+2020-05-30 15:57:53 INFO [id: 0x0e96efea] REGISTERED
+2020-05-30 15:57:53 INFO [id: 0x0e96efea] BIND: 0.0.0.0/0.0.0.0:13100
+2020-05-30 15:57:53 INFO [id: 0x0e96efea] BIND: 0.0.0.0/0.0.0.0:13100
+2020-05-30 15:57:53 INFO [id: 0x0e96efea, L:/0:0:0:0:0:0:0:0:13100] ACTIVE
+2020-05-30 15:57:53 INFO [id: 0x0e96efea, L:/0:0:0:0:0:0:0:0:13100] ACTIVE
+2020-05-30 15:57:53 INFO [InboundServer] started, listening on port 13100
+2020-05-30 15:57:53 INFO [InboundServer] started, listening on port 13100
+2020-05-30 15:57:53 INFO [simple-push-server] startup complete.... >>>>>>>>>> TCPSOCKET
+2020-05-30 15:57:53 INFO [simple-push-server] startup complete.... >>>>>>>>>> TCPSOCKET
+2020-05-30 15:57:53 INFO @@com.mysql.cj.jdbc.Driver
+2020-05-30 15:57:53 INFO @@com.mysql.cj.jdbc.Driver
+2020-05-30 15:57:53 INFO @@root
+2020-05-30 15:57:53 INFO @@root
+2020-05-30 15:57:53 INFO @@dosa
+2020-05-30 15:57:53 INFO @@dosa
+2020-05-30 15:57:53 INFO @@jdbc:mysql://localhost:3306/mimsWake?charsetEncoding=UTF-8&serverTimezone=UTC
+2020-05-30 15:57:53 INFO @@jdbc:mysql://localhost:3306/mimsWake?charsetEncoding=UTF-8&serverTimezone=UTC
+2020-05-30 15:57:54 INFO DATABASE Connect Success
+2020-05-30 15:57:54 INFO DATABASE Connect Success
+2020-05-30 15:57:54 INFO [simple-push-server] DB open
+2020-05-30 15:57:54 INFO [simple-push-server] DB open
+2020-05-30 15:57:58 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:57:58 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:57:58 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:57:58 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:03 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:03 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:03 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:03 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:08 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:08 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:08 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:08 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:13 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:13 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:13 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:13 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:18 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:18 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:18 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:18 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:23 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:23 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:23 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:23 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:28 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:28 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:28 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:28 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:33 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:33 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:33 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:33 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:34 INFO Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@14899482: startup date [Sat May 30 15:57:47 KST 2020]; root of context hierarchy
+2020-05-30 15:58:34 INFO Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@14899482: startup date [Sat May 30 15:57:47 KST 2020]; root of context hierarchy
+2020-05-30 15시 58분 34초: STOP
+2020-05-30 15시 58분 38초: START
+2020-05-30 15:58:39 INFO ■□■□■MIM Wake Websocket Server Start■□■□■
+2020-05-30 15:58:39 INFO ■□■□■MIM Wake Websocket Server Start■□■□■
+2020-05-30 15:58:40,529 main INFO Log4j appears to be running in a Servlet environment, but there's no log4j-web module available. If you want better web container support, please add the log4j-web JAR to your web archive or server lib directory.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.5.2.RELEASE)
+
+2020-05-30 15:58:40 INFO Starting MimsWakeApplication v0.0.1-SNAPSHOT on Gomaui-MacBook-Pro.local with PID 6071 (/Volumes/Data Storage/WORKSPACE/mimsWake/pkg/websocket.war started by goma in /Volumes/Data Storage/WORKSPACE/mimsWake/pkg)
+2020-05-30 15:58:40 INFO Starting MimsWakeApplication v0.0.1-SNAPSHOT on Gomaui-MacBook-Pro.local with PID 6071 (/Volumes/Data Storage/WORKSPACE/mimsWake/pkg/websocket.war started by goma in /Volumes/Data Storage/WORKSPACE/mimsWake/pkg)
+2020-05-30 15:58:40 INFO No active profile set, falling back to default profiles: default
+2020-05-30 15:58:40 INFO No active profile set, falling back to default profiles: default
+2020-05-30 15:58:40 INFO Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2aae9190: startup date [Sat May 30 15:58:40 KST 2020]; root of context hierarchy
+2020-05-30 15:58:40 INFO Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2aae9190: startup date [Sat May 30 15:58:40 KST 2020]; root of context hierarchy
+2020-05-30 15:58:41 INFO HV000001: Hibernate Validator 5.3.4.Final
+2020-05-30 15:58:41 INFO HV000001: Hibernate Validator 5.3.4.Final
+2020-05-30 15:58:42 INFO Loading XML bean definitions from URL [jar:file:/Volumes/Data%20Storage/WORKSPACE/mimsWake/pkg/websocket.war!/WEB-INF/classes!/application-config.xml]
+2020-05-30 15:58:42 INFO Loading XML bean definitions from URL [jar:file:/Volumes/Data%20Storage/WORKSPACE/mimsWake/pkg/websocket.war!/WEB-INF/classes!/application-config.xml]
+2020-05-30 15:58:43 INFO Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$f7f43a5e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-30 15:58:43 INFO Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$f7f43a5e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-30 15:58:43 INFO Tomcat initialized with port(s): 8080 (http)
+2020-05-30 15:58:43 INFO Tomcat initialized with port(s): 8080 (http)
+2020-05-30 15:58:43 INFO Starting service Tomcat
+2020-05-30 15:58:43 INFO Starting service Tomcat
+2020-05-30 15:58:43 INFO Starting Servlet Engine: Apache Tomcat/8.5.11
+2020-05-30 15:58:43 INFO Starting Servlet Engine: Apache Tomcat/8.5.11
+2020-05-30 15:58:45 INFO Initializing Spring embedded WebApplicationContext
+2020-05-30 15:58:45 INFO Initializing Spring embedded WebApplicationContext
+2020-05-30 15:58:45 INFO Root WebApplicationContext: initialization completed in 4131 ms
+2020-05-30 15:58:45 INFO Root WebApplicationContext: initialization completed in 4131 ms
+2020-05-30 15:58:45 INFO Mapping servlet: 'dispatcherServlet' to [/]
+2020-05-30 15:58:45 INFO Mapping servlet: 'dispatcherServlet' to [/]
+2020-05-30 15:58:45 INFO Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-05-30 15:58:45 INFO Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-05-30 15:58:45 INFO Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-05-30 15:58:45 INFO Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-05-30 15:58:45 INFO Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-05-30 15:58:45 INFO Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-05-30 15:58:45 INFO Mapping filter: 'requestContextFilter' to: [/*]
+2020-05-30 15:58:45 INFO Mapping filter: 'requestContextFilter' to: [/*]
+2020-05-30 15:58:45 INFO Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2aae9190: startup date [Sat May 30 15:58:40 KST 2020]; root of context hierarchy
+2020-05-30 15:58:45 INFO Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2aae9190: startup date [Sat May 30 15:58:40 KST 2020]; root of context hierarchy
+2020-05-30 15:58:46 INFO Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-05-30 15:58:46 INFO Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-05-30 15:58:46 INFO Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-05-30 15:58:46 INFO Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-05-30 15:58:46 INFO Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 15:58:46 INFO Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 15:58:46 INFO Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 15:58:46 INFO Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 15:58:46 INFO Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 15:58:46 INFO Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 15:58:46 INFO Registering beans for JMX exposure on startup
+2020-05-30 15:58:46 INFO Registering beans for JMX exposure on startup
+2020-05-30 15:58:46 INFO Initializing ProtocolHandler ["http-nio-8080"]
+2020-05-30 15:58:46 INFO Initializing ProtocolHandler ["http-nio-8080"]
+2020-05-30 15:58:46 INFO Starting ProtocolHandler [http-nio-8080]
+2020-05-30 15:58:46 INFO Starting ProtocolHandler [http-nio-8080]
+2020-05-30 15:58:46 INFO Using a shared selector for servlet write/read
+2020-05-30 15:58:46 INFO Using a shared selector for servlet write/read
+2020-05-30 15:58:46 INFO Tomcat started on port(s): 8080 (http)
+2020-05-30 15:58:46 INFO Tomcat started on port(s): 8080 (http)
+2020-05-30 15:58:46 INFO Wake Push Server STARTING...
+2020-05-30 15:58:46 INFO Wake Push Server STARTING...
+2020-05-30 15:58:46 INFO [certFile] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.crt
+2020-05-30 15:58:46 INFO [certFile] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.crt
+2020-05-30 15:58:46 INFO [privateKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.pkcs8.key
+2020-05-30 15:58:46 INFO [privateKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.pkcs8.key
+2020-05-30 15:58:46 INFO [caKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/rootCA.pem
+2020-05-30 15:58:46 INFO [caKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/rootCA.pem
+2020-05-30 15:58:46 ERROR [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 15:58:46 ERROR [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 15:58:46 INFO [OutboundServer:server.tcpsocket] starting...
+2020-05-30 15:58:46 INFO [OutboundServer:server.tcpsocket] starting...
+2020-05-30 15:58:47 INFO [id: 0x183a0542] REGISTERED
+2020-05-30 15:58:47 INFO [id: 0x183a0542] REGISTERED
+2020-05-30 15:58:47 INFO [id: 0x183a0542] BIND: 0.0.0.0/0.0.0.0:13101
+2020-05-30 15:58:47 INFO [id: 0x183a0542] BIND: 0.0.0.0/0.0.0.0:13101
+2020-05-30 15:58:47 INFO [id: 0x183a0542, L:/0:0:0:0:0:0:0:0:13101] ACTIVE
+2020-05-30 15:58:47 INFO [id: 0x183a0542, L:/0:0:0:0:0:0:0:0:13101] ACTIVE
+2020-05-30 15:58:47 INFO [OutboundServer:server.tcpsocket] started, listening on port 13101
+2020-05-30 15:58:47 INFO [OutboundServer:server.tcpsocket] started, listening on port 13101
+2020-05-30 15:58:47 INFO [OutboundServer:client.websocket] starting...
+2020-05-30 15:58:47 INFO [OutboundServer:client.websocket] starting...
+2020-05-30 15:58:47 INFO [id: 0x125cc5e1] REGISTERED
+2020-05-30 15:58:47 INFO [id: 0x125cc5e1] REGISTERED
+2020-05-30 15:58:47 INFO [id: 0x125cc5e1] BIND: 0.0.0.0/0.0.0.0:13102
+2020-05-30 15:58:47 INFO [id: 0x125cc5e1] BIND: 0.0.0.0/0.0.0.0:13102
+2020-05-30 15:58:47 INFO [id: 0x125cc5e1, L:/0:0:0:0:0:0:0:0:13102] ACTIVE
+2020-05-30 15:58:47 INFO [id: 0x125cc5e1, L:/0:0:0:0:0:0:0:0:13102] ACTIVE
+2020-05-30 15:58:47 INFO [OutboundServer:client.websocket] started, listening on port 13102
+2020-05-30 15:58:47 INFO [OutboundServer:client.websocket] started, listening on port 13102
+2020-05-30 15:58:47 INFO [InboundQueueThread:client.websocket] started
+2020-05-30 15:58:47 INFO [InboundQueueThread:server.tcpsocket] started
+2020-05-30 15:58:47 INFO [InboundQueueThread:client.websocket] started
+2020-05-30 15:58:47 INFO [InboundQueueThread:server.tcpsocket] started
+2020-05-30 15:58:47 INFO [OutboundQueueCheckerThread] started [interval: 5]
+2020-05-30 15:58:47 INFO [OutboundQueueCheckerThread] started [interval: 5]
+2020-05-30 15:58:47 INFO [InboundQueueCheckerThread] started [interval: 5]
+2020-05-30 15:58:47 INFO [InboundQueueCheckerThread] started [interval: 5]
+2020-05-30 15:58:47 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:47 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:47 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:47 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:47 INFO [InboundServer] starting...
+2020-05-30 15:58:47 INFO [InboundServer] starting...
+2020-05-30 15:58:47 INFO [id: 0xb0c24a3b] REGISTERED
+2020-05-30 15:58:47 INFO [id: 0xb0c24a3b] REGISTERED
+2020-05-30 15:58:47 INFO [id: 0xb0c24a3b] BIND: 0.0.0.0/0.0.0.0:13100
+2020-05-30 15:58:47 INFO [id: 0xb0c24a3b] BIND: 0.0.0.0/0.0.0.0:13100
+2020-05-30 15:58:47 INFO [id: 0xb0c24a3b, L:/0:0:0:0:0:0:0:0:13100] ACTIVE
+2020-05-30 15:58:47 INFO [id: 0xb0c24a3b, L:/0:0:0:0:0:0:0:0:13100] ACTIVE
+2020-05-30 15:58:47 INFO [InboundServer] started, listening on port 13100
+2020-05-30 15:58:47 INFO [InboundServer] started, listening on port 13100
+2020-05-30 15:58:47 INFO [simple-push-server] startup complete.... >>>>>>>>>> TCPSOCKET
+2020-05-30 15:58:47 INFO [simple-push-server] startup complete.... >>>>>>>>>> TCPSOCKET
+2020-05-30 15:58:47 INFO @@com.mysql.cj.jdbc.Driver
+2020-05-30 15:58:47 INFO @@com.mysql.cj.jdbc.Driver
+2020-05-30 15:58:47 INFO @@root
+2020-05-30 15:58:47 INFO @@root
+2020-05-30 15:58:47 INFO @@dosa
+2020-05-30 15:58:47 INFO @@dosa
+2020-05-30 15:58:47 INFO @@jdbc:mysql://localhost:3306/mimsWake?charsetEncoding=UTF-8&serverTimezone=UTC
+2020-05-30 15:58:47 INFO @@jdbc:mysql://localhost:3306/mimsWake?charsetEncoding=UTF-8&serverTimezone=UTC
+2020-05-30 15:58:48 INFO DATABASE Connect Success
+2020-05-30 15:58:48 INFO DATABASE Connect Success
+2020-05-30 15:58:48 INFO [simple-push-server] DB open
+2020-05-30 15:58:48 INFO [simple-push-server] DB open
+2020-05-30 15:58:52 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:52 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:52 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:52 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:57 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:57 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:58:57 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:58:57 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:00 INFO Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2aae9190: startup date [Sat May 30 15:58:40 KST 2020]; root of context hierarchy
+2020-05-30 15:59:00 INFO Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2aae9190: startup date [Sat May 30 15:58:40 KST 2020]; root of context hierarchy
+2020-05-30 15시 59분 00초: STOP
+2020-05-30 15시 59분 05초: START
+2020-05-30 15:59:07 INFO ■□■□■MIM Wake Websocket Server Start■□■□■
+2020-05-30 15:59:07 INFO ■□■□■MIM Wake Websocket Server Start■□■□■
+2020-05-30 15:59:07,627 main INFO Log4j appears to be running in a Servlet environment, but there's no log4j-web module available. If you want better web container support, please add the log4j-web JAR to your web archive or server lib directory.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.5.2.RELEASE)
+
+2020-05-30 15:59:07 INFO Starting MimsWakeApplication v0.0.1-SNAPSHOT on Gomaui-MacBook-Pro.local with PID 6099 (/Volumes/Data Storage/WORKSPACE/mimsWake/pkg/websocket.war started by goma in /Volumes/Data Storage/WORKSPACE/mimsWake/pkg)
+2020-05-30 15:59:07 INFO Starting MimsWakeApplication v0.0.1-SNAPSHOT on Gomaui-MacBook-Pro.local with PID 6099 (/Volumes/Data Storage/WORKSPACE/mimsWake/pkg/websocket.war started by goma in /Volumes/Data Storage/WORKSPACE/mimsWake/pkg)
+2020-05-30 15:59:07 INFO No active profile set, falling back to default profiles: default
+2020-05-30 15:59:07 INFO No active profile set, falling back to default profiles: default
+2020-05-30 15:59:08 INFO Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@14899482: startup date [Sat May 30 15:59:08 KST 2020]; root of context hierarchy
+2020-05-30 15:59:08 INFO Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@14899482: startup date [Sat May 30 15:59:08 KST 2020]; root of context hierarchy
+2020-05-30 15:59:08 INFO HV000001: Hibernate Validator 5.3.4.Final
+2020-05-30 15:59:08 INFO HV000001: Hibernate Validator 5.3.4.Final
+2020-05-30 15:59:09 INFO Loading XML bean definitions from URL [jar:file:/Volumes/Data%20Storage/WORKSPACE/mimsWake/pkg/websocket.war!/WEB-INF/classes!/application-config.xml]
+2020-05-30 15:59:09 INFO Loading XML bean definitions from URL [jar:file:/Volumes/Data%20Storage/WORKSPACE/mimsWake/pkg/websocket.war!/WEB-INF/classes!/application-config.xml]
+2020-05-30 15:59:10 INFO Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c17d1b36] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-30 15:59:10 INFO Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c17d1b36] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-30 15:59:10 INFO Tomcat initialized with port(s): 8080 (http)
+2020-05-30 15:59:10 INFO Tomcat initialized with port(s): 8080 (http)
+2020-05-30 15:59:10 INFO Starting service Tomcat
+2020-05-30 15:59:10 INFO Starting service Tomcat
+2020-05-30 15:59:10 INFO Starting Servlet Engine: Apache Tomcat/8.5.11
+2020-05-30 15:59:10 INFO Starting Servlet Engine: Apache Tomcat/8.5.11
+2020-05-30 15:59:12 INFO Initializing Spring embedded WebApplicationContext
+2020-05-30 15:59:12 INFO Initializing Spring embedded WebApplicationContext
+2020-05-30 15:59:12 INFO Root WebApplicationContext: initialization completed in 4213 ms
+2020-05-30 15:59:12 INFO Root WebApplicationContext: initialization completed in 4213 ms
+2020-05-30 15:59:12 INFO Mapping servlet: 'dispatcherServlet' to [/]
+2020-05-30 15:59:12 INFO Mapping servlet: 'dispatcherServlet' to [/]
+2020-05-30 15:59:12 INFO Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-05-30 15:59:12 INFO Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-05-30 15:59:12 INFO Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-05-30 15:59:12 INFO Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-05-30 15:59:12 INFO Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-05-30 15:59:12 INFO Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-05-30 15:59:12 INFO Mapping filter: 'requestContextFilter' to: [/*]
+2020-05-30 15:59:12 INFO Mapping filter: 'requestContextFilter' to: [/*]
+2020-05-30 15:59:13 INFO Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@14899482: startup date [Sat May 30 15:59:08 KST 2020]; root of context hierarchy
+2020-05-30 15:59:13 INFO Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@14899482: startup date [Sat May 30 15:59:08 KST 2020]; root of context hierarchy
+2020-05-30 15:59:13 INFO Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-05-30 15:59:13 INFO Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-05-30 15:59:13 INFO Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-05-30 15:59:13 INFO Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-05-30 15:59:13 INFO Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 15:59:13 INFO Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 15:59:13 INFO Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 15:59:13 INFO Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 15:59:13 INFO Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 15:59:13 INFO Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 15:59:13 INFO Registering beans for JMX exposure on startup
+2020-05-30 15:59:13 INFO Registering beans for JMX exposure on startup
+2020-05-30 15:59:13 INFO Initializing ProtocolHandler ["http-nio-8080"]
+2020-05-30 15:59:13 INFO Initializing ProtocolHandler ["http-nio-8080"]
+2020-05-30 15:59:13 INFO Starting ProtocolHandler [http-nio-8080]
+2020-05-30 15:59:13 INFO Starting ProtocolHandler [http-nio-8080]
+2020-05-30 15:59:13 INFO Using a shared selector for servlet write/read
+2020-05-30 15:59:13 INFO Using a shared selector for servlet write/read
+2020-05-30 15:59:13 INFO Tomcat started on port(s): 8080 (http)
+2020-05-30 15:59:13 INFO Tomcat started on port(s): 8080 (http)
+2020-05-30 15:59:13 INFO Wake Push Server STARTING...
+2020-05-30 15:59:13 INFO Wake Push Server STARTING...
+2020-05-30 15:59:13 INFO [certFile] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.crt
+2020-05-30 15:59:13 INFO [certFile] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.crt
+2020-05-30 15:59:13 INFO [privateKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.pkcs8.key
+2020-05-30 15:59:13 INFO [privateKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.pkcs8.key
+2020-05-30 15:59:13 INFO [caKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/rootCA.pem
+2020-05-30 15:59:13 INFO [caKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/rootCA.pem
+2020-05-30 15:59:13 ERROR [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 15:59:13 ERROR [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 15:59:13 INFO [OutboundServer:server.tcpsocket] starting...
+2020-05-30 15:59:13 INFO [OutboundServer:server.tcpsocket] starting...
+2020-05-30 15:59:14 INFO [id: 0x10d7fe5e] REGISTERED
+2020-05-30 15:59:14 INFO [id: 0x10d7fe5e] REGISTERED
+2020-05-30 15:59:14 INFO [id: 0x10d7fe5e] BIND: 0.0.0.0/0.0.0.0:13101
+2020-05-30 15:59:14 INFO [id: 0x10d7fe5e] BIND: 0.0.0.0/0.0.0.0:13101
+2020-05-30 15:59:14 INFO [OutboundServer:server.tcpsocket] started, listening on port 13101
+2020-05-30 15:59:14 INFO [OutboundServer:server.tcpsocket] started, listening on port 13101
+2020-05-30 15:59:14 INFO [OutboundServer:client.websocket] starting...
+2020-05-30 15:59:14 INFO [OutboundServer:client.websocket] starting...
+2020-05-30 15:59:14 INFO [id: 0x10d7fe5e, L:/0:0:0:0:0:0:0:0:13101] ACTIVE
+2020-05-30 15:59:14 INFO [id: 0x10d7fe5e, L:/0:0:0:0:0:0:0:0:13101] ACTIVE
+2020-05-30 15:59:14 INFO [id: 0xf6826777] REGISTERED
+2020-05-30 15:59:14 INFO [id: 0xf6826777] REGISTERED
+2020-05-30 15:59:14 INFO [id: 0xf6826777] BIND: 0.0.0.0/0.0.0.0:13102
+2020-05-30 15:59:14 INFO [id: 0xf6826777] BIND: 0.0.0.0/0.0.0.0:13102
+2020-05-30 15:59:14 INFO [id: 0xf6826777, L:/0:0:0:0:0:0:0:0:13102] ACTIVE
+2020-05-30 15:59:14 INFO [OutboundServer:client.websocket] started, listening on port 13102
+2020-05-30 15:59:14 INFO [id: 0xf6826777, L:/0:0:0:0:0:0:0:0:13102] ACTIVE
+2020-05-30 15:59:14 INFO [OutboundServer:client.websocket] started, listening on port 13102
+2020-05-30 15:59:14 INFO [InboundQueueThread:client.websocket] started
+2020-05-30 15:59:14 INFO [InboundQueueThread:server.tcpsocket] started
+2020-05-30 15:59:14 INFO [InboundQueueThread:client.websocket] started
+2020-05-30 15:59:14 INFO [InboundQueueThread:server.tcpsocket] started
+2020-05-30 15:59:14 INFO [OutboundQueueCheckerThread] started [interval: 5]
+2020-05-30 15:59:14 INFO [OutboundQueueCheckerThread] started [interval: 5]
+2020-05-30 15:59:14 INFO [InboundServer] starting...
+2020-05-30 15:59:14 INFO [InboundQueueCheckerThread] started [interval: 5]
+2020-05-30 15:59:14 INFO [InboundQueueCheckerThread] started [interval: 5]
+2020-05-30 15:59:14 INFO [InboundServer] starting...
+2020-05-30 15:59:14 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:14 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:14 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:14 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:14 INFO [id: 0x9bc38174] REGISTERED
+2020-05-30 15:59:14 INFO [id: 0x9bc38174] REGISTERED
+2020-05-30 15:59:14 INFO [id: 0x9bc38174] BIND: 0.0.0.0/0.0.0.0:13100
+2020-05-30 15:59:14 INFO [id: 0x9bc38174] BIND: 0.0.0.0/0.0.0.0:13100
+2020-05-30 15:59:14 INFO [id: 0x9bc38174, L:/0:0:0:0:0:0:0:0:13100] ACTIVE
+2020-05-30 15:59:14 INFO [id: 0x9bc38174, L:/0:0:0:0:0:0:0:0:13100] ACTIVE
+2020-05-30 15:59:14 INFO [InboundServer] started, listening on port 13100
+2020-05-30 15:59:14 INFO [InboundServer] started, listening on port 13100
+2020-05-30 15:59:14 INFO [simple-push-server] startup complete.... >>>>>>>>>> TCPSOCKET
+2020-05-30 15:59:14 INFO [simple-push-server] startup complete.... >>>>>>>>>> TCPSOCKET
+2020-05-30 15:59:14 INFO @@com.mysql.cj.jdbc.Driver
+2020-05-30 15:59:14 INFO @@com.mysql.cj.jdbc.Driver
+2020-05-30 15:59:14 INFO @@root
+2020-05-30 15:59:14 INFO @@root
+2020-05-30 15:59:14 INFO @@dosa
+2020-05-30 15:59:14 INFO @@dosa
+2020-05-30 15:59:14 INFO @@jdbc:mysql://localhost:3306/mimsWake?charsetEncoding=UTF-8&serverTimezone=UTC
+2020-05-30 15:59:14 INFO @@jdbc:mysql://localhost:3306/mimsWake?charsetEncoding=UTF-8&serverTimezone=UTC
+2020-05-30 15:59:15 INFO DATABASE Connect Success
+2020-05-30 15:59:15 INFO DATABASE Connect Success
+2020-05-30 15:59:15 INFO [simple-push-server] DB open
+2020-05-30 15:59:15 INFO [simple-push-server] DB open
+2020-05-30 15:59:19 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:19 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:19 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:19 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:24 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:24 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:24 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:24 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:29 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:29 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:29 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:29 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:34 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:34 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:34 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:34 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:39 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:39 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:39 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:39 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:44 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:44 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:44 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:44 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:49 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:49 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:49 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:49 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:54 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:54 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:54 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:54 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:59 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:59 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 15:59:59 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 15:59:59 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:00:04 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:00:04 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:00:04 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:00:04 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:00:09 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:00:09 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:00:09 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:00:09 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:00:14 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:00:14 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:00:14 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:00:14 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:00:19 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:00:19 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:00:19 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:00:19 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:00:24 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:00:24 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:00:24 INFO 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:00:24 INFO 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:00:27 INFO Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@14899482: startup date [Sat May 30 15:59:08 KST 2020]; root of context hierarchy
+2020-05-30 16:00:27 INFO Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@14899482: startup date [Sat May 30 15:59:08 KST 2020]; root of context hierarchy
+2020-05-30 16시 00분 27초: STOP
+2020-05-30 16시 01분 25초: START
+2020-05-30 16:01:27 INFO ■□■□■MIM Wake Websocket Server Start■□■□■
+2020-05-30 16:01:27 INFO ■□■□■MIM Wake Websocket Server Start■□■□■
+2020-05-30 16:01:27,742 main INFO Log4j appears to be running in a Servlet environment, but there's no log4j-web module available. If you want better web container support, please add the log4j-web JAR to your web archive or server lib directory.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.5.2.RELEASE)
+
+2020-05-30 16:01:28.051  INFO 6152 --- [           main] c.m.w.MimsWakeApplication                : Starting MimsWakeApplication v0.0.1-SNAPSHOT on Gomaui-MacBook-Pro.local with PID 6152 (/Volumes/Data Storage/WORKSPACE/mimsWake/pkg/websocket.war started by goma in /Volumes/Data Storage/WORKSPACE/mimsWake/pkg)
+2020-05-30 16:01:28.053  INFO 6152 --- [           main] c.m.w.MimsWakeApplication                : No active profile set, falling back to default profiles: default
+2020-05-30 16:01:28.205  INFO 6152 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2e5c649: startup date [Sat May 30 16:01:28 KST 2020]; root of context hierarchy
+2020-05-30 16:01:29.250  INFO 6152 --- [           main] o.s.b.f.x.XmlBeanDefinitionReader        : Loading XML bean definitions from URL [jar:file:/Volumes/Data%20Storage/WORKSPACE/mimsWake/pkg/websocket.war!/WEB-INF/classes!/application-config.xml]
+2020-05-30 16:01:30.420  INFO 6152 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9e4e454] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-30 16:01:30.961  INFO 6152 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2020-05-30 16:01:30.976  INFO 6152 --- [           main] o.a.c.c.StandardService                  : Starting service Tomcat
+2020-05-30 16:01:30.978  INFO 6152 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet Engine: Apache Tomcat/8.5.11
+2020-05-30 16:01:32.241  INFO 6152 --- [ost-startStop-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2020-05-30 16:01:32.241  INFO 6152 --- [ost-startStop-1] o.s.w.c.ContextLoader                    : Root WebApplicationContext: initialization completed in 4041 ms
+2020-05-30 16:01:32.476  INFO 6152 --- [ost-startStop-1] o.s.b.w.s.ServletRegistrationBean        : Mapping servlet: 'dispatcherServlet' to [/]
+2020-05-30 16:01:32.483  INFO 6152 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-05-30 16:01:32.484  INFO 6152 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-05-30 16:01:32.484  INFO 6152 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-05-30 16:01:32.485  INFO 6152 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'requestContextFilter' to: [/*]
+2020-05-30 16:01:33.042  INFO 6152 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2e5c649: startup date [Sat May 30 16:01:28 KST 2020]; root of context hierarchy
+2020-05-30 16:01:33.188  INFO 6152 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-05-30 16:01:33.190  INFO 6152 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-05-30 16:01:33.246  INFO 6152 --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 16:01:33.247  INFO 6152 --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 16:01:33.324  INFO 6152 --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 16:01:33.639  INFO 6152 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2020-05-30 16:01:33.765  INFO 6152 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2020-05-30 16:01:33.775  INFO 6152 --- [           main] c.m.w.s.Server                           : Wake Push Server STARTING...
+2020-05-30 16:01:33.797  INFO 6152 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [certFile] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.crt
+2020-05-30 16:01:33.798  INFO 6152 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [privateKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.pkcs8.key
+2020-05-30 16:01:33.798  INFO 6152 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [caKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/rootCA.pem
+2020-05-30 16:01:33.799 ERROR 6152 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 16:01:33.800  INFO 6152 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:server.tcpsocket] starting...
+2020-05-30 16:01:34.307  INFO 6152 --- [ntLoopGroup-2-1] i.n.h.l.LoggingHandler                   : [id: 0x0a425749] REGISTERED
+2020-05-30 16:01:34.312  INFO 6152 --- [ntLoopGroup-2-1] i.n.h.l.LoggingHandler                   : [id: 0x0a425749] BIND: 0.0.0.0/0.0.0.0:13101
+2020-05-30 16:01:34.313  INFO 6152 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:server.tcpsocket] started, listening on port 13101
+2020-05-30 16:01:34.314  INFO 6152 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:client.websocket] starting...
+2020-05-30 16:01:34.315  INFO 6152 --- [ntLoopGroup-2-1] i.n.h.l.LoggingHandler                   : [id: 0x0a425749, L:/0:0:0:0:0:0:0:0:13101] ACTIVE
+2020-05-30 16:01:34.319  INFO 6152 --- [ntLoopGroup-4-1] i.n.h.l.LoggingHandler                   : [id: 0x575683f6] REGISTERED
+2020-05-30 16:01:34.320  INFO 6152 --- [ntLoopGroup-4-1] i.n.h.l.LoggingHandler                   : [id: 0x575683f6] BIND: 0.0.0.0/0.0.0.0:13102
+2020-05-30 16:01:34.320  INFO 6152 --- [ntLoopGroup-4-1] i.n.h.l.LoggingHandler                   : [id: 0x575683f6, L:/0:0:0:0:0:0:0:0:13102] ACTIVE
+2020-05-30 16:01:34.320  INFO 6152 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:client.websocket] started, listening on port 13102
+2020-05-30 16:01:34.322  INFO 6152 --- [erver.tcpsocket] c.m.w.s.q.InboundQueue                   : [InboundQueueThread:server.tcpsocket] started
+2020-05-30 16:01:34.322  INFO 6152 --- [lient.websocket] c.m.w.s.q.InboundQueue                   : [InboundQueueThread:client.websocket] started
+2020-05-30 16:01:34.323  INFO 6152 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : [OutboundQueueCheckerThread] started [interval: 5]
+2020-05-30 16:01:34.324  INFO 6152 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : [InboundQueueCheckerThread] started [interval: 5]
+2020-05-30 16:01:34.324  INFO 6152 --- [           main] c.m.w.s.i.InboundTcpSocketServer         : [InboundServer] starting...
+2020-05-30 16:01:34.325  INFO 6152 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:01:34.325  INFO 6152 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:01:34.330  INFO 6152 --- [ntLoopGroup-6-1] i.n.h.l.LoggingHandler                   : [id: 0x07f7403a] REGISTERED
+2020-05-30 16:01:34.330  INFO 6152 --- [ntLoopGroup-6-1] i.n.h.l.LoggingHandler                   : [id: 0x07f7403a] BIND: 0.0.0.0/0.0.0.0:13100
+2020-05-30 16:01:34.331  INFO 6152 --- [ntLoopGroup-6-1] i.n.h.l.LoggingHandler                   : [id: 0x07f7403a, L:/0:0:0:0:0:0:0:0:13100] ACTIVE
+2020-05-30 16:01:34.331  INFO 6152 --- [           main] c.m.w.s.i.InboundTcpSocketServer         : [InboundServer] started, listening on port 13100
+2020-05-30 16:01:34.331  INFO 6152 --- [           main] c.m.w.s.Server                           : [simple-push-server] startup complete.... >>>>>>>>>> TCPSOCKET
+2020-05-30 16:01:34.332  INFO 6152 --- [           main] c.m.w.d.DBHelper                         : @@com.mysql.cj.jdbc.Driver
+2020-05-30 16:01:34.332  INFO 6152 --- [           main] c.m.w.d.DBHelper                         : @@root
+2020-05-30 16:01:34.332  INFO 6152 --- [           main] c.m.w.d.DBHelper                         : @@dosa
+2020-05-30 16:01:34.333  INFO 6152 --- [           main] c.m.w.d.DBHelper                         : @@jdbc:mysql://localhost:3306/mimsWake?charsetEncoding=UTF-8&serverTimezone=UTC
+2020-05-30 16:01:35.349  INFO 6152 --- [           main] c.m.w.d.DBHelper                         : DATABASE Connect Success
+2020-05-30 16:01:35.350  INFO 6152 --- [           main] c.m.w.s.Server                           : [simple-push-server] DB open
+2020-05-30 16:01:39.331  INFO 6152 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:01:39.331  INFO 6152 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:01:44.334  INFO 6152 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:01:44.334  INFO 6152 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:01:47.374  INFO 6152 --- [       Thread-5] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2e5c649: startup date [Sat May 30 16:01:28 KST 2020]; root of context hierarchy
+2020-05-30 16:01:47.376  INFO 6152 --- [       Thread-5] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2020-05-30 16시 01분 47초: STOP
+2020-05-30 16시 02분 20초: START
+2020-05-30 16:02:21,965 main ERROR Unable to locate appender "Console" for logger config "root"
+2020-05-30 16:02:22 INFO ■□■□■MIM Wake Websocket Server Start■□■□■
+2020-05-30 16:02:22,680 main INFO Log4j appears to be running in a Servlet environment, but there's no log4j-web module available. If you want better web container support, please add the log4j-web JAR to your web archive or server lib directory.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.5.2.RELEASE)
+
+2020-05-30 16:02:23.005  INFO 6181 --- [           main] c.m.w.MimsWakeApplication                : Starting MimsWakeApplication v0.0.1-SNAPSHOT on Gomaui-MacBook-Pro.local with PID 6181 (/Volumes/Data Storage/WORKSPACE/mimsWake/pkg/websocket.war started by goma in /Volumes/Data Storage/WORKSPACE/mimsWake/pkg)
+2020-05-30 16:02:23.006  INFO 6181 --- [           main] c.m.w.MimsWakeApplication                : No active profile set, falling back to default profiles: default
+2020-05-30 16:02:23.141  INFO 6181 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2e5c649: startup date [Sat May 30 16:02:23 KST 2020]; root of context hierarchy
+2020-05-30 16:02:24.275  INFO 6181 --- [           main] o.s.b.f.x.XmlBeanDefinitionReader        : Loading XML bean definitions from URL [jar:file:/Volumes/Data%20Storage/WORKSPACE/mimsWake/pkg/websocket.war!/WEB-INF/classes!/application-config.xml]
+2020-05-30 16:02:25.448  INFO 6181 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9e4e454] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-30 16:02:25.997  INFO 6181 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2020-05-30 16:02:26.017  INFO 6181 --- [           main] o.a.c.c.StandardService                  : Starting service Tomcat
+2020-05-30 16:02:26.020  INFO 6181 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet Engine: Apache Tomcat/8.5.11
+2020-05-30 16:02:27.314  INFO 6181 --- [ost-startStop-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2020-05-30 16:02:27.314  INFO 6181 --- [ost-startStop-1] o.s.w.c.ContextLoader                    : Root WebApplicationContext: initialization completed in 4179 ms
+2020-05-30 16:02:27.567  INFO 6181 --- [ost-startStop-1] o.s.b.w.s.ServletRegistrationBean        : Mapping servlet: 'dispatcherServlet' to [/]
+2020-05-30 16:02:27.576  INFO 6181 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-05-30 16:02:27.576  INFO 6181 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-05-30 16:02:27.577  INFO 6181 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-05-30 16:02:27.577  INFO 6181 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'requestContextFilter' to: [/*]
+2020-05-30 16:02:28.168  INFO 6181 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2e5c649: startup date [Sat May 30 16:02:23 KST 2020]; root of context hierarchy
+2020-05-30 16:02:28.347  INFO 6181 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-05-30 16:02:28.349  INFO 6181 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-05-30 16:02:28.449  INFO 6181 --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 16:02:28.449  INFO 6181 --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 16:02:28.521  INFO 6181 --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 16:02:28.804  INFO 6181 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2020-05-30 16:02:28.926  INFO 6181 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2020-05-30 16:02:28.934  INFO 6181 --- [           main] c.m.w.s.Server                           : Wake Push Server STARTING...
+2020-05-30 16:02:28.952  INFO 6181 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [certFile] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.crt
+2020-05-30 16:02:28.952  INFO 6181 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [privateKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.pkcs8.key
+2020-05-30 16:02:28.953  INFO 6181 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [caKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/rootCA.pem
+2020-05-30 16:02:28.953 ERROR 6181 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 16:02:28.954  INFO 6181 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:server.tcpsocket] starting...
+2020-05-30 16:02:29.380  INFO 6181 --- [ntLoopGroup-2-1] i.n.h.l.LoggingHandler                   : [id: 0x9a019f40] REGISTERED
+2020-05-30 16:02:29.383  INFO 6181 --- [ntLoopGroup-2-1] i.n.h.l.LoggingHandler                   : [id: 0x9a019f40] BIND: 0.0.0.0/0.0.0.0:13101
+2020-05-30 16:02:29.384  INFO 6181 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:server.tcpsocket] started, listening on port 13101
+2020-05-30 16:02:29.384  INFO 6181 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:client.websocket] starting...
+2020-05-30 16:02:29.385  INFO 6181 --- [ntLoopGroup-2-1] i.n.h.l.LoggingHandler                   : [id: 0x9a019f40, L:/0:0:0:0:0:0:0:0:13101] ACTIVE
+2020-05-30 16:02:29.390  INFO 6181 --- [ntLoopGroup-4-1] i.n.h.l.LoggingHandler                   : [id: 0xff2857f9] REGISTERED
+2020-05-30 16:02:29.390  INFO 6181 --- [ntLoopGroup-4-1] i.n.h.l.LoggingHandler                   : [id: 0xff2857f9] BIND: 0.0.0.0/0.0.0.0:13102
+2020-05-30 16:02:29.391  INFO 6181 --- [ntLoopGroup-4-1] i.n.h.l.LoggingHandler                   : [id: 0xff2857f9, L:/0:0:0:0:0:0:0:0:13102] ACTIVE
+2020-05-30 16:02:29.391  INFO 6181 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:client.websocket] started, listening on port 13102
+2020-05-30 16:02:29.392  INFO 6181 --- [lient.websocket] c.m.w.s.q.InboundQueue                   : [InboundQueueThread:client.websocket] started
+2020-05-30 16:02:29.392  INFO 6181 --- [erver.tcpsocket] c.m.w.s.q.InboundQueue                   : [InboundQueueThread:server.tcpsocket] started
+2020-05-30 16:02:29.393  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : [OutboundQueueCheckerThread] started [interval: 5]
+2020-05-30 16:02:29.394  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : [InboundQueueCheckerThread] started [interval: 5]
+2020-05-30 16:02:29.394  INFO 6181 --- [           main] c.m.w.s.i.InboundTcpSocketServer         : [InboundServer] starting...
+2020-05-30 16:02:29.395  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:02:29.395  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:02:29.398  INFO 6181 --- [ntLoopGroup-6-1] i.n.h.l.LoggingHandler                   : [id: 0xb89b68b5] REGISTERED
+2020-05-30 16:02:29.398  INFO 6181 --- [ntLoopGroup-6-1] i.n.h.l.LoggingHandler                   : [id: 0xb89b68b5] BIND: 0.0.0.0/0.0.0.0:13100
+2020-05-30 16:02:29.399  INFO 6181 --- [ntLoopGroup-6-1] i.n.h.l.LoggingHandler                   : [id: 0xb89b68b5, L:/0:0:0:0:0:0:0:0:13100] ACTIVE
+2020-05-30 16:02:29.399  INFO 6181 --- [           main] c.m.w.s.i.InboundTcpSocketServer         : [InboundServer] started, listening on port 13100
+2020-05-30 16:02:29.399  INFO 6181 --- [           main] c.m.w.s.Server                           : [simple-push-server] startup complete.... >>>>>>>>>> TCPSOCKET
+2020-05-30 16:02:29.400  INFO 6181 --- [           main] c.m.w.d.DBHelper                         : @@com.mysql.cj.jdbc.Driver
+2020-05-30 16:02:29.400  INFO 6181 --- [           main] c.m.w.d.DBHelper                         : @@root
+2020-05-30 16:02:29.400  INFO 6181 --- [           main] c.m.w.d.DBHelper                         : @@dosa
+2020-05-30 16:02:29.400  INFO 6181 --- [           main] c.m.w.d.DBHelper                         : @@jdbc:mysql://localhost:3306/mimsWake?charsetEncoding=UTF-8&serverTimezone=UTC
+2020-05-30 16:02:30.237  INFO 6181 --- [           main] c.m.w.d.DBHelper                         : DATABASE Connect Success
+2020-05-30 16:02:30.237  INFO 6181 --- [           main] c.m.w.s.Server                           : [simple-push-server] DB open
+2020-05-30 16:02:34.398  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:02:34.398  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:02:39.404  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:02:39.404  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:02:44.409  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:02:44.410  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:02:49.411  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:02:49.411  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:02:54.414  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:02:54.414  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:02:59.420  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:02:59.420  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:03:04.421  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:03:04.421  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:03:09.427  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:03:09.427  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:03:14.428  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:03:14.428  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:03:19.429  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:03:19.429  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:03:24.430  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:03:24.430  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:03:29.436  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:03:29.436  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:03:34.438  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:03:34.438  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:03:39.441  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:03:39.441  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:03:43.816  INFO 6181 --- [ntLoopGroup-6-1] i.n.h.l.LoggingHandler                   : [id: 0xb89b68b5, L:/0:0:0:0:0:0:0:0:13100] READ: [id: 0xec88b29c, L:/127.0.0.1:13100 - R:/127.0.0.1:52969]
+2020-05-30 16:03:43.818  INFO 6181 --- [ntLoopGroup-6-1] i.n.h.l.LoggingHandler                   : [id: 0xb89b68b5, L:/0:0:0:0:0:0:0:0:13100] READ COMPLETE
+2020-05-30 16:03:43.826  INFO 6181 --- [ntLoopGroup-7-1] m.w.s.i.InboundTcpSocketServerMsgHandler : [InboundServerHandler] connected [id: 0xec88b29c, L:/127.0.0.1:13100 - R:/127.0.0.1:52969]
+2020-05-30 16:03:43.828  INFO 6181 --- [ntLoopGroup-7-1] m.w.s.i.InboundTcpSocketServerMsgHandler : [2020-05-30T16:03:43.826+0900] Welcom to [192.168.0.72]
+2020-05-30 16:03:43.870  INFO 6181 --- [ntLoopGroup-7-1] m.w.s.i.InboundTcpSocketServerMsgHandler : [InboundServerHandler] FROM [id: 0xec88b29c, L:/127.0.0.1:13100 - R:/127.0.0.1:52969]
+------------------
+kmtfId : AFMI0270
+setId : A2R
+createTime : 20200210121257
+sourceSystemId : AFCCS
+destnationSystemId : MIMS
+messageId : AFMI0270_V20
+cudm : C
+mode : OPER
+version : 2.0
+msgSeq : 0
+------------------
+A2R | 0 | ACFTNO | AIRCRAFT01
+A2R | 1 | ACFTFNFDVCD | 03
+A2R | 2 | ALT | 100.02
+A2R | 3 | ACFT_CNTUNT | 13
+A2R | 4 | CLSGN | CALLSIGN001
+A2R | 5 | TKOF_BASENO | BASE1
+A2R | 6 | SPD | 999.001
+A2R | 7 | KNDAP_NM | 항공기001
+A2R | 8 | LTDLNGT_COORD | 52SCH1000010000
+A2R | 9 | AZ | 9999
+
+2020-05-30 16:03:43.917  INFO 6181 --- [ntLoopGroup-7-1] c.m.w.d.DBHelper                         : insertAirWake [com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO airWakeRe(ACFTNO, ACFTFNFDVCD, ALT, ACFT_CNTUNT, CLSGN, TKOF_BASENO, SPD, KNDAP_NM, LTDLNGT_COORD, AZ, REGR_DTTM) VALUES ('AIRCRAFT01','03',100.02,13,'CALLSIGN001','BASE1',999.001,'항공기001','52SCH1000010000',9999,'2020-05-30 07:03:43.917')]
+2020-05-30 16:03:43.931  INFO 6181 --- [ntLoopGroup-7-1] c.m.w.d.DBHelper                         : insertAirWake Insert Count : 1
+2020-05-30 16:03:43.948  INFO 6181 --- [ntLoopGroup-7-1] c.m.w.s.q.InboundQueue                   : [InboundQueue:server.tcpsocket] enqueued PushMessage[serviceId=server.tcpsocket, groupId=OPER, clientId=A2R, message=[{"CLSGN":"CALLSIGN001","SPD":"999.001","LTDLNGT_COORD":"52SCH1000010000","ALT":"100.02","AZ":"9999","ACFTFNFDVCD":"03","TKOF_BASENO":"BASE1","ACFT_CNTUNT":"13","ROW_SID":"A2R","ACFTNO":"AIRCRAFT01","KNDAP_NM":"항공기001"}]]
+2020-05-30 16:03:43.948  INFO 6181 --- [erver.tcpsocket] c.m.w.s.q.InboundQueue                   : [InboundQueueThread:server.tcpsocket] take PushMessage[serviceId=server.tcpsocket, groupId=OPER, clientId=A2R, message=[{"CLSGN":"CALLSIGN001","SPD":"999.001","LTDLNGT_COORD":"52SCH1000010000","ALT":"100.02","AZ":"9999","ACFTFNFDVCD":"03","TKOF_BASENO":"BASE1","ACFT_CNTUNT":"13","ROW_SID":"A2R","ACFTNO":"AIRCRAFT01","KNDAP_NM":"항공기001"}]]
+2020-05-30 16:03:43.949  INFO 6181 --- [ntLoopGroup-7-1] c.m.w.s.q.InboundQueue                   : [InboundQueue:server.tcpsocket] enqueued PushMessage[serviceId=server.tcpsocket, groupId=OPER, clientId=OPER, message=[{"CLSGN":"CALLSIGN001","SPD":"999.001","LTDLNGT_COORD":"52SCH1000010000","ALT":"100.02","AZ":"9999","ACFTFNFDVCD":"03","TKOF_BASENO":"BASE1","ACFT_CNTUNT":"13","ROW_SID":"A2R","ACFTNO":"AIRCRAFT01","KNDAP_NM":"항공기001"}]]
+2020-05-30 16:03:43.950  INFO 6181 --- [ntLoopGroup-7-1] c.m.w.s.q.InboundQueue                   : [InboundQueue:client.websocket] enqueued PushMessage[serviceId=client.websocket, groupId=OPER, clientId=A2R, message=[{"CLSGN":"CALLSIGN001","SPD":"999.001","LTDLNGT_COORD":"52SCH1000010000","ALT":"100.02","AZ":"9999","ACFTFNFDVCD":"03","TKOF_BASENO":"BASE1","ACFT_CNTUNT":"13","ROW_SID":"A2R","ACFTNO":"AIRCRAFT01","KNDAP_NM":"항공기001"}]]
+2020-05-30 16:03:43.950  INFO 6181 --- [ntLoopGroup-7-1] c.m.w.s.q.InboundQueue                   : [InboundQueue:client.websocket] enqueued PushMessage[serviceId=client.websocket, groupId=OPER, clientId=OPER, message=[{"CLSGN":"CALLSIGN001","SPD":"999.001","LTDLNGT_COORD":"52SCH1000010000","ALT":"100.02","AZ":"9999","ACFTFNFDVCD":"03","TKOF_BASENO":"BASE1","ACFT_CNTUNT":"13","ROW_SID":"A2R","ACFTNO":"AIRCRAFT01","KNDAP_NM":"항공기001"}]]
+2020-05-30 16:03:43.952  INFO 6181 --- [erver.tcpsocket] c.m.w.s.q.InboundQueue                   : [InboundQueueThread:server.tcpsocket] take PushMessage[serviceId=server.tcpsocket, groupId=OPER, clientId=OPER, message=[{"CLSGN":"CALLSIGN001","SPD":"999.001","LTDLNGT_COORD":"52SCH1000010000","ALT":"100.02","AZ":"9999","ACFTFNFDVCD":"03","TKOF_BASENO":"BASE1","ACFT_CNTUNT":"13","ROW_SID":"A2R","ACFTNO":"AIRCRAFT01","KNDAP_NM":"항공기001"}]]
+2020-05-30 16:03:43.955  INFO 6181 --- [ntLoopGroup-7-1] m.w.s.i.InboundTcpSocketServerMsgHandler : [InboundServerHandler] DISCONNECTED [id: 0xec88b29c, L:/127.0.0.1:13100 ! R:/127.0.0.1:52969]
+2020-05-30 16:03:43.955  INFO 6181 --- [lient.websocket] c.m.w.s.q.InboundQueue                   : [InboundQueueThread:client.websocket] take PushMessage[serviceId=client.websocket, groupId=OPER, clientId=A2R, message=[{"CLSGN":"CALLSIGN001","SPD":"999.001","LTDLNGT_COORD":"52SCH1000010000","ALT":"100.02","AZ":"9999","ACFTFNFDVCD":"03","TKOF_BASENO":"BASE1","ACFT_CNTUNT":"13","ROW_SID":"A2R","ACFTNO":"AIRCRAFT01","KNDAP_NM":"항공기001"}]]
+2020-05-30 16:03:43.958  INFO 6181 --- [lient.websocket] c.m.w.s.q.InboundQueue                   : [InboundQueueThread:client.websocket] take PushMessage[serviceId=client.websocket, groupId=OPER, clientId=OPER, message=[{"CLSGN":"CALLSIGN001","SPD":"999.001","LTDLNGT_COORD":"52SCH1000010000","ALT":"100.02","AZ":"9999","ACFTFNFDVCD":"03","TKOF_BASENO":"BASE1","ACFT_CNTUNT":"13","ROW_SID":"A2R","ACFTNO":"AIRCRAFT01","KNDAP_NM":"항공기001"}]]
+2020-05-30 16:03:44.446  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:03:44.446  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:03:49.450  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:03:49.450  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:03:54.452  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:03:54.452  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:03:59.457  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:03:59.457  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:04:04.461  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:04:04.461  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:04:09.466  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:04:09.466  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:04:14.467  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:04:14.467  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:04:19.472  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:04:19.472  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:04:24.476  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:04:24.477  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:04:29.481  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:04:29.481  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:04:34.486  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:04:34.486  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:04:39.488  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:04:39.487  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:04:44.489  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:04:44.489  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:04:49.494  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:04:49.494  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:04:54.500  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:04:54.500  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:04:59.505  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:04:59.505  INFO 6181 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:05:04.303  INFO 6181 --- [       Thread-5] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2e5c649: startup date [Sat May 30 16:02:23 KST 2020]; root of context hierarchy
+2020-05-30 16:05:04.305  INFO 6181 --- [       Thread-5] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2020-05-30 16:05:04,307 pool-1-thread-1 ERROR Caught exception executing shutdown hook null java.lang.NoClassDefFoundError: org/apache/logging/log4j/core/util/ExecutorServices
+	at org.apache.logging.log4j.core.LoggerContext.stop(LoggerContext.java:337)
+	at org.apache.logging.log4j.core.AbstractLifeCycle.stop(AbstractLifeCycle.java:127)
+	at org.apache.logging.log4j.core.LoggerContext$1.run(LoggerContext.java:275)
+	at org.apache.logging.log4j.core.util.DefaultShutdownCallbackRegistry$RegisteredCancellable.run(DefaultShutdownCallbackRegistry.java:104)
+	at org.apache.logging.log4j.core.util.DefaultShutdownCallbackRegistry.run(DefaultShutdownCallbackRegistry.java:74)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.ClassNotFoundException: org.apache.logging.log4j.core.util.ExecutorServices
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:382)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:418)
+	at org.springframework.boot.loader.LaunchedURLClassLoader.loadClass(LaunchedURLClassLoader.java:94)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
+	... 6 more
+
+2020-05-30 16시 05분 04초: STOP
+Exception in thread "Thread-5" java.lang.NoClassDefFoundError: org/apache/catalina/Lifecycle$SingleUse
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:240)
+	at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:353)
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.stopTomcat(TomcatEmbeddedServletContainer.java:238)
+	at org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer.stop(TomcatEmbeddedServletContainer.java:292)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.stopAndReleaseEmbeddedServletContainer(EmbeddedWebApplicationContext.java:306)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.onClose(EmbeddedWebApplicationContext.java:155)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1015)
+	at org.springframework.context.support.AbstractApplicationContext$2.run(AbstractApplicationContext.java:928)
+2020-05-30 16시 05분 37초: START
+2020-05-30 16:05:38,572 main ERROR Unable to locate appender "Console" for logger config "root"
+2020-05-30 16:05:38 INFO ■□■□■MIM Wake Websocket Server Start■□■□■
+2020-05-30 16:05:39,277 main INFO Log4j appears to be running in a Servlet environment, but there's no log4j-web module available. If you want better web container support, please add the log4j-web JAR to your web archive or server lib directory.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.5.2.RELEASE)
+
+2020-05-30 16:05:39.594  INFO 6257 --- [           main] c.m.w.MimsWakeApplication                : Starting MimsWakeApplication v0.0.1-SNAPSHOT on Gomaui-MacBook-Pro.local with PID 6257 (/Volumes/Data Storage/WORKSPACE/mimsWake/pkg/bin/websocket.war started by goma in /Volumes/Data Storage/WORKSPACE/mimsWake/pkg)
+2020-05-30 16:05:39.595  INFO 6257 --- [           main] c.m.w.MimsWakeApplication                : No active profile set, falling back to default profiles: default
+2020-05-30 16:05:39.727  INFO 6257 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2e5c649: startup date [Sat May 30 16:05:39 KST 2020]; root of context hierarchy
+2020-05-30 16:05:40.814  INFO 6257 --- [           main] o.s.b.f.x.XmlBeanDefinitionReader        : Loading XML bean definitions from URL [jar:file:/Volumes/Data%20Storage/WORKSPACE/mimsWake/pkg/bin/websocket.war!/WEB-INF/classes!/application-config.xml]
+2020-05-30 16:05:42.022  INFO 6257 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9e4e454] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-30 16:05:42.482  INFO 6257 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2020-05-30 16:05:42.498  INFO 6257 --- [           main] o.a.c.c.StandardService                  : Starting service Tomcat
+2020-05-30 16:05:42.499  INFO 6257 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet Engine: Apache Tomcat/8.5.11
+2020-05-30 16:05:43.826  INFO 6257 --- [ost-startStop-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2020-05-30 16:05:43.826  INFO 6257 --- [ost-startStop-1] o.s.w.c.ContextLoader                    : Root WebApplicationContext: initialization completed in 4104 ms
+2020-05-30 16:05:44.055  INFO 6257 --- [ost-startStop-1] o.s.b.w.s.ServletRegistrationBean        : Mapping servlet: 'dispatcherServlet' to [/]
+2020-05-30 16:05:44.063  INFO 6257 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-05-30 16:05:44.064  INFO 6257 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-05-30 16:05:44.064  INFO 6257 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-05-30 16:05:44.065  INFO 6257 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'requestContextFilter' to: [/*]
+2020-05-30 16:05:44.549  INFO 6257 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2e5c649: startup date [Sat May 30 16:05:39 KST 2020]; root of context hierarchy
+2020-05-30 16:05:44.705  INFO 6257 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-05-30 16:05:44.707  INFO 6257 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-05-30 16:05:44.764  INFO 6257 --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 16:05:44.764  INFO 6257 --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 16:05:44.837  INFO 6257 --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 16:05:45.201  INFO 6257 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2020-05-30 16:05:45.332  INFO 6257 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2020-05-30 16:05:45.341  INFO 6257 --- [           main] c.m.w.s.Server                           : Wake Push Server STARTING...
+2020-05-30 16:05:45.359  INFO 6257 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [certFile] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.crt
+2020-05-30 16:05:45.359  INFO 6257 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [privateKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.pkcs8.key
+2020-05-30 16:05:45.359  INFO 6257 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [caKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/rootCA.pem
+2020-05-30 16:05:45.359 ERROR 6257 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 16:05:45.361  INFO 6257 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:server.tcpsocket] starting...
+2020-05-30 16:05:45.836  INFO 6257 --- [ntLoopGroup-2-1] i.n.h.l.LoggingHandler                   : [id: 0x99cae946] REGISTERED
+2020-05-30 16:05:45.840  INFO 6257 --- [ntLoopGroup-2-1] i.n.h.l.LoggingHandler                   : [id: 0x99cae946] BIND: 0.0.0.0/0.0.0.0:13101
+2020-05-30 16:05:45.841  INFO 6257 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:server.tcpsocket] started, listening on port 13101
+2020-05-30 16:05:45.841  INFO 6257 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:client.websocket] starting...
+2020-05-30 16:05:45.842  INFO 6257 --- [ntLoopGroup-2-1] i.n.h.l.LoggingHandler                   : [id: 0x99cae946, L:/0:0:0:0:0:0:0:0:13101] ACTIVE
+2020-05-30 16:05:45.847  INFO 6257 --- [ntLoopGroup-4-1] i.n.h.l.LoggingHandler                   : [id: 0x406f1f94] REGISTERED
+2020-05-30 16:05:45.848  INFO 6257 --- [ntLoopGroup-4-1] i.n.h.l.LoggingHandler                   : [id: 0x406f1f94] BIND: 0.0.0.0/0.0.0.0:13102
+2020-05-30 16:05:45.848  INFO 6257 --- [ntLoopGroup-4-1] i.n.h.l.LoggingHandler                   : [id: 0x406f1f94, L:/0:0:0:0:0:0:0:0:13102] ACTIVE
+2020-05-30 16:05:45.848  INFO 6257 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:client.websocket] started, listening on port 13102
+2020-05-30 16:05:45.850  INFO 6257 --- [erver.tcpsocket] c.m.w.s.q.InboundQueue                   : [InboundQueueThread:server.tcpsocket] started
+2020-05-30 16:05:45.850  INFO 6257 --- [lient.websocket] c.m.w.s.q.InboundQueue                   : [InboundQueueThread:client.websocket] started
+2020-05-30 16:05:45.851  INFO 6257 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : [OutboundQueueCheckerThread] started [interval: 5]
+2020-05-30 16:05:45.851  INFO 6257 --- [           main] c.m.w.s.i.InboundTcpSocketServer         : [InboundServer] starting...
+2020-05-30 16:05:45.851  INFO 6257 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : [InboundQueueCheckerThread] started [interval: 5]
+2020-05-30 16:05:45.853  INFO 6257 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:05:45.853  INFO 6257 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:05:45.856  INFO 6257 --- [ntLoopGroup-6-1] i.n.h.l.LoggingHandler                   : [id: 0x320a0c4c] REGISTERED
+2020-05-30 16:05:45.856  INFO 6257 --- [ntLoopGroup-6-1] i.n.h.l.LoggingHandler                   : [id: 0x320a0c4c] BIND: 0.0.0.0/0.0.0.0:13100
+2020-05-30 16:05:45.856  INFO 6257 --- [           main] c.m.w.s.i.InboundTcpSocketServer         : [InboundServer] started, listening on port 13100
+2020-05-30 16:05:45.856  INFO 6257 --- [ntLoopGroup-6-1] i.n.h.l.LoggingHandler                   : [id: 0x320a0c4c, L:/0:0:0:0:0:0:0:0:13100] ACTIVE
+2020-05-30 16:05:45.857  INFO 6257 --- [           main] c.m.w.s.Server                           : [simple-push-server] startup complete.... >>>>>>>>>> TCPSOCKET
+2020-05-30 16:05:45.857  INFO 6257 --- [           main] c.m.w.d.DBHelper                         : @@com.mysql.cj.jdbc.Driver
+2020-05-30 16:05:45.858  INFO 6257 --- [           main] c.m.w.d.DBHelper                         : @@root
+2020-05-30 16:05:45.858  INFO 6257 --- [           main] c.m.w.d.DBHelper                         : @@dosa
+2020-05-30 16:05:45.858  INFO 6257 --- [           main] c.m.w.d.DBHelper                         : @@jdbc:mysql://localhost:3306/mimsWake?charsetEncoding=UTF-8&serverTimezone=UTC
+2020-05-30 16:05:46.685  INFO 6257 --- [           main] c.m.w.d.DBHelper                         : DATABASE Connect Success
+2020-05-30 16:05:46.685  INFO 6257 --- [           main] c.m.w.s.Server                           : [simple-push-server] DB open
+2020-05-30 16:05:50.858  INFO 6257 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:05:50.858  INFO 6257 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:05:55.864  INFO 6257 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:05:55.864  INFO 6257 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:06:00.869  INFO 6257 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:06:00.869  INFO 6257 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:06:05.838  INFO 6257 --- [       Thread-5] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2e5c649: startup date [Sat May 30 16:05:39 KST 2020]; root of context hierarchy
+2020-05-30 16:06:05.841  INFO 6257 --- [       Thread-5] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2020-05-30 16시 06분 05초: STOP
+2020-05-30 16시 08분 29초: START
+2020-05-30 16:08:31,205 main ERROR Unable to locate appender "Console" for logger config "root"
+2020-05-30 16:08:31 INFO ■□■□■MIM Wake Websocket Server Start■□■□■
+2020-05-30 16:08:31,877 main INFO Log4j appears to be running in a Servlet environment, but there's no log4j-web module available. If you want better web container support, please add the log4j-web JAR to your web archive or server lib directory.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.5.2.RELEASE)
+
+2020-05-30 16:08:32.181  INFO 6303 --- [           main] c.m.w.MimsWakeApplication                : Starting MimsWakeApplication v0.0.1-SNAPSHOT on Gomaui-MacBook-Pro.local with PID 6303 (/Volumes/Data Storage/WORKSPACE/mimsWake/pkg/bin/websocket.war started by goma in /Volumes/Data Storage/WORKSPACE/mimsWake/pkg)
+2020-05-30 16:08:32.182  INFO 6303 --- [           main] c.m.w.MimsWakeApplication                : No active profile set, falling back to default profiles: default
+2020-05-30 16:08:32.324  INFO 6303 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@299a06ac: startup date [Sat May 30 16:08:32 KST 2020]; root of context hierarchy
+2020-05-30 16:08:33.367  INFO 6303 --- [           main] o.s.b.f.x.XmlBeanDefinitionReader        : Loading XML bean definitions from URL [jar:file:/Volumes/Data%20Storage/WORKSPACE/mimsWake/pkg/bin/websocket.war!/WEB-INF/classes!/application-config.xml]
+2020-05-30 16:08:34.557  INFO 6303 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$76cec70e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-30 16:08:35.018  INFO 6303 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2020-05-30 16:08:35.038  INFO 6303 --- [           main] o.a.c.c.StandardService                  : Starting service Tomcat
+2020-05-30 16:08:35.041  INFO 6303 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet Engine: Apache Tomcat/8.5.11
+2020-05-30 16:08:36.315  INFO 6303 --- [ost-startStop-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2020-05-30 16:08:36.315  INFO 6303 --- [ost-startStop-1] o.s.w.c.ContextLoader                    : Root WebApplicationContext: initialization completed in 3999 ms
+2020-05-30 16:08:36.560  INFO 6303 --- [ost-startStop-1] o.s.b.w.s.ServletRegistrationBean        : Mapping servlet: 'dispatcherServlet' to [/]
+2020-05-30 16:08:36.568  INFO 6303 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-05-30 16:08:36.568  INFO 6303 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-05-30 16:08:36.569  INFO 6303 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-05-30 16:08:36.569  INFO 6303 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'requestContextFilter' to: [/*]
+2020-05-30 16:08:37.070  INFO 6303 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@299a06ac: startup date [Sat May 30 16:08:32 KST 2020]; root of context hierarchy
+2020-05-30 16:08:37.209  INFO 6303 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-05-30 16:08:37.212  INFO 6303 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-05-30 16:08:37.270  INFO 6303 --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 16:08:37.270  INFO 6303 --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 16:08:37.344  INFO 6303 --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 16:08:37.697  INFO 6303 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2020-05-30 16:08:37.827  INFO 6303 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2020-05-30 16:08:37.835  INFO 6303 --- [           main] c.m.w.s.Server                           : Wake Push Server STARTING...
+2020-05-30 16:08:37.853  INFO 6303 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [certFile] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.crt
+2020-05-30 16:08:37.853  INFO 6303 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [privateKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.pkcs8.key
+2020-05-30 16:08:37.854  INFO 6303 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [caKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/rootCA.pem
+2020-05-30 16:08:37.854 ERROR 6303 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 16:08:37.855  INFO 6303 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:server.tcpsocket] starting...
+2020-05-30 16:08:38.303  INFO 6303 --- [ntLoopGroup-2-1] i.n.h.l.LoggingHandler                   : [id: 0x17834088] REGISTERED
+2020-05-30 16:08:38.307  INFO 6303 --- [ntLoopGroup-2-1] i.n.h.l.LoggingHandler                   : [id: 0x17834088] BIND: 0.0.0.0/0.0.0.0:13101
+2020-05-30 16:08:38.310  INFO 6303 --- [ntLoopGroup-2-1] i.n.h.l.LoggingHandler                   : [id: 0x17834088, L:/0:0:0:0:0:0:0:0:13101] ACTIVE
+2020-05-30 16:08:38.310  INFO 6303 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:server.tcpsocket] started, listening on port 13101
+2020-05-30 16:08:38.310  INFO 6303 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:client.websocket] starting...
+2020-05-30 16:08:38.316  INFO 6303 --- [ntLoopGroup-4-1] i.n.h.l.LoggingHandler                   : [id: 0x527df663] REGISTERED
+2020-05-30 16:08:38.317  INFO 6303 --- [ntLoopGroup-4-1] i.n.h.l.LoggingHandler                   : [id: 0x527df663] BIND: 0.0.0.0/0.0.0.0:13102
+2020-05-30 16:08:38.318  INFO 6303 --- [ntLoopGroup-4-1] i.n.h.l.LoggingHandler                   : [id: 0x527df663, L:/0:0:0:0:0:0:0:0:13102] ACTIVE
+2020-05-30 16:08:38.318  INFO 6303 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:client.websocket] started, listening on port 13102
+2020-05-30 16:08:38.320  INFO 6303 --- [erver.tcpsocket] c.m.w.s.q.InboundQueue                   : [InboundQueueThread:server.tcpsocket] started
+2020-05-30 16:08:38.320  INFO 6303 --- [lient.websocket] c.m.w.s.q.InboundQueue                   : [InboundQueueThread:client.websocket] started
+2020-05-30 16:08:38.321  INFO 6303 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : [OutboundQueueCheckerThread] started [interval: 5]
+2020-05-30 16:08:38.322  INFO 6303 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : [InboundQueueCheckerThread] started [interval: 5]
+2020-05-30 16:08:38.323  INFO 6303 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:08:38.323  INFO 6303 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:08:38.324  INFO 6303 --- [           main] c.m.w.s.i.InboundTcpSocketServer         : [InboundServer] starting...
+2020-05-30 16:08:38.328  INFO 6303 --- [ntLoopGroup-6-1] i.n.h.l.LoggingHandler                   : [id: 0x35456fec] REGISTERED
+2020-05-30 16:08:38.328  INFO 6303 --- [ntLoopGroup-6-1] i.n.h.l.LoggingHandler                   : [id: 0x35456fec] BIND: 0.0.0.0/0.0.0.0:13100
+2020-05-30 16:08:38.329  INFO 6303 --- [ntLoopGroup-6-1] i.n.h.l.LoggingHandler                   : [id: 0x35456fec, L:/0:0:0:0:0:0:0:0:13100] ACTIVE
+2020-05-30 16:08:38.329  INFO 6303 --- [           main] c.m.w.s.i.InboundTcpSocketServer         : [InboundServer] started, listening on port 13100
+2020-05-30 16:08:38.329  INFO 6303 --- [           main] c.m.w.s.Server                           : [simple-push-server] startup complete.... >>>>>>>>>> TCPSOCKET
+2020-05-30 16:08:38.330  INFO 6303 --- [           main] c.m.w.d.DBHelper                         : @@com.mysql.cj.jdbc.Driver
+2020-05-30 16:08:38.330  INFO 6303 --- [           main] c.m.w.d.DBHelper                         : @@root
+2020-05-30 16:08:38.330  INFO 6303 --- [           main] c.m.w.d.DBHelper                         : @@dosa
+2020-05-30 16:08:38.330  INFO 6303 --- [           main] c.m.w.d.DBHelper                         : @@jdbc:mysql://localhost:3306/mimsWake?charsetEncoding=UTF-8&serverTimezone=UTC
+2020-05-30 16:08:39.318  INFO 6303 --- [           main] c.m.w.d.DBHelper                         : DATABASE Connect Success
+2020-05-30 16:08:39.318  INFO 6303 --- [           main] c.m.w.s.Server                           : [simple-push-server] DB open
+2020-05-30 16:08:43.327  INFO 6303 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:08:43.327  INFO 6303 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:08:48.332  INFO 6303 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:08:48.332  INFO 6303 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:08:53.337  INFO 6303 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:08:53.338  INFO 6303 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:08:58.338  INFO 6303 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:08:58.340  INFO 6303 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:09:03.341  INFO 6303 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:09:03.346  INFO 6303 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:09:08.341  INFO 6303 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:09:08.351  INFO 6303 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:09:12.418  INFO 6303 --- [       Thread-5] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@299a06ac: startup date [Sat May 30 16:08:32 KST 2020]; root of context hierarchy
+2020-05-30 16시 09분 12초: STOP
+2020-05-30 16시 09분 15초: START
+2020-05-30 16:09:16,718 main ERROR Unable to locate appender "Console" for logger config "root"
+2020-05-30 16:09:16 INFO ■□■□■MIM Wake Websocket Server Start■□■□■
+2020-05-30 16:09:17,433 main INFO Log4j appears to be running in a Servlet environment, but there's no log4j-web module available. If you want better web container support, please add the log4j-web JAR to your web archive or server lib directory.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.5.2.RELEASE)
+
+2020-05-30 16:09:17.725  INFO 6340 --- [           main] c.m.w.MimsWakeApplication                : Starting MimsWakeApplication v0.0.1-SNAPSHOT on Gomaui-MacBook-Pro.local with PID 6340 (/Volumes/Data Storage/WORKSPACE/mimsWake/pkg/bin/websocket.war started by goma in /Volumes/Data Storage/WORKSPACE/mimsWake/pkg)
+2020-05-30 16:09:17.726  INFO 6340 --- [           main] c.m.w.MimsWakeApplication                : No active profile set, falling back to default profiles: default
+2020-05-30 16:09:17.865  INFO 6340 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@299a06ac: startup date [Sat May 30 16:09:17 KST 2020]; root of context hierarchy
+2020-05-30 16:09:18.881  INFO 6340 --- [           main] o.s.b.f.x.XmlBeanDefinitionReader        : Loading XML bean definitions from URL [jar:file:/Volumes/Data%20Storage/WORKSPACE/mimsWake/pkg/bin/websocket.war!/WEB-INF/classes!/application-config.xml]
+2020-05-30 16:09:20.064  INFO 6340 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$76cec70e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-30 16:09:20.574  INFO 6340 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2020-05-30 16:09:20.596  INFO 6340 --- [           main] o.a.c.c.StandardService                  : Starting service Tomcat
+2020-05-30 16:09:20.600  INFO 6340 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet Engine: Apache Tomcat/8.5.11
+2020-05-30 16:09:21.979  INFO 6340 --- [ost-startStop-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2020-05-30 16:09:21.980  INFO 6340 --- [ost-startStop-1] o.s.w.c.ContextLoader                    : Root WebApplicationContext: initialization completed in 4120 ms
+2020-05-30 16:09:22.238  INFO 6340 --- [ost-startStop-1] o.s.b.w.s.ServletRegistrationBean        : Mapping servlet: 'dispatcherServlet' to [/]
+2020-05-30 16:09:22.245  INFO 6340 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-05-30 16:09:22.246  INFO 6340 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-05-30 16:09:22.246  INFO 6340 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-05-30 16:09:22.246  INFO 6340 --- [ost-startStop-1] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'requestContextFilter' to: [/*]
+2020-05-30 16:09:22.744  INFO 6340 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@299a06ac: startup date [Sat May 30 16:09:17 KST 2020]; root of context hierarchy
+2020-05-30 16:09:22.892  INFO 6340 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-05-30 16:09:22.894  INFO 6340 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-05-30 16:09:22.945  INFO 6340 --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 16:09:22.945  INFO 6340 --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 16:09:23.017  INFO 6340 --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-05-30 16:09:23.348  INFO 6340 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2020-05-30 16:09:23.481  INFO 6340 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2020-05-30 16:09:23.489  INFO 6340 --- [           main] c.m.w.s.Server                           : Wake Push Server STARTING...
+2020-05-30 16:09:23.507  INFO 6340 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [certFile] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.crt
+2020-05-30 16:09:23.507  INFO 6340 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [privateKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/service.pkcs8.key
+2020-05-30 16:09:23.507  INFO 6340 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [caKey] /Volumes/Data Storage/WORKSPACE/mimsWake/pkg/ssl/rootCA.pem
+2020-05-30 16:09:23.507 ERROR 6340 --- [           main] c.m.w.s.o.OutboundWebSocketServer        : [OutboundWebSocketServer: Certification or Key file not found!!]
+2020-05-30 16:09:23.508  INFO 6340 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:server.tcpsocket] starting...
+2020-05-30 16:09:24.005  INFO 6340 --- [ntLoopGroup-2-1] i.n.h.l.LoggingHandler                   : [id: 0x5b164131] REGISTERED
+2020-05-30 16:09:24.009  INFO 6340 --- [ntLoopGroup-2-1] i.n.h.l.LoggingHandler                   : [id: 0x5b164131] BIND: 0.0.0.0/0.0.0.0:13101
+2020-05-30 16:09:24.010  INFO 6340 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:server.tcpsocket] started, listening on port 13101
+2020-05-30 16:09:24.011  INFO 6340 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:client.websocket] starting...
+2020-05-30 16:09:24.012  INFO 6340 --- [ntLoopGroup-2-1] i.n.h.l.LoggingHandler                   : [id: 0x5b164131, L:/0:0:0:0:0:0:0:0:13101] ACTIVE
+2020-05-30 16:09:24.017  INFO 6340 --- [ntLoopGroup-4-1] i.n.h.l.LoggingHandler                   : [id: 0x022260bf] REGISTERED
+2020-05-30 16:09:24.017  INFO 6340 --- [ntLoopGroup-4-1] i.n.h.l.LoggingHandler                   : [id: 0x022260bf] BIND: 0.0.0.0/0.0.0.0:13102
+2020-05-30 16:09:24.017  INFO 6340 --- [ntLoopGroup-4-1] i.n.h.l.LoggingHandler                   : [id: 0x022260bf, L:/0:0:0:0:0:0:0:0:13102] ACTIVE
+2020-05-30 16:09:24.017  INFO 6340 --- [           main] c.m.w.s.o.OutboundServer                 : [OutboundServer:client.websocket] started, listening on port 13102
+2020-05-30 16:09:24.020  INFO 6340 --- [erver.tcpsocket] c.m.w.s.q.InboundQueue                   : [InboundQueueThread:server.tcpsocket] started
+2020-05-30 16:09:24.020  INFO 6340 --- [lient.websocket] c.m.w.s.q.InboundQueue                   : [InboundQueueThread:client.websocket] started
+2020-05-30 16:09:24.021  INFO 6340 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : [OutboundQueueCheckerThread] started [interval: 5]
+2020-05-30 16:09:24.022  INFO 6340 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:09:24.026  INFO 6340 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : [InboundQueueCheckerThread] started [interval: 5]
+2020-05-30 16:09:24.027  INFO 6340 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:09:24.027  INFO 6340 --- [           main] c.m.w.s.i.InboundTcpSocketServer         : [InboundServer] starting...
+2020-05-30 16:09:24.033  INFO 6340 --- [ntLoopGroup-6-1] i.n.h.l.LoggingHandler                   : [id: 0x0669d20a] REGISTERED
+2020-05-30 16:09:24.033  INFO 6340 --- [ntLoopGroup-6-1] i.n.h.l.LoggingHandler                   : [id: 0x0669d20a] BIND: 0.0.0.0/0.0.0.0:13100
+2020-05-30 16:09:24.033  INFO 6340 --- [ntLoopGroup-6-1] i.n.h.l.LoggingHandler                   : [id: 0x0669d20a, L:/0:0:0:0:0:0:0:0:13100] ACTIVE
+2020-05-30 16:09:24.034  INFO 6340 --- [           main] c.m.w.s.i.InboundTcpSocketServer         : [InboundServer] started, listening on port 13100
+2020-05-30 16:09:24.034  INFO 6340 --- [           main] c.m.w.s.Server                           : [simple-push-server] startup complete.... >>>>>>>>>> TCPSOCKET
+2020-05-30 16:09:24.035  INFO 6340 --- [           main] c.m.w.d.DBHelper                         : @@com.mysql.cj.jdbc.Driver
+2020-05-30 16:09:24.035  INFO 6340 --- [           main] c.m.w.d.DBHelper                         : @@root
+2020-05-30 16:09:24.035  INFO 6340 --- [           main] c.m.w.d.DBHelper                         : @@dosa
+2020-05-30 16:09:24.035  INFO 6340 --- [           main] c.m.w.d.DBHelper                         : @@jdbc:mysql://localhost:3306/mimsWake?charsetEncoding=UTF-8&serverTimezone=UTC
+2020-05-30 16:09:25.059  INFO 6340 --- [           main] c.m.w.d.DBHelper                         : DATABASE Connect Success
+2020-05-30 16:09:25.060  INFO 6340 --- [           main] c.m.w.s.Server                           : [simple-push-server] DB open
+2020-05-30 16:09:29.025  INFO 6340 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:09:29.028  INFO 6340 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:09:34.027  INFO 6340 --- [ueCheckerThread] c.m.w.s.q.OutboundQueueChecker           : 
+* Inbound Queue Status
+[server.tcpsocket]
+	No Outbound Queue
+[client.websocket]
+	No Outbound Queue
+
+2020-05-30 16:09:34.033  INFO 6340 --- [ueCheckerThread] c.m.w.s.q.InboundQueueChecker            : 
+* Inbound Queue Status
+[server.tcpsocket] capacity: 10000, current: 0
+[client.websocket] capacity: 10000, current: 0
+
+2020-05-30 16:09:34.249  INFO 6340 --- [       Thread-5] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@299a06ac: startup date [Sat May 30 16:09:17 KST 2020]; root of context hierarchy
+2020-05-30 16시 09분 34초: STOP

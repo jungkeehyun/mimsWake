@@ -42,7 +42,7 @@ public class UserProperty {
 	public void readPrpoerties(String propName) {
 		String name = propName;
 		if(name == null || name.isEmpty())
-			name = "default.properties";
+			name = "config/default.properties";
 		else {
 			String pathFile = commonUtil.getCurrentPath("");
 			pathFile += propName + ".properties";

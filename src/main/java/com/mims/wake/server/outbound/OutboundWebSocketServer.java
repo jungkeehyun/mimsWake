@@ -118,6 +118,11 @@ public class OutboundWebSocketServer extends OutboundServer {
 		File cert = new File(certFile);
 		File privateKey = new File(keyFile);
 		File caKey = new File(caFile);
+		
+		logger.info("[certFile] {}", cert.getPath());
+		logger.info("[privateKey] {}", privateKey.getPath());
+		logger.info("[caKey] {}", caKey.getPath());
+		
 		if (cert.exists() && privateKey.exists() && caKey.exists()) {
 			try {
 				return SslContextBuilder.forServer(cert, privateKey)

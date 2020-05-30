@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" monitorInterval="30">
+    <Properties>
+    	<!-- 
+    		%p	로그 레벨 이름
+		%m	로그 메시지 출력
+		%d	로깅 이벤트 발생 시각
+		%F	로깅이 발생한 프로그램 파일 이름
+		%l	로깅이 발생한 caller의 정보
+		%L	로깅이 발생한 caller의 라인 수
+		%c	로깅 메세지 앞에 전체 패키지 이름이나 전체 파일 이름 
+	-->
+        <Property name="LOG_FORMAT">%d{yyyy-MM-dd HH:mm:ss} %p %m%n</Property>
+        <Property name="BASE_DIR">./logs</Property>
+        <Property name="LOG_FILE">mimsWakeApp</Property>
+    </Properties>
+
+    <Appenders>
+        <RollingFile name="File"
+                     fileName="${BASE_DIR}/${LOG_FILE}.log"
+                     filePattern="${BASE_DIR}/${LOG_FILE}.%d{yyyyMMdd}.log">
+            <PatternLayout pattern="${LOG_FORMAT}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+<!--
+            <DefaultRolloverStrategy>
+                <Delete basePath="${BASE_DIR}">
+                    <IfFileName glob="*.log" />
+                    <IfLastModified age="30d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+-->
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+    	<!-- 
+		FATAL	애플리케이션 작동이 불가능할 경우에 출력
+		ERROR	애플리케이션 실행 중 문제가 발생할 경우에 출력
+		WARN	향후 시스템 오류의 원인이 될 수 있는 경고 메세지를 출력
+		INFO	실제 애플리케이션 운영과 관련된 정보 메세지를 출력
+		DEBUG	개발 시 디버깅 용도로 사용한 메세지를 출력
+		TRACE	DEBUG 레벨보다 상세한 로깅 정보를 출력
+	-->
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File" />
+        </Root>
+    </Loggers>
+</Configuration>
