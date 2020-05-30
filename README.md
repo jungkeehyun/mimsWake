@@ -68,7 +68,7 @@ $java -jar sendTcpMsg/sendWake_0.4.jar --spring.config.location=file:application
 
 # Building
 * ./build.sh
-* -- /Volumes/Data\ Storage/WORKSPACE/mimsWake/mvnw clean package
+* -- ~/mvnw clean package
 * -- cp target/bin/websocket.war pkg/websocket.war
 
 # Packaging
